@@ -2,4 +2,5 @@ Manifest-Version: 1.0
 Built-By: Malick
 Build-Jdk: 1.8.0_25
 Created-By: Maven Integration for Eclipse
+Main-Class: rdvmedecins.boot.Boot
 
