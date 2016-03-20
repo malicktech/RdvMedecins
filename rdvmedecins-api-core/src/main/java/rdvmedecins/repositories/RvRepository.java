@@ -1,5 +1,6 @@
 package rdvmedecins.repositories;
 
+
 import java.util.Date;
 
 import org.springframework.data.jpa.repository.Query;
@@ -7,6 +8,11 @@ import org.springframework.data.repository.CrudRepository;
 
 import rdvmedecins.entities.Rv;
 
+/**
+ * donne accès aux entités JPA [Rv]
+ * @author Malick
+ *
+ */
 public interface RvRepository extends CrudRepository<Rv, Long> {
 	
 	/** 

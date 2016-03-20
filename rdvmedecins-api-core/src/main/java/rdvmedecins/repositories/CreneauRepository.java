@@ -5,6 +5,11 @@ import org.springframework.data.repository.CrudRepository;
 
 import rdvmedecins.entities.Creneau;
 
+/**
+ * donne accès aux entités JPA [Creneau] 
+ * @author Malick
+ *
+ */
 public interface CreneauRepository extends CrudRepository<Creneau, Long> {
 	// liste des créneaux horaires d'un médecin
 	@Query("select c from Creneau c where c.medecin.id=?1")
