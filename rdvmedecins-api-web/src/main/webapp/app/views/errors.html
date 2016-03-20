@@ -1,0 +1,6 @@
+<div class="alert alert-danger" ng-show="model.show">
+  {{model.title.text|translate:model.title.values}}
+  <ul>
+    <li ng-repeat="message in model.messages">{{message|translate}}</li>
+  </ul>
+</div>

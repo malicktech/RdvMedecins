@@ -1,0 +1,67 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">RdvMedecins</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="">
+            <span translate="options_afficherAgenda" ng-click="home.afficherAgenda()"
+                  tooltip="{{'tooltip_afficher_agenda'|translate}}" tooltip-placement="bottom"
+                  ng-show="app.menu.afficherAgenda"></span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="">
+            <span translate="options_home" ng-click="agenda.home()" ng-show="app.menu.home"
+                  tooltip="{{'tooltip_home'|translate}}" tooltip-placement="bottom"></span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="">
+            <span translate="options_retourAgenda" ng-click="resa.retourAgenda()"
+                  ng-show="app.menu.retourAgenda"
+                  tooltip="{{'tooltip_retour_agenda'|translate}}" tooltip-placement="bottom"></span></span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="">
+            <span translate="options_validerRv" ng-click="resa.validerRv()" ng-show="app.menu.validerRv"
+                  tooltip="{{'tooltip_valider_rv'|translate}}" tooltip-placement="bottom"></span></span>
+          </a>
+        </li>
+      </ul>
+      <!-- boutons de droite -->
+      <form class="navbar-form navbar-right" role="form">
+        <div class="checkbox" style="width: 100px">
+          <label>
+            <input type="checkbox" ng-model="app.debug.on">
+            <span style="color: white"
+                  tooltip="{{'tooltip_debug'|translate}}"
+                  tooltip-placement="bottom">
+              {{'verbose'|translate}}</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="{{'sleeptime' | translate}}"
+                 ng-model="app.waitingTimeBeforeTask" style="width: 150px"
+                 tooltip="{{'tooltip_waiting_time_before_task'|translate}}" tooltip-placement="bottom"/>
+        </div>
+        <!-- déconnexion -->
+        <button type="button" class="btn btn-success" translate="logout"
+                ng-click="app.deconnecter()"
+                tooltip="{{'tooltip_deconnecter'|translate}}" tooltip-placement="bottom">
+        </button>
+        <!-- langues -->
+        <ng-include src="'views/languages.html'"></ng-include>
+      </form>
+    </div>
+  </div>
+</div>

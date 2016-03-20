@@ -1,0 +1,14 @@
+<div class="row" style="margin-bottom: 20px">
+
+  <!-- liste des médecins -->
+  <list model="app.medecins"></list>
+  <!-- le calendrier -->
+  <div class="col-md-3">
+    <h2 translate="rv_jour"></h2>
+
+    <div style="display:inline-block; min-height:290px;">
+      <datepicker ng-model="home.datepicker.jour" min-date="home.datepicker.minDate" show-weeks="true"
+                  class="well well-sm"></datepicker>
+    </div>
+  </div>
+</div>

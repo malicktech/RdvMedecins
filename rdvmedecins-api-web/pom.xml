@@ -8,27 +8,29 @@
 	<parent>
 		<groupId>net.webapp</groupId>
 		<artifactId>rdvmedecins</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>rdvmedecins-api-web</artifactId>
 	<name>rdvmedecins-api-web</name>
-	<packaging>jar</packaging>
-	
+	<packaging>war</packaging>
+
 
 	<properties>
 		<start-class>rdvmedecins.web.boot.Boot</start-class>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 
 	<dependencies>
+		<!-- Subcore dependency -->
 		<dependency>
 			<groupId>${parent.groupId}</groupId>
 			<artifactId>rdvmedecins-api-core</artifactId>
 			<version>${parent.version}</version>
 		</dependency>
+		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -37,7 +39,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -48,6 +54,7 @@
 			</plugin>
 		</plugins>
 	</build>
+	
 	<repositories>
 		<repository>
 			<id>spring-snapshots</id>

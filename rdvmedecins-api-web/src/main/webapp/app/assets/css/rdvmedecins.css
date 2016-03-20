@@ -1,0 +1,48 @@
+@CHARSET "ISO-8859-1";
+
+/*styles perso*/
+body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+}
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+#creneaux th {
+	text-align: center;
+}
+
+#creneaux td {
+	text-align: center;
+	font-weight: bold;
+}
+
+/* Styles footables
+-----------------------------------------------------------*/
+.status-metro {
+  display: inline-block;
+  padding: 2px 5px;
+  color:#fff;
+}
+
+.status-metro.status-active {
+  background: #43c83c;
+}
+
+.status-metro.status-disabled {
+  background: #999999;
+}
+
+.status-metro.status-suspended {
+  background: #fa3031;
+}

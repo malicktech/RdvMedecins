@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="rdvmedecins">
+<head>
+  <title>RdvMedecins</title>
+  <!-- META -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Angular client for RdvMedecins">
+  <meta name="author" content="Serge Tahé">
+  <!-- le CSS -->
+  <link rel="stylesheet" href="lib/bootstrap.min.css"/>
+  <link href="lib/bootstrap-theme.min.css" rel="stylesheet"/>
+  <link href="lib/bootstrap-select.min.css" rel="stylesheet"/>
+  <link href="assets/css/rdvmedecins.css" rel="stylesheet"/>
+  <link href="assets/css/footable.core.min.css" rel="stylesheet"/>
+</head>
+<!-- contrôleur [appCtrl], modèle [app] -->
+<body ng-controller="appCtrl">
+<div class="container">
+  <!-- les barres de navigation -->
+  <ng-include src="'views/navbar-start.html'" ng-show="app.navbarstart.show"></ng-include>
+  <ng-include src="'views/navbar-run.html'" ng-show="app.navbarrun.show"></ng-include>
+  <!-- le jumbotron -->
+  <ng-include src="'views/jumbotron.html'"></ng-include>
+  <!-- le titre de la page -->
+  <div class="alert alert-info" ng-show="app.titre.show" translate="{{app.titre.text}}"
+       translate-values="{{app.titre.model}}"></div>
+  <!-- les erreurs de la page -->
+  <errors model="app.errors" ng-show="app.errors.show"></errors>
+  <!-- le message d'attente -->
+  <waiting model="app.waiting" ng-show="app.waiting.show"></waiting>
+  <!-- la vue courante -->
+  <ng-view></ng-view>
+  <!-- debug -->
+  <debug model="app" ng-show="app.debug.on"></debug>
+</div>
+<!-- Bootstrap core JavaScript ================================================== -->
+<script type="text/javascript" src="lib/jquery.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="lib/footable.js"></script>
+<!-- angular js -->
+<script type="text/javascript" src="lib/angular.min.js"></script>
+<script type="text/javascript" src="lib/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript" src="lib/angular-route.min.js"></script>
+<script type="text/javascript" src="lib/angular-translate.min.js"></script>
+<script type="text/javascript" src="lib/angular-base64.min.js"></script>
+<!-- modules -->
+<script type="text/javascript" src="modules/main.js"></script>
+<!-- services -->
+<script type="text/javascript" src="services/config.js"></script>
+<script type="text/javascript" src="services/dao.js"></script>
+<script type="text/javascript" src="services/utils.js"></script>
+<!-- directives -->
+<script type="text/javascript" src="directives/waiting.js"></script>
+<script type="text/javascript" src="directives/errors.js"></script>
+<script type="text/javascript" src="directives/footable.js"></script>
+<script type="text/javascript" src="directives/debug.js"></script>
+<script type="text/javascript" src="directives/list.js"></script>
+<!-- controllers -->
+<script type="text/javascript" src="controllers/appController.js"></script>
+<script type="text/javascript" src="controllers/loginController.js"></script>
+<script type="text/javascript" src="controllers/homeController.js"></script>
+<script type="text/javascript" src="controllers/agendaController.js"></script>
+<script type="text/javascript" src="controllers/resaController.js"></script>
+</body>
+</html>

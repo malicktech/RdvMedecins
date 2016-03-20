@@ -1,0 +1,52 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">RdvMedecins</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <!-- formulaire d'identification -->
+      <form class="navbar-form navbar-right">
+        <div class="checkbox" style="width: 100px">
+          <label>
+            <input type="checkbox" ng-model="app.debug.on">
+            <span style="color: white"
+                  tooltip="{{'tooltip_debug'|translate}}" tooltip-placement="bottom">{{'verbose'|translate}}</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="{{'sleeptime' | translate}}"
+                 ng-model="app.waitingTimeBeforeTask" style="width: 150px"
+                 tooltip="{{'tooltip_waiting_time_before_task'|translate}}" tooltip-placement="bottom"/>
+        </div>
+
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="{{'server_url' | translate}}"
+                 ng-model="app.serverUrl" style="width: 200px"
+                 tooltip="{{'tooltip_server_url'|translate}}" tooltip-placement="bottom"/>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="{{'username' | translate}}"
+                 ng-model="app.username" style="width: 100px"
+                 tooltip="{{'tooltip_user_name'|translate}}" tooltip-placement="bottom"/>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="{{'password' | translate}}"
+                 ng-model="app.password" style="width: 100px"
+                 tooltip="{{'tooltip_password'|translate}}" tooltip-placement="bottom"/>
+        </div>
+        <button ng-click="login.authenticate(app.serverUrl,app.username,app.password)" class="btn btn-success"
+                tooltip="{{'tooltip_authenticate'|translate}}" tooltip-placement="bottom">
+          {{'login'|translate}}
+        </button>
+        <!-- langues -->
+        <ng-include src="'views/languages.html'"></ng-include>
+      </form>
+    </div>
+  </div>
+</div>

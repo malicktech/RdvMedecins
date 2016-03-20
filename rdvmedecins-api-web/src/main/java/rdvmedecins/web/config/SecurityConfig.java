@@ -33,6 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// la méthode HTTP OPTIONS doit être autorisée pour tous
 		http.authorizeRequests() //
 				.antMatchers(HttpMethod.OPTIONS, "/", "/**").permitAll();
+		// le dossier [app] est accessible à tous
+				http.authorizeRequests() //
+						.antMatchers(HttpMethod.GET, "/app", "/app/**").permitAll();
 		// seul le rôle ADMIN peut utiliser l'application
 		http.authorizeRequests() //
 				.antMatchers("/", "/**") // toutes les URL

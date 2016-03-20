@@ -34,6 +34,7 @@ public class ApplicationModel implements IMetier {
 	private List<Client> clients;
 	private List<String> messages;
 	// données de configuration
+	// controle la génération ou non des entêtes CORS
 	private boolean CORSneeded = true;
 
 	@PostConstruct
