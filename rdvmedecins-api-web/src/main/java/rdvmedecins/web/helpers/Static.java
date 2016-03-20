@@ -14,7 +14,7 @@ import rdvmedecins.entities.Rv;
 /**
  * regroupe l'ensemble des méthodes statiques utilitaires qui n'ont pas d'aspect " métier " ou " web "
  * Utilitaire de gestion des erreurs
- * Utilitaires de Mapage des objets
+ * Utilitaires de Mapage d'objets pour mieux sérialiser les réponses 
  *  
  * @author Malick
  *

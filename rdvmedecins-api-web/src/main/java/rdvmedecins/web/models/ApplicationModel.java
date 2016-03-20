@@ -16,6 +16,12 @@ import rdvmedecins.entities.Rv;
 import rdvmedecins.metier.IMetier;
 import rdvmedecins.web.helpers.Static;
 
+/**
+ * Classe singleton qui sert de : cache pour stocker les listes de médecins et de patients (clients) et d'interface unique pour les contrôleurs ;
+ * Cette stratégie amène de la souplesse quant à la gestion du cache
+ * @author Malick
+ *
+ */
 @Component // fait de la classe [ApplicationModel] un composant Spring. un seul objet de ce type sera instancié (singleton) 
 public class ApplicationModel implements IMetier {
 

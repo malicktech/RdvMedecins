@@ -8,9 +8,16 @@ package rdvmedecins.web.models;
 public class Reponse {
 
 	// ----------------- propriétés
-	// statut de l'opération // code d'erreur de la réponse 0: OK, autre chose : KO 
+	
+	/**
+	 * statut de l'opération code d'erreur de la réponse 
+	 * 0: OK, autre chose : KO 
+	 */
 	private int status;
-	// la réponse JSON
+	
+	/**
+	 * la réponse JSON
+	 */
 	private Object data;
 
 	// ---------------constructeurs

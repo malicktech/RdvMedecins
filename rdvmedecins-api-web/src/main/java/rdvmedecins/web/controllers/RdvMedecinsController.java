@@ -41,12 +41,16 @@ public class RdvMedecinsController {
 	@PostConstruct
 	// méthode à exécuter juste après l'instanciation de la classe
 	public void init() {
-		// messages d'erreur de l'application
+		// Stocke les messages d'erreur de l'application
+		// Permet aux méthodes de savoir si l'application s'est initialisée correctement.
 		messages = application.getMessages();
 	}
 
-	// début méthodes locales
-	// ---------------------------------------------------------------
+
+	/* 
+	 * Méthodes locales
+	 * =========================================================================================== */
+	
 	private Reponse getMedecin(long id) {
 		// on récupère le médecin
 		Medecin médecin = null;
