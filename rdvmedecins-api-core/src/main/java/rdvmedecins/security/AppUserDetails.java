@@ -7,6 +7,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * Spring Security impose la création d'une classe implémentant l'interface [UsersDetail]
+ * AppUserDetails encapsule un utilisateur et le repository qui permet d'avoir les détails de cet utilisateur
+ * @author Malick
+ *
+ */
 public class AppUserDetails implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
