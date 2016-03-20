@@ -13,7 +13,8 @@
 
 	<artifactId>rdvmedecins-api-core</artifactId>
 	<name>rdvmedecins-api-core</name>
-
+	<packaging>jar</packaging>
+	
 	<properties>
 		<!-- use UTF-8 for everything -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,6 +23,7 @@
 	</properties>
 
 	<dependencies>
+		<!-- Spring 	 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -35,10 +37,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<!-- pilote JDBC du SGBD MySQL	 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		<!-- pool de connexions Commons DBCP -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>

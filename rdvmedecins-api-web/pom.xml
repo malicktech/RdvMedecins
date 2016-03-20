@@ -13,6 +13,8 @@
 
 	<artifactId>rdvmedecins-api-web</artifactId>
 	<name>rdvmedecins-api-web</name>
+	<packaging>jar</packaging>
+	
 
 	<properties>
 		<start-class>rdvmedecins.web.boot.Boot</start-class>
