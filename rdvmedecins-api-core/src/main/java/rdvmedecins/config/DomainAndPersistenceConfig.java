@@ -31,8 +31,7 @@ public class DomainAndPersistenceConfig {
 		return dataSource;
 	}
 
-	// le provider JPA - n'est pas nécessaire si on est satisfait des valeurs par
-	// défaut utilisées par Spring boot
+	// le provider JPA - n'est pas nécessaire si on est satisfait des valeurs par défaut utilisées par Spring boot
 	// ici on le définit pour activer / désactiver les logs SQL
 	@Bean
 	public JpaVendorAdapter jpaVendorAdapter() {
