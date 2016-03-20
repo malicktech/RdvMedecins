@@ -26,11 +26,13 @@ public class UsersTest {
 
 	@Test
 	public void findAllUsersWithTheirRoles() {
+		// test visuel. On affiche tous les utilisateurs avec leurs rôles
 		Iterable<User> users = userRepository.findAll();
 		for (User user : users) {
 			System.out.println(user);
 			display("Roles :", userRepository.getRoles(user.getId()));
 		}
+		// TODO add assert test
 	}
 
 	@Test

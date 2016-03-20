@@ -11,9 +11,16 @@ import rdvmedecins.security.UserRepository;
 import rdvmedecins.security.UserRole;
 import rdvmedecins.security.UserRoleRepository;
 
+/**
+ * classe exécutable capable de créer un utilisateur avec un rôle
+ * 
+ * @author Malick
+ *
+ */
 public class CreateUser {
 
 	public static void main(String[] args) {
+
 		// syntaxe : login password roleName
 
 		// il faut trois paramètres
@@ -25,17 +32,20 @@ public class CreateUser {
 		String login = args[0];
 		String password = args[1];
 		String roleName = String.format("ROLE_%s", args[2].toUpperCase());
+		
 		// contexte Spring
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DomainAndPersistenceConfig.class);
 		UserRepository userRepository = context.getBean(UserRepository.class);
 		RoleRepository roleRepository = context.getBean(RoleRepository.class);
 		UserRoleRepository userRoleRepository = context.getBean(UserRoleRepository.class);
+		
 		// le rôle existe-t-il déjà ?
 		Role role = roleRepository.findRoleByName(roleName);
 		// s'il n'existe pas on le crée
 		if (role == null) {
 			role = roleRepository.save(new Role(roleName));
 		}
+		
 		// l'utilisateur existe-t-il déjà ?
 		User user = userRepository.findUserByLogin(login);
 		// s'il n'existe pas on le crée
