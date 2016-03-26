@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- indique que le contexte de l'application. Le contexte est par défaut le nom du projet.
+Cela signifie que les pages web du projet seront demandées via une URL de la forme http://machine:port/mv-jsf2-01/page  -->
 <Context antiJARLocking="true" path="/mv-rdvmedecins-spring-jsf2"/>

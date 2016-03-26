@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import rdvmedecins.domain.AgendaMedecinJour;
 import rdvmedecins.domain.CreneauMedecinJour;
 import rdvmedecins.entities.Client;
+import rdvmedecins.entities.Creneau;
 import rdvmedecins.entities.Medecin;
 import utils.Messages;
 
@@ -66,7 +67,7 @@ public class Form implements Serializable {
       // titre formulaire 2
       form2Titre = Messages.getMessage(null, "form2.titre", new Object[]{medecin.getTitre(), medecin.getPrenom(), medecin.getNom(), new SimpleDateFormat("dd MMM yyyy").format(jour)}).getSummary();
       // l'agenda du médecin pour un jour donné
-      agendaMedecinJour = application.getMetier().getAgendaMedecinJour(medecin, jour);
+      agendaMedecinJour = application.getMetier().getAgendaMedecinJour(medecin.getId(), jour);
       // on affiche le formulaire 2
       setForms(false, true, false, false);
     } catch (Throwable th) {
@@ -122,9 +123,9 @@ public class Form implements Serializable {
   public void supprimer() {
     try {
       // suppression d'un Rdv
-      application.getMetier().supprimerRv(creneauChoisi.getRv());
+      application.getMetier().supprimerRv(creneauChoisi.getRv().getId());
       // on remet à jour l'agenda
-      agendaMedecinJour = application.getMetier().getAgendaMedecinJour(medecin, jour);
+      agendaMedecinJour = application.getMetier().getAgendaMedecinJour(medecin.getId(), jour);
       // on affiche form2
       setForms(false, true, false, false);
     } catch (Throwable th) {
@@ -141,7 +142,7 @@ public class Form implements Serializable {
       // on ajoute le Rv
       application.getMetier().ajouterRv(jour, creneau, application.gethClients().get(idClient));
       // on remet à jour l'agenda
-      agendaMedecinJour = application.getMetier().getAgendaMedecinJour(medecin, jour);
+      agendaMedecinJour = application.getMetier().getAgendaMedecinJour(medecin.getId(), jour);
       // on affiche form2
       setForms(false, true, false, false);
     } catch (Throwable th) {
