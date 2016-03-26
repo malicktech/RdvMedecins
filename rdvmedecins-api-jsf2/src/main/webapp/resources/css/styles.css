@@ -1,0 +1,44 @@
+.reservationsHeaders {
+   text-align: center;
+   font-style: italic;
+   color: Snow;
+   background: Teal;
+}
+
+.creneau {
+   height: 25px;
+   text-align: center;
+   background: MediumTurquoise;
+}
+.client {
+   text-align: left;
+   background: PowderBlue;
+}
+
+.action {
+   width: 6em;
+   text-align: left;
+   color: Black;
+   background: MediumTurquoise;
+}
+.erreursHeaders {
+   background: Teal;
+   background-color: #ff6633;
+   color: Snow;
+   font-style: italic;
+   text-align: center
+
+}
+
+.erreurClasse {
+   background: MediumTurquoise;
+   background-color: #ffcc66;
+   height: 25px;
+   text-align: center
+}
+
+.erreurMessage {
+   background: PowderBlue;
+   background-color: #ffcc99;
+   text-align: left
+}

@@ -43,6 +43,7 @@
 	<modules>
 		<module>rdvmedecins-api-core</module>
 		<module>rdvmedecins-api-web</module>
+		<module>rdvmedecins-api-jsf2</module>
 	</modules>
 
 	<dependencyManagement>
