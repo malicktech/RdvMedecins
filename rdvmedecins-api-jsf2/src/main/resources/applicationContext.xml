@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd ">
+  
+  
+  <!-- traduction des exceptions -->
+<!--   <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" /> -->
+
+  <!-- persistence -->
+<!--   <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" /> -->
+
+<!-- first, define your individual @Configuration classes as beans -->
+    <bean class="rdvmedecins.web.jsf.config.AppConfig"/>
+
+    <!-- be sure to include the JavaConfig bean post-processor -->
+    <bean class="org.springframework.config.java.process.ConfigurationPostProcessor"/>
+    
+
+</beans>

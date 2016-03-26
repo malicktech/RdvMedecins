@@ -1,4 +1,4 @@
-package beans;
+package rdvmedecins.web.jsf.beans;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -6,20 +6,36 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import rdvmedecins.domain.AgendaMedecinJour;
 import rdvmedecins.domain.CreneauMedecinJour;
 import rdvmedecins.entities.Client;
 import rdvmedecins.entities.Creneau;
 import rdvmedecins.entities.Medecin;
-import utils.Messages;
+import rdvmedecins.web.jsf.utils.Messages;
 
+
+@Component
+@ManagedBean(name="form")
+@SessionScoped //@RequestScoped - @ApplicationScoped
 public class Form implements Serializable {
 
+	
+	private static final long serialVersionUID = 1L;
+	
+	// inject application by spring 
+  @Autowired
+	private Application application;
+  
   public Form() {
   }
-  // bean Application
-  private Application application;
   
   // modèle
   private Long idMedecin;

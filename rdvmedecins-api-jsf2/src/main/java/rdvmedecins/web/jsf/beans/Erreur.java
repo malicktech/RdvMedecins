@@ -1,4 +1,4 @@
-package beans;
+package rdvmedecins.web.jsf.beans;
 
 public class Erreur {
   

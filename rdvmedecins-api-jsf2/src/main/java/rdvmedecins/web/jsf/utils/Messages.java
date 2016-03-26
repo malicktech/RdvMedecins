@@ -1,4 +1,4 @@
-package utils;
+package rdvmedecins.web.jsf.utils;
 
 import java.text.MessageFormat;
 import java.util.Locale;

@@ -25,11 +25,11 @@ import rdvmedecins.web.helpers.Static;
 @Component // fait de la classe [ApplicationModel] un composant Spring. un seul objet de ce type sera instancié (singleton) 
 public class ApplicationModel implements IMetier {
 
-	// la couche [métier]
+	// la couche [metier]
 	@Autowired
-	private IMetier métier;
+	private IMetier metier;
 
-	// données provenant de la couche [métier]
+	// données provenant de la couche [metier]
 	private List<Medecin> médecins;
 	private List<Client> clients;
 	private List<String> messages;
@@ -41,8 +41,8 @@ public class ApplicationModel implements IMetier {
 	public void init() {
 		// on récupère les médecins et les clients
 		try {
-			médecins = métier.getAllMedecins();
-			clients = métier.getAllClients();
+			médecins = metier.getAllMedecins();
+			clients = metier.getAllClients();
 		} catch (Exception ex) {
 			messages = Static.getErreursForException(ex);
 		}
@@ -53,7 +53,7 @@ public class ApplicationModel implements IMetier {
 		return messages;
 	}
 
-	// ------------------------- interface couche [métier]
+	// ------------------------- interface couche [metier]
 	@Override
 	public List<Client> getAllClients() {
 		return clients;
@@ -66,47 +66,47 @@ public class ApplicationModel implements IMetier {
 
 	@Override
 	public List<Creneau> getAllCreneaux(long idMedecin) {
-		return métier.getAllCreneaux(idMedecin);
+		return metier.getAllCreneaux(idMedecin);
 	}
 
 	@Override
 	public List<Rv> getRvMedecinJour(long idMedecin, Date jour) {
-		return métier.getRvMedecinJour(idMedecin, jour);
+		return metier.getRvMedecinJour(idMedecin, jour);
 	}
 
 	@Override
 	public Client getClientById(long id) {
-		return métier.getClientById(id);
+		return metier.getClientById(id);
 	}
 
 	@Override
 	public Medecin getMedecinById(long id) {
-		return métier.getMedecinById(id);
+		return metier.getMedecinById(id);
 	}
 
 	@Override
 	public Rv getRvById(long id) {
-		return métier.getRvById(id);
+		return metier.getRvById(id);
 	}
 
 	@Override
 	public Creneau getCreneauById(long id) {
-		return métier.getCreneauById(id);
+		return metier.getCreneauById(id);
 	}
 
 	@Override
 	public Rv ajouterRv(Date jour, Creneau creneau, Client client) {
-		return métier.ajouterRv(jour, creneau, client);
+		return metier.ajouterRv(jour, creneau, client);
 	}
 
 	@Override
 	public void supprimerRv(long idRv) {
-		métier.supprimerRv(idRv);
+		metier.supprimerRv(idRv);
 	}
 
 	@Override
 	public AgendaMedecinJour getAgendaMedecinJour(long idMedecin, Date jour) {
-		return métier.getAgendaMedecinJour(idMedecin, jour);
+		return metier.getAgendaMedecinJour(idMedecin, jour);
 	}
 
 	public boolean isCORSneeded() {

@@ -22,7 +22,7 @@ import rdvmedecins.security.UserRepository;
 
 import com.google.common.collect.Lists;
 
-@Service("métier")
+@Service
 public class Metier implements IMetier {
 
 	// répositories

@@ -2,6 +2,10 @@
 # TODO LIST
 	
 	* spring CONIG : move fro mxml to JAVCONFIG 
+			JSF & Spring Securtity
+	
+	* prettyFace pour les url
+	* richface
 	
 	* Implement les accées CORS inter domaine	
 	* json conversion

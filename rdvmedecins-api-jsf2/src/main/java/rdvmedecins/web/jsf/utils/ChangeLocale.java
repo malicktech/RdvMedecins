@@ -1,4 +1,4 @@
-package utils;
+package rdvmedecins.web.jsf.utils;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;

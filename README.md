@@ -9,10 +9,10 @@ Application client / serveur de prise de rendez-vous pour un cabinet medical ave
 
 Client / serveur -> 4 Modules  :
 
-	* rdvmedecins-api-core				(DAO, métier / Spring Data JPA Hibernate , Spring Securité)
-	* rdvmedecins-api-ws					(REST web service / Spring MVC)
-	* rdvmedecins-api-web-springmvc		(ui web / Spring MVC & thymeleaf)
-	* rdvmedecins-api-web-jsf			(ui web / JSF 2 et primeface)
+	* rdvmedecins-api-core				(DAO & Business Layer / Spring Data JPA Hibernate , Spring Securité)
+	* rdvmedecins-api-ws					(Service Layer / REST web service with Spring MVC)
+	* rdvmedecins-api-web-springmvc		(web layer / Spring MVC & thymeleaf & jquery)
+	* rdvmedecins-api-web-jsf			(web layer / JSF 2 et primeface): JSF Page => ManagedBean => Service => DAO
 	
 	* rdvmedecins-api-web-angularjs		(ui web / AngularJS 1)
 		(projet angular à part , généré avec yeoman, importer dans un projet maven web)

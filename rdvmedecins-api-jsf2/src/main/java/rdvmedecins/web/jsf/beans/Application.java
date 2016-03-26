@@ -1,4 +1,4 @@
-package beans;
+package rdvmedecins.web.jsf.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -6,18 +6,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import rdvmedecins.entities.Client;
 import rdvmedecins.entities.Medecin;
 import rdvmedecins.metier.IMetier;
 
-
+@Component
+//@ApplicationScoped
 public class Application implements Serializable{
 
-  // couche métier
-  private IMetier metier;
+	// la couche [métier]
+	@Autowired
+	private IMetier metier;
+  
   // cache
   private List<Medecin> medecins;
   private List<Client> clients;
