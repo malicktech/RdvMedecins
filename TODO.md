@@ -30,63 +30,59 @@ don’t need to do this conversion manually. Because Jackson is on the classpath
 
 # code 
 	* variable, comment and method in english
-	* recupération seuil and siege : reunir dans une mêm fonction
-	* change elimine to status or .. / and isElimine to getElimi
 	* change primitive type to wrapper
 	* définir les niveau de log spring sur fihcier properties
-	https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-logging.html
 	* use : classe exceptions, enum, ClasseTest
 
 # les cas spécfiques a gérer : 
-	egalité aux niveaux des voix
-	égalité aux niveaux des moyennes	
-
 
 
 # module CORE
-	* link : liste and elections 
-	* get out tableaux, use list
-	* change crudreposiroty to jpareposiroty
+	* changre repository to jpareposirtory
+	* 
+	* configure with bean globalConfig in securityConfig.class
+	* configure access to list medecins and agenda to all & restric access only for reservation
+	* link user, role and client/Medecins tables
+	* rename  rename transfert entites to ...dto
 
-# module UI DESKTOP :
-	* à terminer : initaliser liste / Jcombo  
-	* simplifier le client RESTTmplate : s'inspirer de Mcdo-ws
 
+
+# Generale
+
+get out table, use list
+
+change package name : net.webapp.rdvmedecins.api.core
+
+improve ui with simple bootstrat theme and angular ui
+
+add logging : voir intro-spring-java
 
 USE JAVA 8 / Stream sur les list / Sort /
-delete : List.newArrayList() by source.forEach(target::add)
-delete guava of all projet
+delete guava
 
-add bean validation
-add client side validation / JQUERY
+regrouper git ingore dans la racine
 
-Gestion de plusieurs département
-Répartition des résusltats par département : sur carte interracif
-Classement par département/Région/pays
+complete unit test
 
-Appliquer aux elections légistative Française
-gérer plusieur election / chaue lection ses property / ses listes / ses résultats
+update spring boot version
 
-ajout tables résultats : au cloture des lection
-ajout status sur elections / date début / date fin
-les bureau de vote liée à une election 
+pom : spring-boot-starter-tomcat	
+	rename file of package models -> xxxxDto
+	rename package controller -> service	
+	rename controller to xxxRestService
 
-ajouter des graphes charts / avec spring MVC / Angualr
+add test module angular :
+update js plugin : footable, Jtables etc ...
 
-
-virer maven surfire : 
-utilisé pour <!-- pour l'installation de l'artifact du projet dans le dépôt local Maven -->
-check maven-assembly-plugin ???
-
+features :
+	partie admin ou le medecins peut configurer ses créneaux
+	build ionic app inspire from angulr ui
+	add partie visiteur
+	form to subscribe new client
+	build android app
+	
+	
 # wording : 
-résultat
-nombre d'inscrits
-xxx votants
-xxx Bulletins nuls
-xxx suffrage valablement exprimés
 
-liste A : x % des votants
-
-x % taux de participation
 
 
