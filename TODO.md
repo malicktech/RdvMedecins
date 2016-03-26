@@ -75,10 +75,10 @@ add test module angular :
 update js plugin : footable, Jtables etc ...
 
 features :
+	ajout bouton "add new user" + form to subscribe new client  + search client (implement elastic search)
 	partie admin ou le medecins peut configurer ses créneaux
 	build ionic app inspire from angulr ui
-	add partie visiteur
-	form to subscribe new client
+	add partie visiteur	
 	build android app
 	
 	

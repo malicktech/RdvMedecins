@@ -14,21 +14,17 @@
 	<artifactId>rdvmedecins-api-web</artifactId>
 	<name>rdvmedecins-api-web</name>
 	<packaging>war</packaging>
-
-
+	
 	<properties>
 		<start-class>rdvmedecins.web.boot.Boot</start-class>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
 	</properties>
 
 	<dependencies>
 		<!-- Subcore dependency -->
 		<dependency>
-			<groupId>${parent.groupId}</groupId>
+			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>rdvmedecins-api-core</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<!-- Spring -->
 		<dependency>
