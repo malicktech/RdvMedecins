@@ -6,29 +6,31 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean()
 @SessionScoped()
-public class ChangeLocale implements Serializable{
-  
-  private String locale="fr";
-  
-  public ChangeLocale() {
-  }
-  
-  public void setFrenchLocale(){
-    locale="fr";
-  }
-  
-  public void setEnglishLocale(){
-    locale="en";
-  }
-  
-  // getters et setters
+public class ChangeLocale implements Serializable {
 
-  public String getLocale() {
-    return locale;
-  }
+	private static final long serialVersionUID = 1L;
 
-  public void setLocale(String locale) {
-    this.locale = locale;
-  }
-  
+	private String locale = "fr";
+
+	public ChangeLocale() {
+	}
+
+	public void setFrenchLocale() {
+		locale = "fr";
+	}
+
+	public void setEnglishLocale() {
+		locale = "en";
+	}
+
+	// getters et setters
+
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
 }

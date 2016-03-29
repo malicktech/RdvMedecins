@@ -7,9 +7,9 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:rdvmedecins.web.jsf.config.AppConfig</config>
 	</configs>
 	<autoconfigs>
+		<config>java:rdvmedecins.web.jsf.boot.Application</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

@@ -5,10 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class Form implements Serializable {
 	
 	// inject application by spring 
   @Autowired
-	private Application application;
+	private ApplicationInit application;
   
   public Form() {
   }
@@ -260,7 +259,7 @@ public class Form implements Serializable {
     return erreurs;
   }
 
-  public void setApplication(Application application) {
+  public void setApplication(ApplicationInit application) {
     this.application = application;
   }
   

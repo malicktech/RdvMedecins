@@ -33,6 +33,11 @@ Côté serveur, on utilise les technologies
 [Spring Security] pour la sécurisation de celui-ci*;
 [Mysql] - Pour le SGBD
 
+Spring pour l'injection de dépendances ;
+Hibernate pour le mapping ;
+Primefaces pour les jeux de composants ;
+PrettyFaces pour la réécriture des URL.
+
 # Outils utilisés
 
 * IDE : Eclipse Mars (+ Spring Tools Suite)
@@ -55,9 +60,13 @@ i18n  : FR & EN
 # Link
 
 Tutoriel :
-	
-	* http://tahe.developpez.com/java/spring/serge-tahe-spring-mvc-rest-security-cors-angularjs-tutoriel-debutant/
-		
+
+	http://tahe.developpez.com/java/spring/serge-tahe-spring-mvc-rest-security-cors-angularjs-tutoriel-debutant/
+
+JSF 2 & Spring Boot : 
+
+	http://www.leveluplunch.com/java/tutorials/037-integrate-jsf-spring-boot/#configure-servlet-params
+	https://github.com/stephanrauh/JSF-on-Spring-Boot
 
 # accée :
 api				:  localhost:8080

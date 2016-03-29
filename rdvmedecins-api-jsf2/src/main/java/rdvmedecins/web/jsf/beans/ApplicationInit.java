@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -19,7 +19,10 @@ import rdvmedecins.metier.IMetier;
 
 @Component
 //@ApplicationScoped
-public class Application implements Serializable{
+public class ApplicationInit implements Serializable{
+
+
+	private static final long serialVersionUID = 1L;
 
 	// la couche [métier]
 	@Autowired
@@ -31,18 +34,15 @@ public class Application implements Serializable{
   private Map<Long, Medecin> hMedecins = new HashMap<Long, Medecin>();
   private Map<Long, Client> hClients = new HashMap<Long, Client>();
   // erreurs
-  private List<Erreur> erreurs = new ArrayList<Erreur>();
+  private List<Erreur> erreurs = new ArrayList<>();
   private Boolean erreur = false;
 
-  public Application() {
+  public ApplicationInit() {
   }
 
   @PostConstruct
   public void init() {
     try {
-      // instanciation couche [métier]
-      ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config-metier-dao.xml");
-      metier = (IMetier) ctx.getBean("metier");
       // on met les médecins et les clients en cache
       medecins = metier.getAllMedecins();
       clients = metier.getAllClients();

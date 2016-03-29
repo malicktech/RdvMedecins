@@ -3,9 +3,12 @@
 	
 	* spring CONIG : move fro mxml to JAVCONFIG 
 			JSF & Spring Securtity
-	
+			Use JSF 2 new features
+			
 	* prettyFace pour les url
 	* richface
+	
+	* faire projet a part , nnamed : SpringBootPrimeFaces  
 	
 	* Implement les accées CORS inter domaine	
 	* json conversion

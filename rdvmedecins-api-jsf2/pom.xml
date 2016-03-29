@@ -12,15 +12,14 @@
 
 	<artifactId>rdvmedecins-api-jsf2</artifactId>
 	<name>rdvmedecins-api-jsf2</name>
-	<!-- to deploy in tomcat -->
-	<!-- <packaging>war</packaging> -->
-	<!-- to stay in spring boot -->
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
+
 
 	<properties>
-		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-		<start-class>rdvmedecins.web.boot.Boot</start-class>
-
+<!-- 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir> -->
+		<start-class>rdvmedecins.web.boot.Application</start-class>
+		<!-- to deploy in tomcat -->
+		<tomcat.version>8.0.28</tomcat.version>
 	</properties>
 
 
@@ -32,12 +31,26 @@
 			<artifactId>rdvmedecins-api-core</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>rdvmedecins-api-web</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
 
 		<!-- Spring -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.boot</groupId> -->
-<!-- 			<artifactId>spring-boot-starter-web</artifactId> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency> <!-- adds several production grade services to application -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 
 		<!-- Spring TEST -->
 		<dependency>
@@ -45,99 +58,104 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot</artifactId>
-			<scope>test</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework.boot</groupId> -->
+<!-- 			<artifactId>spring-boot</artifactId> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
 
 		<!-- bibliothèque de logs -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.boot</groupId> -->
-<!-- 			<artifactId>spring-boot-starter-logging</artifactId> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
 
-		<!-- spring tomcat -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.boot</groupId> -->
-<!-- 			<artifactId>spring-boot-starter-tomcat</artifactId> -->
-<!-- 			<scope>provided</scope> -->
-<!-- 		</dependency> -->
+		<!-- VALIDATION -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.boot</groupId> -->
+		<!-- <artifactId>spring-boot-starter-validation</artifactId> -->
+		<!-- </dependency> -->
+		<dependency> <!-- provided by spring boot stater validation -->
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
 
-		<!-- JSF dependency -->
-		<!-- Faces Library -->
+		<!-- JSF + PRIMEFACES -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
-			<version>2.2.11</version>
+			<version>2.2.12</version>
+			<scope>provided</scope>
+			<!-- <scope>compile</scope> -->
 		</dependency>
-		<!-- Faces Implementation -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-impl</artifactId>
-			<version>2.2.11</version>
+			<version>2.2.12</version>
+			<scope>compile</scope>
+			<optional>true</optional>
 		</dependency>
-		<!-- Primefaces Version 5 -->
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>5.0</version>
-        </dependency>
-        
-        <!-- Servlet -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-        
-        <!-- JSP Library -->
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>javax.servlet.jsp-api</artifactId>
-            <version>2.3.1</version>
-        </dependency>
-        <!-- JSTL Library -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <!-- Spring ORM -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-        </dependency>
-        <!-- Spring Web -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-        
-<!-- If you don't use JSP or EL classes in your code, you can remove the dependencies -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>jstl</groupId> -->
-<!-- 			<artifactId>jstl</artifactId> -->
-<!-- 			<version>1.2</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>javax.el</groupId> -->
-<!-- 			<artifactId>javax.el-api</artifactId> -->
-<!-- 			<version>3.0.1-b04</version> -->
-<!-- 			<scope>provided</scope> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>5.3</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+
+
+		<!-- DEPENDENCIES FROM EMBEDDED TOMCAT -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency> <!-- Logging in Tomcat -->
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-logging-juli</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- jstl for jsp page -->
+		<!-- need to fix : ClassNotFoundException : javax.servlet.jsp.jstl.core.Config -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<!-- nedd to fix javax.servlet.jsp.JspFactory issue -->
+		<!-- JSF's ConfigureListener also has a dependency on JSP -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- to deploy in tomcat -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.tomcat</groupId> -->
+		<!-- <artifactId>tomcat-jasper</artifactId> -->
+		<!-- <version>${tomcat.version}</version> -->
+		<!-- </dependency> -->
+
 
 	</dependencies>
 
-<repositories>
-        <repository>
-            <id>prime-repo</id>
-            <name>PrimeFaces Maven Repository</name>
-            <url>http://repository.primefaces.org</url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+
+	</repositories>
 
 	<build>
 
@@ -147,6 +165,15 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+
 
 			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
 				<configuration> <source>1.8</source> <target>1.8</target> <compilerArguments> 
