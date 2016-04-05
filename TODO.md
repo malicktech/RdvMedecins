@@ -1,5 +1,10 @@
 
+
 # TODO LIST
+	
+	* improve ui : http://www.mondocteur.fr/
+	
+	* passer la servlet au 3.0 
 	
 	* spring CONIG : move fro mxml to JAVCONFIG 
 			JSF & Spring Securtity

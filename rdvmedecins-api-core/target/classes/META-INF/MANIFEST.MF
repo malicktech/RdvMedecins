@@ -3,7 +3,7 @@ Implementation-Title: rdvmedecins-api-core
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: Malick
 Implementation-Vendor-Id: net.webapp
-Build-Jdk: 1.8.0_25
+Build-Jdk: 1.8.0_77
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
 Main-Class: rdvmedecins.boot.Boot
