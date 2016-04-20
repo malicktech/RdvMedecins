@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Spring MVC</title>
+<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/js/client.js"></script>
+</head>
+<body>
+	<h2>Client du service web / jSON</h2>
+	<form id="formulaire">
+		<!--  méthode HTTP -->
+		Méthode HTTP :
+		<!--  -->
+		<input type="radio" id="get" name="method" value="get" checked="checked" />GET
+		<!--  -->
+		<input type="radio" id="post" name="method" value="post" />POST
+		<!--  URL -->
+		<br /> <br />URL cible : <input type="text" id="url" size="30"><br />
+		<!-- valeur postée -->
+		<br /> Chaîne jSON à poster : <input type="text" id="posted" size="50" />
+		<!-- bouton de validation -->
+		<br /> <br /> <input type="submit" value="Valider" onclick="javascript:requestServer(); return false;"></input>
+	</form>
+	<hr />
+	<h2>Réponse du serveur</h2>
+	<div id="response"></div>
+</body>
+</html>
