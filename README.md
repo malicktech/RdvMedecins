@@ -6,15 +6,15 @@ Application de prise de rendez-vous pour un cabinet medical.
 
 ## Architecture
 
-Client / serveur -> 4 Modules  :
+Client / serveur -> maven multimod  :
 
 * rdvmedecins-api-core				(DAO & Business Layer / Spring Data JPA Hibernate , Spring Securité)
 * rdvmedecins-api-ws				(Service Layer / REST web service with Spring MVC)
-* rdvmedecins-api-web-springmvc		(web layer / Spring MVC & thymeleaf & jquery)
-* rdvmedecins-api-web-jsf			(web layer / JSF 2 et primeface): JSF Page => ManagedBean => Service => DAO
+* rdvmedecins-gui-web-springmvc	(web layer / Spring MVC & thymeleaf & jquery)
+* rdvmedecins-gui-web-jsf		(web layer / JSF 2 et primeface): JSF Page => ManagedBean => Service => DAO
 	
-* rdvmedecins-api-web-angularjs		(ui web / AngularJS 1)
-(projet angular à part , généré avec yeoman, importer dans un projet maven web)
+* rdvmedecins-gui-web-angularjs		(ui web / AngularJS 1)
+(projet angular à part , généré avec yeoman (grunt & bower))
 	
 ## Stack Technique
 
@@ -42,12 +42,12 @@ Coté client
 
 # Features
 
-l'utilisateur se connecte et 
-peut ensuite choisir le médecin avec lequel on veut un rendez-vous et le jour de celui-ci 
-voir l'agenda du médecin choisi pour le jour choisi ;
-une fois obtenu l'agenda du médecin, on peut réserver un créneau
-Une fois le rendez-vous validé, on est ramené automatiquement à l'agenda où le nouveau rendez-vous est désormais inscrit. Ce
-rendez-vous pourra être ultérieurement supprimé
+- l'utilisateur s'inscrit
+- l'utilisateur se connecte et peut ensuite choisir le médecin avec lequel il veut un rendez-vous et le jour de celui-ci 
+- il peut voir l'agenda du médecin choisi pour le jour choisi ;
+- une fois obtenu l'agenda du médecin, on peut réserver un créneau
+- Une fois le rendez-vous validé, il est ramené automatiquement à l'agenda où le nouveau rendez-vous est désormais inscrit. 
+- Ce rendez-vous pourra être ultérieurement supprimé
 
 i18n  : FR & EN
 
