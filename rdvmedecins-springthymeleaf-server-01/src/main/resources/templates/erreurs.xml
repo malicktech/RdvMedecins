@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<section xmlns:th="http://www.thymeleaf.org">
+	<div class="alert alert-danger">
+		<h4>
+			<span th:text="#{erreurs.titre}">Les erreurs suivantes se sont produites :</span>
+		</h4>
+		<ul>
+			<li th:each="message : ${erreurs}" th:text="${message}" />
+		</ul>
+	</div>
+</section>

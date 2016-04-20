@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<section xmlns:th="http://www.thymeleaf.org">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">RdvMedecins</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<img id="loading" src="images/loading.gif" alt="waiting..." style="display: none" />
+				<!-- boutons de droite -->
+				<form class="navbar-form navbar-right" role="form">
+					<!-- déconnexion -->
+					<button type="button" class="btn btn-success" th:text="#{options.deconnecter}" onclick="javascript:evts.deconnecter()">Déconnexion</button>
+					<!-- langues -->
+					<div class="btn-group">
+						<button type="button" class="btn btn-danger" th:text="#{langues}">Langue</button>
+						<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<a href="javascript:evts.setLang('fr')" th:text="#{langues.fr}" />
+							</li>
+							<li>
+								<a href="javascript:evts.setLang('en')" th:text="#{langues.en}" />
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- init page -->
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+			// on initialise la page
+			ui.initNavBarRun();
+		/*]]>*/
+	</script>
+</section>

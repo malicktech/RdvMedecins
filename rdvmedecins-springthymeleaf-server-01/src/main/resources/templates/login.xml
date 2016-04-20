@@ -1,0 +1,5 @@
+<!DOCTYPE html>
+<section xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<div class="alert alert-info" th:text="#{identification}">Identification
+	</div>
+</section>

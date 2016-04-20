@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<section xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<!-- Bootstrap Jumbotron -->
+	<div class="jumbotron">
+		<div class="row">
+			<div class="col-md-2">
+				<img src="images/caduceus.jpg" alt="RvMedecins" />
+			</div>
+			<div class="col-md-10">
+				<h1 th:utext="#{application.header}" />
+			</div>
+		</div>
+	</div>
+</section>

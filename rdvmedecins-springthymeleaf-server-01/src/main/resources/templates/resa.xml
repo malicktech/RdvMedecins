@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+		<div id="resa" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">
+							</span>
+						</button>
+						<!-- <h4 class="modal-title">Modal title</h4> -->
+					</div>
+					<div class="modal-body">
+						<div class="alert alert-info">
+							<h3>
+								<span th:text="#{resa.titre}">Prise de rendez-vous</span>
+							</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+								<h2 th:text="#{resa.client}">Client</h2>
+								<select name="idClient" id="idClient" class="combobox" data-style="btn-primary">
+									<option th:each="clientItem : ${clientItems}" th:text="${clientItem.texte}" th:value="${clientItem.id}" />
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning" onclick="javascript:evts.cancelDialogResa()" th:text="#{resa.annuler}">Annuler</button>
+						<button type="button" class="btn btn-primary" onclick="javascript:evts.validerRv()" th:text="#{resa.valider}">Valider</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<!-- init page -->
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			// on initialise la page
+			ui.initResa();
+		/*]]>*/
+		</script>
+	</body>
+</html>

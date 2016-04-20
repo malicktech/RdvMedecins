@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<section xmlns:th="http://www.thymeleaf.org">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">RdvMedecins</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<img id="loading" src="images/loading.gif" alt="waiting..." style="display: none" />
+				<!-- formulaire d'identification -->
+				<div class="navbar-form navbar-right" role="form" id="formulaire">
+					<div class="form-group">
+						<input type="text" th:placeholder="#{service.url}" class="form-control" id="urlService" />
+					</div>
+					<div class="form-group">
+						<input type="text" th:placeholder="#{username}" class="form-control" id="login" />
+					</div>
+					<div class="form-group">
+						<input type="password" th:placeholder="#{password}" class="form-control" id="passwd" />
+					</div>
+					<button type="button" class="btn btn-success" th:text="#{login}" onclick="javascript:evts.connecter()">Sign in</button>
+					<!-- langues -->
+					<div class="btn-group">
+						<button type="button" class="btn btn-danger" th:text="#{langues}">Action</button>
+						<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<a href="javascript:evts.setLang('fr')" th:text="#{langues.fr}" />
+							</li>
+							<li>
+								<a href="javascript:evts.setLang('en')" th:text="#{langues.en}" />
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- init page -->
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+			// on initialise la page
+			ui.initNavBarStart();
+		/*]]>*/
+	</script>
+</section>

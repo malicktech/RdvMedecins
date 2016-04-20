@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta name="viewport" content="width=device-width"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>RdvMedecins</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap-3.1.1-min.css"/>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css"/>
+  <link rel="stylesheet" type="text/css" href="css/datepicker3.css"/>
+  <link rel="stylesheet" type="text/css" href="css/footable.core.min.css"/>
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" type="text/css" href="css/rdvmedecins.css"/>
+  <!-- Bootstrap core JavaScript ================================================== -->
+  <script type="text/javascript" src="vendor/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="vendor/bootstrap.js"></script>
+  <script type="text/javascript" src="vendor/bootstrap-select.js"></script>
+  <script type="text/javascript" src="vendor/moment-with-locales.js"></script>
+  <script type="text/javascript" src="vendor/bootstrap-datepicker.js"></script>
+  <script type="text/javascript" src="vendor/bootstrap-datepicker.fr.js"></script>
+  <script type="text/javascript" src="vendor/footable.js"></script>
+  <!-- scripts utilisateur -->
+  <script type="text/javascript" src="js/json3.js"></script>
+  <script type="text/javascript" src="js/ui.js"></script>
+  <script type="text/javascript" src="js/evts.js"></script>
+  <script type="text/javascript" src="js/getAccueilAvecAgenda-one.js"></script>
+  <script type="text/javascript" src="js/dao.js"></script>
+</head>
+<body id="body">
+<div id="navbar">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">RdvMedecins</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <img id="loading" src="images/loading.gif" alt="waiting..." style="display: none"/>
+        <!-- formulaire d'identification -->
+        <div class="navbar-form navbar-right" role="form" id="formulaire">
+          <div class="form-group">
+            <input type="text" placeholder="URL du serveur" class="form-control" id="urlService"/>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Utilisateur" class="form-control" id="login"/>
+          </div>
+          <div class="form-group">
+            <input type="password" placeholder="Mot de passe" class="form-control" id="passwd"/>
+          </div>
+          <button type="button" class="btn btn-success" onclick="javascript:evts.connecter()">Connexion</button>
+          <!-- langues -->
+          <div class="btn-group">
+            <button type="button" class="btn btn-danger">Langue</button>
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="javascript:evts.setLang('fr')">Français</a></li>
+              <li><a href="javascript:evts.setLang('en')">English</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <!-- Bootstrap Jumbotron -->
+  <div id="jumbotron">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-md-2">
+          <img src="images/caduceus.jpg" alt="RvMedecins"/>
+        </div>
+        <div class="col-md-10">
+          <h1>
+            Cabinet médical<br/>Les Médecins associés
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- panneaux d'erreur -->
+  <div id="erreur"></div>
+  <div id="exception" class="alert alert-danger" style="display: none">
+    <h3 id="exception-title"></h3>
+    <span id="exception-text"></span>
+  </div>
+  <!-- contenu -->
+  <div id="content">
+    <div class="alert alert-info">Authentifiez-vous pour accéder à l'application</div>
+  </div>
+</div>
+<!-- init page -->
+<script>
+  // on initialise la page
+  ui.langue = 'fr';
+  ui.exceptionTitle['fr'] = "L'erreur suivante s'est produite côté serveur :";
+  ui.exceptionTitle['en'] = "The following server error was met:";
+  ui.initNavBarStart();
+</script>
+</body>
+</html>
