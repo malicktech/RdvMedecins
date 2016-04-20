@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<section xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<!-- Bootstrap Jumbotron -->
+	<div class="jumbotron">
+		<div class="row">
+			<div class="col-md-2">
+				<img src="resources/images/caduceus.jpg" alt="RvMedecins" />
+			</div>
+			<div class="col-md-10">
+				<h1>
+					Les Médecins
+					<br />
+					associés
+				</h1>
+			</div>
+		</div>
+	</div>
+</section>

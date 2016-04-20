@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<section xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<div id="resa" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">
+						</span>
+					</button>
+					<!-- <h4 class="modal-title">Modal title</h4> -->
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-info">
+						<h3>
+							<span>Prise de rendez-vous</span>
+						</h3>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<h2>Clients</h2>
+							<select id="idClient" class="combobox" data-style="btn-primary">
+								<option value="1">Mme Marguerite Planton</option>
+								<option value="2">Mr Maxime Franck</option>
+								<option value="3">Mlle Elisabeth Oron</option>
+								<option value="4">Mr Gaëtan Calot</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" onclick="javascript:cancelDialogResa()">Annuler</button>
+					<button type="button" class="btn btn-primary" onclick="javascript:validateResa()">Valider</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<!-- init page -->
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+			// on initialise la page
+			initResa();
+		/*]]>*/
+	</script>
+</section>

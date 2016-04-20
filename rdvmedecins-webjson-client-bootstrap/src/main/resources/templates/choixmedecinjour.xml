@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<section xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<div class="alert alert-info">Veuillez choisir un médecin et une date</div>
+	<div class="row">
+		<div class="col-md-3">
+			<h2>Médecin</h2>
+			<select id="idMedecin" class="combobox" data-style="btn-primary">
+				<option value="1">Mme Marie Pélissier</option>
+				<option value="2">Mr Jean Pardon</option>
+				<option value="3">Mlle Jeanne Jirou</option>
+				<option value="4">Mr Paul Macou</option>
+			</select>
+		</div>
+		<div class="col-md-3">
+			<h2>Date</h2>
+			<section id="calendar_container">
+				<div id="calendar" class="input-group date">
+					<input id="displayjour" type="text" class="form-control btn-primary" disabled="true">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-th"></i>
+						</span>
+					</input>
+				</div>
+			</section>
+		</div>
+	</div>
+	<!-- script local -->
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+			// on initialise la page
+			initChoixMedecinJour();
+		/*]]>*/
+	</script>
+</section>

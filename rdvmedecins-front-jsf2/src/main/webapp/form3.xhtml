@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+  <body>
+    <h2><h:outputText value="#{form.form3Titre}"/></h2>
+    <h:panelGrid columns="2">
+      <h:outputText value="#{msg['form3.client']}"/>
+      <h:selectOneMenu value="#{form.idClient}">
+        <f:selectItems value="#{form.clients}" var="client" itemLabel="#{client.titre} #{client.prenom} #{client.nom}" itemValue="#{client.id}"/>
+      </h:selectOneMenu>
+      <h:panelGroup>
+        <h:commandButton value="#{msg['form3.valider']}" actionListener="#{form.validerRv}" />
+        <h:commandButton value="#{msg['form3.annuler']}" actionListener="#{form.annulerRv}"/>
+      </h:panelGroup>
+    </h:panelGrid>
+  </body>
+</html>
+

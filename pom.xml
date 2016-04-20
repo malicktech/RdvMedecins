@@ -60,9 +60,9 @@
 	<!-- MODULES -->
 	<!-- ============================================================================================== -->
 	<modules>
-		<module>rdvmedecins-api-core</module>
-		<module>rdvmedecins-api-web</module>
-		<module>rdvmedecins-api-jsf2</module>
+		<module>rdvmedecins-back-core</module>
+		<module>rdvmedecins-back-ws</module>
+		<module>rdvmedecins-front-jsf2</module>
 	</modules>
 
 	<!-- DEPENDENCIES -->

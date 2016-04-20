@@ -2,3 +2,12 @@
 
 /target
 /
+/lib/
+/build
+/classes
+*.jar
+*.class
+*~
+*/webapp/WEB-INF/classes
+*/webapp/WEB-INF/lib
+target

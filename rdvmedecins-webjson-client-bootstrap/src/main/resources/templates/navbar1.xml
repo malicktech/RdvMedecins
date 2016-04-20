@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<section xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">RdvMedecins</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<img id="loading" src="resources/images/loading.gif" alt="waiting..." style="display: none" />
+				<!-- formulaire d'identification -->
+				<div class="navbar-form navbar-right" role="form" id="formulaire" method="post">
+					<div class="form-group">
+						<input type="text" placeholder="Utilisateur" class="form-control" />
+					</div>
+					<div class="form-group">
+						<input type="password" placeholder="Mot de passe" class="form-control" />
+					</div>
+					<button type="button" class="btn btn-success" onclick="javascript:connecter()">Connexion</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

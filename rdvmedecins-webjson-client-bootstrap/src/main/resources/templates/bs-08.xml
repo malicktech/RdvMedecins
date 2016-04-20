@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<meta name="viewport" content="width=device-width" />
+		<title>RdvMedecins</title>
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="resources/css/bootstrap-3.1.1-min.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/bootstrap-select.min.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/datepicker3.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/footable.core.min.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/bootstrapDemo.css" />
+		<!-- Bootstrap core JavaScript ================================================== -->
+		<script type="text/javascript" src="resources/vendor/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="resources/vendor/bootstrap.js"></script>
+		<script type="text/javascript" src="resources/vendor/bootstrap-select.js"></script>
+		<script type="text/javascript" src="resources/vendor/moment-with-locales.js"></script>
+		<script type="text/javascript" src="resources/vendor/bootstrap-datepicker.js"></script>
+		<script type="text/javascript" src="resources/vendor/bootstrap-datepicker.fr.js"></script>
+		<script type="text/javascript" src="resources/vendor/bootstrap-modal.js"></script>
+		<script type="text/javascript" src="resources/vendor/footable.js"></script>
+		<!-- script local -->
+		<script type="text/javascript" src="resources/js/bs-08.js"></script>
+	</head>
+	<body id="body">
+		<div class="container">
+			<!-- barre de navigation -->
+			<div th:include="navbar3" />
+			<!-- Bootstrap Jumbotron -->
+			<div th:include="jumbotron" />
+			<!-- contenu -->
+			<div id="content" th:include="choixmedecinjour" />
+			<div id="agenda" th:include="agenda-modal" />
+			<div th:include="resa" />
+			<!-- info -->
+			<div class="alert alert-success">
+				<span id="info">Ici, un texte d'information</span>
+			</div>
+		</div>
+	</body>
+</html>

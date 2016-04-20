@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+  <body>
+    <h2><h:outputText value="#{msg['erreur.titre']}"/></h2>
+    <p>
+      <h:commandButton value="#{msg['erreur.accueil']}" actionListener="#{form.accueil()}"/>
+    </p>
+    <hr/>
+    <h:dataTable value="#{form.erreurs}" var="erreur" headerClass="erreursHeaders" columnClasses="erreurClasse,erreurMessage">
+      <h:column>
+        <f:facet name="header">
+          <h:outputText value="#{msg['erreur.classe']}"/>
+        </f:facet>
+        <h:outputText value="#{erreur.classe}"/>
+      </h:column>
+      <h:column>
+        <f:facet name="header">
+          <h:outputText value="#{msg['erreur.message']}"/>
+        </f:facet>
+        <h:outputText value="#{erreur.message}"/>
+      </h:column>
+    </h:dataTable>
+  </body>
+</html>
+

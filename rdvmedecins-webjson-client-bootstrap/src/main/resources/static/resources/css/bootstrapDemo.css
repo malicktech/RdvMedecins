@@ -1,0 +1,36 @@
+@CHARSET "ISO-8859-1";
+
+/*styles perso*/
+body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+}
+
+#creneaux th {
+	text-align: center;
+}
+
+#creneaux td {
+	text-align: center;
+	font-weight: bold;
+}
+
+/* Styles footables
+-----------------------------------------------------------*/
+.status-metro {
+	display: inline-block;
+	padding: 2px 5px;
+	color: #fff;
+}
+
+.status-metro.status-active {
+	background: #43c83c;
+}
+
+.status-metro.status-disabled {
+	background: #999999;
+}
+
+.status-metro.status-suspended {
+	background: #fa3031;
+}

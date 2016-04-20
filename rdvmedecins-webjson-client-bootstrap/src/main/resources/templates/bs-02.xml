@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<meta name="viewport" content="width=device-width" />
+		<title>RdvMedecins</title>
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" type="text/css" href="resources/css/bootstrap-3.1.1-min.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/bootstrapDemo.css" />
+		<!-- scripts JS -->
+		<script src="resources/vendor/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="resources/js/bs-02.js"></script>
+	</head>
+	<body id="body">
+		<div class="container">
+			<!-- barre de navigation -->
+			<div th:include="navbar1"></div>
+			<!-- Bootstrap Jumbotron -->
+			<div th:include="jumbotron"></div>
+			<!-- contenu -->
+			<div id="content">
+				<h1>Ici un contenu</h1>
+			</div>
+			<!-- info -->
+			<div class="alert alert-warning">
+				<span id="info">Ici, un texte d'information</span>
+			</div>
+		</div>
+	</body>
+</html>

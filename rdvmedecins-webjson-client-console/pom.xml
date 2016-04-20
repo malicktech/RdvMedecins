@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>istia.st.rdvmedecins</groupId>
+	<artifactId>rdvmedecins-webjson-client-console</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>rdvmedecins-webjson-client-console</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.7</java.version>
+	</properties>
+
+	<dependencies>
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.1.3.RELEASE</version>
+		</dependency>
+		<!-- librairie jSON utilisée par Spring -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.4.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.4.4</version>
+		</dependency>
+		<!-- composant utilisé par Spring RestTemplate -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.5</version>
+		</dependency>
+	</dependencies>
+	<description>Client console du serveur web / jSON</description>
+</project>

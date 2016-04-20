@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<meta name="viewport" content="width=device-width" />
+		<title>RdvMedecins</title>
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="resources/css/bootstrap-3.1.1-min.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/bootstrap-select.min.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/bootstrapDemo.css" />
+		<!-- Bootstrap core JavaScript ================================================== -->
+		<script type="text/javascript" src="resources/vendor/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="resources/vendor/bootstrap.js"></script>
+		<script type="text/javascript" src="resources/vendor/bootstrap-select.js"></script>
+		<!-- script local -->
+		<script type="text/javascript" src="resources/js/bs-05.js"></script>
+	</head>
+	<body id="body">
+		<div class="container">
+			<!-- barre de navigation -->
+			<div th:include="navbar3"></div>
+			<!-- Bootstrap Jumbotron -->
+			<div th:include="jumbotron"></div>
+			<!-- contenu -->
+			<div id="content" th:include="choixmedecin">
+			</div>
+			<!-- info -->
+			<div class="alert alert-warning">
+				<span id="info">Ici, un texte d'information</span>
+			</div>
+		</div>
+	</body>
+</html>

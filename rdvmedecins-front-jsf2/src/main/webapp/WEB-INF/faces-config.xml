@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.0"
+              xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+
+<!--  faceconfig : facultatif avec JSF 2 mais nécessaire pour configurer l'internationalisation JSF,  -->
+<!-- sf 2 : pas besoins de déclarer ici les beanj -->
+
+  <application> 
+    <!-- le fichier des messages -->
+    <resource-bundle>
+      <base-name>messages</base-name>
+      <var>msg</var>
+    </resource-bundle>
+    <message-bundle>messages</message-bundle>
+  </application>
+  
+    <!-- SpringBeanFacesELResolver  -->
+    <!-- Spring provides org.springframework.web.jsf.el.SpringBeanFacesELResolver that supports spring bean to be identified in JSF managed bean. -->
+   <application>
+        <el-resolver>
+                org.springframework.web.jsf.el.SpringBeanFacesELResolver
+        </el-resolver>
+   </application>
+  
+    <!-- le bean applicationBean -->
+<!--     <managed-bean> -->
+<!--       <managed-bean-name>applicationBean</managed-bean-name> -->
+<!--       <managed-bean-class>beans.Application</managed-bean-class> -->
+<!--       <managed-bean-scope>application</managed-bean-scope> -->
+<!--     </managed-bean> -->
+    
+    <!-- le bean form -->
+<!--     <managed-bean> -->
+<!--       <managed-bean-name>form</managed-bean-name> -->
+<!--       <managed-bean-class>beans.Form</managed-bean-class> -->
+<!--       <managed-bean-scope>session</managed-bean-scope> -->
+<!--       <managed-property> -->
+<!--         <property-name>application</property-name> -->
+<!--         <value>#{applicationBean}</value> -->
+<!--       </managed-property> -->
+<!--     </managed-bean> -->
+    
+    
+</faces-config>
