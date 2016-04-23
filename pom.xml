@@ -20,31 +20,8 @@
 	<!-- REPOSITORIES -->
 	<!-- ============================================================================================== -->
 	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<url>http://repo.spring.io/milestone</url>
-		</repository>
-		<repository>
-			<id>spring-releases</id>
-			<name>Spring Releases</name>
-			<url>https://repo.spring.io/libs-release</url>
-		</repository>
-		<repository>
-			<id>org.jboss.repository.releases</id>
-			<name>JBoss Maven Release Repository</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
-		</repository>
 	</repositories>
 	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<url>http://repo.spring.io/milestone</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-releases</id>
-			<name>Spring Releases</name>
-			<url>https://repo.spring.io/libs-release</url>
-		</pluginRepository>
 	</pluginRepositories>
 
 	<!-- PROPERTIES -->
@@ -63,6 +40,8 @@
 		<module>rdvmedecins-back-core</module>
 		<module>rdvmedecins-back-ws</module>
 		<module>rdvmedecins-front-jsf2</module>
+		<module>rdvmedecins-front-client-cors</module>
+		<module>rdvmedecins-front-springmvc-thymeleaf</module>
 	</modules>
 
 	<!-- DEPENDENCIES -->

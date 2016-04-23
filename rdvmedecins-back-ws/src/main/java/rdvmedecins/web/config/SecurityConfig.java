@@ -14,6 +14,7 @@ import rdvmedecins.security.AppUserDetailsService;
 @EnableAutoConfiguration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
 	@Autowired
 	private AppUserDetailsService appUserDetailsService;
 

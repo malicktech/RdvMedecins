@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 /**
  * Spring Security impose la création d'une classe implémentant l'interface [UsersDetail]
  * AppUserDetails encapsule un utilisateur et le repository qui permet d'avoir les détails de cet utilisateur
+ * 
  * @author Malick
  *
  */
@@ -55,16 +56,19 @@ public class AppUserDetails implements UserDetails {
 		return true;
 	}
 
+	
 	@Override
 	public boolean isAccountNonLocked() {
 		return true;
 	}
 
+//  le compte de l'utilisateur n'expire jamais
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
 
+	// le compte de l'utilisateur est toujours actif
 	@Override
 	public boolean isEnabled() {
 		return true;

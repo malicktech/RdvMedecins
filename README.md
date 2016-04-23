@@ -1,46 +1,41 @@
-# UTBM Learning project
+# RdvMedecins
+## UTBM Learning project
 
 Projet d'étude dans le cadre de mon cursus à l'UTBM
 Application de prise de rendez-vous pour un cabinet medical. 
 
 
-## Architecture
+### Architecture
 
-Client / serveur -> maven multimod  :
+Client / serveur -> maven multi-mod  :
 
-* rdvmedecins-api-core				(DAO & Business Layer / Spring Data JPA Hibernate , Spring Securité)
-* rdvmedecins-api-ws				(Service Layer / REST web service with Spring MVC)
-* rdvmedecins-gui-web-springmvc	(web layer / Spring MVC & thymeleaf & jquery)
-* rdvmedecins-gui-web-jsf		(web layer / JSF 2 et primeface): JSF Page => ManagedBean => Service => DAO
+* rdvmedecins-back-core					(DAO & Business Layer | Spring Data JPA & Hibernate & Spring Security)
+* rdvmedecins-back-ws					(API REST Services | Spring MVC)
+* rdvmedecins-front-springmvcthymeleaf	(gui web | Spring MVC & thymeleaf & jquery & Twitter Bootstrap)
+* rdvmedecins-front-jsf2				(gui web | JSF 2 + primeface 5)
 	
-* rdvmedecins-gui-web-angularjs		(ui web / AngularJS 1)
-(projet angular à part , généré avec yeoman (grunt & bower))
+* rdvmedecins-front-angularjs			(gui web | AngularJS 1 & yeoman & grunt & bower )
 	
-## Stack Technique
+### Stack Technique
 
-Côté serveur, on utilise les technologies
-
-* [Spring Data] pour l'accès à la base de données;
-* [Spring MVC] pour les services web;
-* [JUnit] pour les TU
-* [Spring Security] pour la sécurisation de celui-ci;
+* [Spring Boot] [Spring Data] [Spring Security] [Spring MVC];
+* [Actuator]
+* [JUnit 4]
+*  
 * [Mysql] - Pour le SGBD
-
-Coté client
-
 * [Angular ou JSF] - pour le front
 
 
-# Outils utilisés
+### Outils utilisés
 
 * Plateform : JDK 1.8
 * IDE : Eclipse Mars (+ Spring Tools Suite)
-* Application Server : Tomcat 7
+* AS : Tomcat 7
 * SCM : Git
 * Build : Maven 3
 * SGBD : WampServer (MySQL 5) - Workbench
 
-# Features
+### Features
 
 - l'utilisateur s'inscrit
 - l'utilisateur se connecte et peut ensuite choisir le médecin avec lequel il veut un rendez-vous et le jour de celui-ci 

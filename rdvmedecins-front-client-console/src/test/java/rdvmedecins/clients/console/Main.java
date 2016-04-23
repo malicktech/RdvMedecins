@@ -29,6 +29,9 @@ public class Main {
 		// on fixe les timeout en millisecondes
 		dao.setTimeout(TIMEOUT);
 
+		/* test de tous les méthode de l'nterfae */ 
+		
+		
 		// Authentification
 		String message = "/authenticate [admin,admin]";
 		try {

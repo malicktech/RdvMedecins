@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * Spring Security impose l'existence d'une classe implémentant l'interface [AppUserDetailsService]
- * 
+ * implement a custom UserDetailsService and use Spring Data JPA repositories to load User details
  * @author Malick
  *
  */
@@ -24,7 +24,7 @@ public class AppUserDetailsService implements UserDetailsService {
 		User user = userRepository.findUserByLogin(login);
 		// trouvé ?
 		if (user == null) {
-			throw new UsernameNotFoundException(String.format("login [%s] inexistant", login));
+			throw new UsernameNotFoundException(String.format("login [%s] not found", login));
 		}
 		// on rend les détails de l'utilsateur
 		return new AppUserDetails(user, userRepository);
