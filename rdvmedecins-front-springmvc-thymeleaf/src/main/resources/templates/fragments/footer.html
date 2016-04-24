@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div th:fragment="footer">
+		<nav class="navbar navbar-inverse navbar-fixed-bottom">
+			<div class="container">
+				<p class="navbar-text">
+					<a href="http://www.daktic.com">RdvMedecins</a> &copy;
+					<put-date th:text="${#dates.year(#dates.createNow())}"></put-date>
+					<span th:if="${#authorization.expression('isAuthenticated()')}">
+						<i class="fa fa-lock fa-fw"></i>
+						<span sec:authentication="principal.authorities">[ROLE_USER,ROLE_ADMIN]</span>
+					</span>
+				</p>
+			</div>
+		</nav>
+	</div>
+	<div th:fragment="footer-admin">
+		<nav class="navbar navbar-inverse navbar-fixed-bottom">
+			<div class="container">
+				<p class="navbar-text">
+					<a href="http://www.daktic.com">RdvMedecins</a> &copy;
+					<put-date th:text="${#dates.year(#dates.createNow())}"></put-date>
+					Admin Footer
+				</p>
+			</div>
+		</nav>
+	</div>
+
+</body>
+</html>

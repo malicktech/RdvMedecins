@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--  Each token will be replaced by their respective titles in the resulting page. -->
+<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">FrameworkOnly</title>
+<!-- STYLE	 -->
+<link th:replace="fragments/style" />
+</head>
+
+<body>
+
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container layout-content">
+		<div layout:fragment="content"></div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+	<!-- JAVASCRIPT	 -->
+	<div th:replace="fragments/js"></div>
+
+</body>
+</html>

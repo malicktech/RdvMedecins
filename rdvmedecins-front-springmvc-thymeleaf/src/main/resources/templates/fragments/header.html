@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+	<!-- Navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+		<div class="container">
+			<!-- navbar-header -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Rdv Medecins - admin</a>
+			</div>
+			<!-- /.navbar-header -->
+
+			<!-- navbar-static-top -->
+			<div class="navbar-collapse collapse">
+
+				<ul class="nav navbar-nav"
+					th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+					<li th:classappend="${page == 'home' ? 'active' : ''}">
+						<a href="#" th:href="@{/}">Home</a>
+					</li>
+					<li th:classappend="${page == 'search' ? 'active' : ''}">
+						<a href="#" th:href="@{/search}">Search</a>
+					</li>
+					<li th:classappend="${page == 'medecin' ? 'active' : ''}">
+						<a href="#" th:href="@{/medecin}">Medecins</a>
+					</li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right"
+					th:if="${#authorization.expression('!isAuthenticated()')}">
+					<li>
+						<a href="/login" th:href="@{/login}">Sign in</a>
+					</li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right"
+					th:if="${#authorization.expression('isAuthenticated()')}">
+					<li>
+						<a href="/profil" th:href="@{/profil}"><i class="fa fa-user fa-fw"></i>
+						<span sec:authentication="name">UserName</span></a>
+					</li>
+					<li>
+						<a href="/logout" th:href="@{/logout}"><button type="button"
+								class="btn btn-default btn-xs btn-primary">
+								<span class="glyphicon glyphicon-off"></span>
+							</button></a>
+					</li>
+				</ul>
+
+			</div>
+			<!-- /.navbar-static-top -->
+		</div>
+		<!--/.nav-collapse -->
+
+		<!-- 		<form th:action="@{/logout}" method="post"> -->
+		<!-- 			<input type="submit" value="Sign Out" /> -->
+		<!-- 		</form> -->
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+
+<head>
+<title>Home</title>
+</head>
+<body>
+	<div layout:fragment="content">
+
+		<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+
+		<div th:if="${#httpServletRequest.remoteUser != null}">
+			<p th:text="${#httpServletRequest.remoteUser}">sample_user</p>
+		</div>
+
+		<div sec:authorize="hasRole('ROLE_ADMIN')">ROLE_ADMIN</div>
+		<div sec:authorize="hasRole('ROLE_USER')">ROLE_USER</div>
+
+		<div th:text="${#authentication.name}">The value of the "name"
+			property of the authentication object should appear here.</div>
+		<div th:text="${#authentication.principal.authorities}">The
+			value of the "name" property of the authentication object should
+			appear here.</div>
+
+		<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+			This will only be displayed if authenticated user has role
+			ROLE_ADMIN.</div>
+
+		<div sec:authorize="${hasRole(#vars.expectedRole)}">This will
+			only be displayed if authenticated user has a role computed by the
+			controller.</div>
+
+		<div sec:authorize-url="/admin">This will only be displayed if
+			authenticated user can call the "/admin" URL.</div>
+
+		<div sec:authorize-url="POST /admin">This will only be displayed
+			if authenticated user can call the "/admin" URL using the POST HTTP
+			method.</div>
+
+	</div>
+</body>
+</html>
