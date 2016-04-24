@@ -5,8 +5,14 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class Personne extends AbstractEntity {
+
 	private static final long serialVersionUID = 1L;
-	// attributs d'une persinne
+
+	/*
+	 * attributs
+	 * =========================================================================
+	 */
+
 	@Column(length = 5)
 	private String titre;
 	@Column(length = 20)
@@ -14,23 +20,33 @@ public class Personne extends AbstractEntity {
 	@Column(length = 20)
 	private String prenom;
 
-	// constructeur par défaut
+	/*
+	 * constructeur
+	 * =========================================================================
+	 */
+
 	public Personne() {
 	}
 
-	// constructeur avec paramètres
 	public Personne(String titre, String nom, String prenom) {
 		this.titre = titre;
 		this.nom = nom;
 		this.prenom = prenom;
 	}
 
-	// toString
+	/*
+	 * toString
+	 * =========================================================================
+	 */
+
 	public String toString() {
 		return String.format("Personne[%s, %s, %s, %s, %s]", id, version, titre, nom, prenom);
 	}
 
-	// getters et setters
+	/*
+	 * getters et setters
+	 * =========================================================================
+	 */
 	public String getTitre() {
 		return titre;
 	}
