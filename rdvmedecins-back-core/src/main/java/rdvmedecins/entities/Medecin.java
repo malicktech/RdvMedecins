@@ -10,7 +10,7 @@ public class Medecin extends Personne {
 	private static final long serialVersionUID = 1L;
 
 	/*
-	 * constructeur
+	 * constructors
 	 * =========================================================================
 	 */
 

@@ -14,17 +14,31 @@
 	<artifactId>rdvmedecins-back-core</artifactId>
 	<name>rdvmedecins-back-core</name>
 	<packaging>jar</packaging>
-	
+
 	<properties>
 		<start-class>rdvmedecins.boot.Boot</start-class>
 	</properties>
 
 	<dependencies>
-		<!-- Spring 	 -->
+		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>javax.validation</groupId> -->
+		<!-- <artifactId>validation-api</artifactId> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.hibernate</groupId> -->
+		<!-- <artifactId>hibernate-validator</artifactId> -->
+		<!-- <version>${hibernate.version}</version> -->
+		<!-- </dependency> -->
+		<!-- test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -34,7 +48,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		<!-- pilote JDBC du SGBD MySQL	 -->
+		<!-- pilote JDBC du SGBD MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>

@@ -2,6 +2,10 @@ package rdvmedecins.entities;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @MappedSuperclass
 public class Personne extends AbstractEntity {
@@ -9,19 +13,27 @@ public class Personne extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	/*
-	 * attributs
+	 * Fields
 	 * =========================================================================
 	 */
 
 	@Column(length = 5)
 	private String titre;
+	
+	@NotNull(message = "{error.medecin.lastname.null}")
+    @NotEmpty(message = "{error.medecin.lastname.empty}")
+    @Size(max = 20, message = "{error.medecin.lastname.max}")
 	@Column(length = 20)
 	private String nom;
+	
+	@NotNull(message = "{error.medecin.firstname.null}")
+    @NotEmpty(message = "{error.medecin.firstname.empty}")
+    @Size(max = 20, message = "{error.medecin.firstname.max}")
 	@Column(length = 20)
 	private String prenom;
 
 	/*
-	 * constructeur
+	 * constructors
 	 * =========================================================================
 	 */
 
@@ -35,7 +47,7 @@ public class Personne extends AbstractEntity {
 	}
 
 	/*
-	 * toString
+	 * Equals ,hashcode, toString
 	 * =========================================================================
 	 */
 

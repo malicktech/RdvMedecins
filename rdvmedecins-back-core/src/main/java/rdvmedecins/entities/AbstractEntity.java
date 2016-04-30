@@ -12,10 +12,15 @@ import javax.persistence.Version;
 public class AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
-	// version de chaque entité	, Ce n° sert à empêcher la mise à jour simultanée de l'entité par deux utilisateur différents	
+
+	/**
+	 * version de chaque entité , Ce n° sert à empêcher la mise à jour
+	 * simultanée de l'entité par deux utilisateur différents
+	 */
 	@Version
 	protected Long version;
 
@@ -26,14 +31,15 @@ public class AbstractEntity implements Serializable {
 		return hash;
 	}
 
-	// initialisation de  deux champs de [AbstractEntity]
+	// initialisation de deux champs de [AbstractEntity]
 	public AbstractEntity build(Long id, Long version) {
 		this.id = id;
 		this.version = version;
 		return this;
 	}
 
-	// deux entités seront dites égales si elles ont le même nom de classe et le même identifiant id
+	// deux entités seront dites égales si elles ont le même nom de classe et le
+	// même identifiant id
 	@Override
 	public boolean equals(Object entity) {
 		String class1 = this.getClass().getName();

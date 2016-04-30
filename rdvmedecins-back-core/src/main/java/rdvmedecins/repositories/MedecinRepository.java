@@ -1,13 +1,16 @@
 package rdvmedecins.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import rdvmedecins.entities.Medecin;
 
 /**
- * donne accès aux entités JPA [Client]
+ * Spring Data JPA repository for the [Medecin] entity 
+ * 
  * @author Malick
  *
  */
-public interface MedecinRepository extends CrudRepository<Medecin, Long> {
+public interface MedecinRepository extends JpaRepository<Medecin, Long> {
+	
+	
 }
