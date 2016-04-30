@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+
+<head>
+<title>Patients Edit</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">CLIENT</h1>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<div class="row">
+			<div class="col-md-offset-3 col-md-6">
+
+				<div th:if="${saveClient eq 'unsuccess'}">
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<strong>Error!</strong> Client Data Not Updated.
+					</div>
+				</div>
+				<div th:if="${saveClient eq 'success'}">
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<strong>Success!</strong> Client Data Updated Successfully.
+					</div>
+				</div>
+
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<h3 class="panel-title">Edit Client</h3>
+					</div>
+					<div class="panel-body">
+						<form th:object="${editClient}" th:action="@{/admin/clients/update}" action="#"
+							method="post">
+							<input type="hidden" th:field="*{id}" />
+							<input type="hidden" th:field="*{version}" />
+							<input type="text" th:field="*{titre}" class="form-control"
+								placeholder="Client Name" />
+							<div style="clear: both; display: block; height: 10px;"></div>
+							<input type="text" th:field="*{prenom}" class="form-control"
+								placeholder="Client Prenom" />
+							<div style="clear: both; display: block; height: 10px;"></div>
+							<input type="text" th:field="*{nom}" class="form-control" placeholder="Client Nom" />
+							<div style="clear: both; display: block; height: 10px;"></div>
+							<input type="submit" class="btn btn-danger pull-right" value="Update" />
+						</form>
+					</div>
+
+					<div class="panel-footer">
+						<a th:href="@{/admin/clients/list}" class="btn btn-success">Back To List</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /# End row -->
+
+
+	</div>
+	<!-- /# End layout:fragment content -->
+</body>
+</html>

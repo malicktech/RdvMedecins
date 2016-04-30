@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+
+<head>
+<title>Patiens List</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">CLIENT</h1>
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+
+		<div class="row">
+			<div class="col-md-offset-3 col-md-6">
+
+				<!-- ============================================================================ -->
+				<!-- Alert Messages for SAVE Operation -->
+				<!-- ============================================================================ -->
+				<div th:if="${saveClient eq 'unsuccess'}">
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<strong>Error!</strong> Client Data Not Saved.
+					</div>
+				</div>
+				<div th:if="${saveClient eq 'success'}">
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<strong>Success!</strong> Client Data Saved Successfully.
+					</div>
+				</div>
+
+				<!-- ============================================================================ -->
+				<!-- Alert Messages for DELETE Operation -->
+				<!-- ============================================================================ -->
+				<div th:if="${deletion eq 'unsuccess'}">
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<strong>Error!</strong> Client Data Not Deleted.
+					</div>
+				</div>
+				<div th:if="${deletion eq 'success'}">
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<strong>Success!</strong> Client Data Deleted Successfully.
+					</div>
+				</div>
+
+				<!-- ============================================================================ -->
+				<!-- Alert Messages for EDIT Operation -->
+				<!-- ============================================================================ -->
+				<div th:if="${status eq 'notfound'}">
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<strong>Error!</strong> Invalid Client.
+					</div>
+				</div>
+				<div th:if="${edit eq 'unsuccess'}">
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<strong>Error!</strong> Client Data Not Edited.
+					</div>
+				</div>
+				<div th:if="${edit eq 'success'}">
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<strong>Success!</strong> Client Data Edited Successfully.
+					</div>
+				</div>
+
+
+				<!-- ============================================================================ -->
+				<!-- Panel Form - Add client  -->
+				<!-- ============================================================================ -->
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<h3 class="panel-title">Add Client</h3>
+					</div>
+					<div class="panel-body">
+						<form th:object="${client}" th:action="@{/admin/clients/save}" action="#"
+							method="post">
+							<input type="text" th:field="*{titre}" class="form-control"
+								placeholder="Client Titre" />
+							<span th:if="${#fields.hasErrors('titre')}" th:errors="*{titre}" style="color: red">Erreur
+								champ titre</span>
+
+							<input type="text" th:field="*{nom}" class="form-control" placeholder="Client Name" />
+							<span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" style="color: red">Erreur
+								champ nom</span>
+							<div style="clear: both; display: block; height: 10px;"></div>
+
+							<input type="text" th:field="*{prenom}" class="form-control"
+								placeholder="Client prenom" />
+							<span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"
+								style="color: red">Erreur champ prenom</span>
+							<div style="clear: both; display: block; height: 10px;"></div>
+
+							<div style="clear: both; display: block; height: 10px;"></div>
+							<input type="submit" class="btn btn-danger pull-right" value="Save" />
+						</form>
+					</div>
+				</div>
+				<!-- /# End panel -->
+
+			</div>
+		</div>
+		<!-- /# End row -->
+
+
+		<!-- ============================================================================ -->
+		<!-- Table All client  -->
+		<!-- ============================================================================ -->
+		<div class="row" style="margin-bottom: 50px;">
+			<div class="col-md-offset-2 col-md-8">
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<h3 class="panel-title">All Clients</h3>
+					</div>
+					<div class="panel-body">
+						<table class="table table-bordered">
+							<thead>
+								<tr class="btn-success">
+									<th>Id</th>
+									<th>Titre</th>
+									<th>Nom</th>
+									<th>Prénom</th>
+									<th>Version</th>
+									<th>Operation</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:if="${#lists.isEmpty(allClients)}" class="btn-warning">
+									<td colspan="4" align="center">No Client Registered Yet!!!</td>
+								</tr>
+								<tr th:each="client : ${allClients}">
+									<td th:text="${client.id}"></td>
+									<td th:text="${client.titre}"></td>
+									<td th:text="${client.nom}"></td>
+									<td th:text="${client.prenom}"></td>
+									<td th:text="${client.version}"></td>
+									<td align="center">
+										<a th:href="@{/admin/clients/edit/{id}(id=${client.id})}"><span
+												class="glyphicon glyphicon-edit"></span></a> &nbsp; &nbsp; <a
+											th:href="@{/admin/clients/delete/{id}(id=${client.id})}"><span
+												class="glyphicon glyphicon-trash"></span></a>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- /# End panel -->
+			</div>
+			<!-- /. En col-lg-12 -->
+		</div>
+		<!-- /# End row -->
+
+	</div>
+	<!-- /# End layout:fragment content -->
+</body>
+</html>

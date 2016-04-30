@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+<title th:text="#{medecin.list.page.title}">Patients</title>
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">MEDECINS</h1>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<div class="row">
+			<div class="col-lg-12">
+
+				<!-- ============================================================================ -->
+				<!-- LIST - REGISTRED MEDECINS -->
+				<!-- ============================================================================ -->
+
+				<h4 class="page-header" th:text="#{medecin.list.table.title}">Registered Medecins</h4>
+				<div class="table responsive">
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th class="col-sm-1" th:text="#{medecin.list.id.label}">Id</th>
+								<th class="col-sm-1" th:text="#{medecin.list.version.label}">Version</th>
+								<th class="col-sm-4" th:text="#{medecin.list.titre.label}">Titre</th>
+								<th class="col-sm-4" th:text="#{medecin.list.nom.label}">Nom</th>
+								<th class="col-sm-2" th:text="#{medecin.list.prenom.label}">Prenom</th>
+								<th class="col-sm-2" th:text="#{medecin.list.actions.label}">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="medecin : ${medecins}">
+								<td th:text="${medecin.id}"></td>
+								<td th:text="${medecin.version}"></td>
+								<td th:text="${medecin.titre}"></td>
+								<td th:text="${medecin.nom}"></td>
+								<td th:text="${medecin.prenom}"></td>
+								<td style="text-align: center;">
+									<a href="#" th:href="@{/admin/medecins/edit(id=${medecin.id})}">
+										<button type="button" class="btn btn-default btn-xs">
+											<span class="glyphicon glyphicon-pencil"></span>
+											&nbsp;&nbsp;Edit
+										</button>
+									</a> &nbsp; <a href="#"
+										th:href="@{/admin/medecins/delete(id=${medecin.id},phase=stage)}">
+										<button type="button" class="btn btn-default btn-xs">
+											<span class="glyphicon glyphicon-trash"></span>
+											&nbsp;&nbsp;Delete
+										</button>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<br />
+
+				<!-- ============================================================================ -->
+				<!-- FORM  - ADD MEDECINS -->
+				<!-- ============================================================================ -->
+
+				<form class="form" action="#" th:action="@{/admin/medecins/add}"
+					th:object="${medecin}" method="post">
+					<div class="table responsive">
+						<table class="no-border-on-me table ">
+							<thead>
+								<tr>
+									<th class="col-sm-1"></th>
+									<th class="col-sm-4" th:text="#{medecin.list.titre.label}">titre</th>
+									<th class="col-sm-4" th:text="#{medecin.list.nom.label}">Nom</th>
+									<th class="col-sm-4" th:text="#{medecin.list.nom.label}">PreNom</th>
+									<th class="col-sm-2" th:text="#{medecin.list.actions.label}">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="text" hidden="hidden" th:field="*{id}"></input>
+									</td>
+									<td>
+										<input class="form-control" type="text" th:field="*{titre}" placeholder="Type"></input>
+									</td>
+									<td>
+										<input class="form-control" type="text" th:field="*{nom}" placeholder="Name"></input>
+									</td>
+									<td>
+										<input class="form-control" type="text" th:field="*{prenom}" placeholder="Prenm"></input>
+									</td>
+									<td>
+										<button type="submit" class="btn btn-primary"
+											th:text="#{button.label.add.medecin}">Add Medecin</button>
+									</td>
+								</tr>
+								<tr>
+									<td class="col-sm-1"></td>
+									<td class="col-sm-4 text-danger" th:if="${#fields.hasErrors('titre')}"
+										th:errors="*{titre}">type error</td>
+									<td class="col-sm-4 text-danger" th:if="${#fields.hasErrors('nom')}"
+										th:errors="*{name}">nom error</td>
+									<td class="col-sm-4 text-danger" th:if="${#fields.hasErrors('prenom')}"
+										th:errors="*{name}">prenom error</td>
+									<td class="col-sm-2"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</form>
+
+			</div>
+			<!-- /. End col-lg-12 -->
+		</div>
+		<!-- /# End row -->
+
+	</div>
+	<!-- /# End layout:fragment content -->
+
+
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-medecins').DataTable({
+                responsive: true
+        });
+    });
+    </script>
+
+
+</body>
+</html>

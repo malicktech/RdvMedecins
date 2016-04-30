@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+
+<head>
+<title th:text="#{medecin.delete.page.title}">Title</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">MEDECINS</h1>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<div class="row">
+			<div class="col-lg-12">
+
+				<!-- ============================================================================ -->
+				<!-- FORM - DELETE MEDECINS -->
+				<!-- ============================================================================ -->
+
+				<h4 class="page-header" th:text="#{medecin.delete.head.title}">Delete Medecin</h4>
+				<div class="col-sm-2"></div>
+				<div class="col-sm-6">
+					<form class="form-horizontal" action="#" method="get">
+						<div class="form-group">
+							<label class="col-sm-5 control-label" th:text="#{medecin.list.id.label}">Medecin
+								Id</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" th:field="${medecin.id}"
+									disabled="disabled"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-5 control-label" th:text="#{medecin.list.titre.label}">Medecin
+								Type</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" th:field="${medecin.titre}"
+									disabled="disabled"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-5 control-label" th:text="#{medecin.list.nom.label}">Medecin
+								Name</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" th:field="${medecin.nom}"
+									disabled="disabled"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-5 control-label" th:text="#{medecin.list.prenom.label}">Medecin
+								Name</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" th:field="${medecin.prenom}"
+									disabled="disabled"></input>
+							</div>
+						</div>
+					</form>
+					<div class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-5 control-label"></label>
+							<div class="col-sm-7">
+								<a href="#"
+									th:href="@{/admin/medecins/delete(id=${medecin.id},phase=#{button.action.delete} )}">
+									<button type="button" class="btn btn-primary" th:text="#{button.label.delete}">Delete</button>
+								</a> <a href="#"
+									th:href="@{/admin/medecins/delete(id=${medecin.id},phase=#{button.action.cancel} )}">
+									<button type="button" class="btn btn-default active"
+										th:text="#{button.label.cancel}">Cancel</button>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4"></div>
+
+			</div>
+			<!-- /. En col-lg-12 -->
+		</div>
+		<!-- /# End row -->
+
+	</div>
+	<!-- /# End layout:fragment content -->
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+
+<head>
+<title th:text="#{medecin.edit.page.title}">Title</title>
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">MEDECINS</h1>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<div class="row">
+			<div class="col-lg-12">
+
+				<!-- ============================================================================ -->
+				<!-- FORM - EDIT MEDECIN -->
+				<!-- ============================================================================ -->
+
+				<h4 class="page-header" th:text="#{medecin.edit.head.title}">Edit Medecin</h4>
+				<div class="col-sm-2"></div>
+				<div class="col-sm-6">
+					<form class="form-horizontal" action="#" th:action="@{/admin/medecins/edit}"
+						th:object="${medecin}" method="post">
+						<input type="text" hidden="hidden" th:value="*{id}" th:field="*{id}" />
+						<input type="text" hidden="hidden" th:value="*{version}" th:field="*{version}" />
+						<div class="form-group">
+							<label class="col-sm-5 control-label" th:text="#{medecin.list.titre.label}">Titre</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" th:value="*{titre}" th:field="*{titre}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-5 control-label" th:text="#{medecin.list.nom.label}">Medecin
+								Name</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" th:value="*{nom}" th:field="*{nom}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-5 control-label" th:text="#{medecin.list.prenom.label}">Medecin
+								Name</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" th:value="*{prenom}" th:field="*{prenom}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-5 col-sm-7">
+								<button type="submit" class="btn btn-primary" name="action"
+									th:value="#{button.action.save}" th:text="#{button.label.save}">Save</button>
+								<button type="submit" class="btn btn-default active" name="action"
+									th:value="#{button.action.cancel}" th:text="#{button.label.cancel}">Cancel</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-5 col-sm-7">
+								<p class="text-danger" th:if="${#fields.hasErrors('titre')}" th:errors="*{titre}">type
+									error</p>
+								<p class="text-danger" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">name
+									error</p>
+								<p class="text-danger" th:if="${#fields.hasErrors('prenom')}"
+									th:errors="*{prenom}">name error</p>
+							</div>
+						</div>
+					</form>
+
+				</div>
+				<div class="col-sm-4"></div>
+
+			</div>
+			<!-- /. End col-lg-12 -->
+		</div>
+		<!-- /# End row -->
+
+	</div>
+	<!-- /# End layout:fragment content -->
+
+
+</body>
+</html>
+

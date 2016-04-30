@@ -1,56 +1,57 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
 
 <head>
 <title>Login</title>
 </head>
+
 <body>
 	<div layout:fragment="content">
 
-		<!-- ============================================================================ -->
-		<!-- Login Form -->
-		<!-- ============================================================================ -->
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<div class="panel panel-info top-spacer">
-				<div class="panel-heading">Formulaire Authentification</div>
-				<div class="panel-body">
 
-					<div th:if="${param.error}">Invalid username and password.</div>
-					<div th:if="${param.logout}">You have been logged out.</div>
+		<div class="row">
+			<div class="col-lg-12">
+			
+				<!-- ============================================================================ -->
+				<!-- Login Form -->
+				<!-- ============================================================================ -->
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<div class="panel panel-info top-spacer">
+						<div class="panel-heading">Formulaire Authentification</div>
+						<div class="panel-body">
 
-					<form th:action="@{/login}" method="post">
-						<div class="form-group">
-							<label class="control-label">Login *: </label> <input
-								class="form-control" type="text" name="username"
-								placeholder="Your username" />
+							<div th:if="${param.error}">Invalid username and password.</div>
+							<div th:if="${param.logout}">You have been logged out.</div>
+
+							<form th:action="@{/login}" method="post">
+								<div class="form-group">
+									<label class="control-label">Login *: </label>
+									<input class="form-control" type="text" name="username"
+										placeholder="Your username" />
+								</div>
+								<div class="form-group">
+									<label class="control-label">Password *: </label>
+									<input class="form-control" type="password" name="password"
+										placeholder="Your password" />
+								</div>
+								<div>
+									<input class="btn" type="submit" value="Sign In" />
+								</div>
+							</form>
+
 						</div>
-						<div class="form-group">
-							<label class="control-label">Password *: </label> <input
-								class="form-control" type="password" name="password"
-								placeholder="Your password" />
-						</div>
-						<div>
-							<input class="btn" type="submit" value="Sign In" />
-						</div>
-					</form>
-
-					<!-- 				<p th:if="${loginError}">Wrong user or password</p> -->
-					<!-- 				<form th:action="@{/j_spring_security_check}" method="post"> -->
-					<!-- 					<label for="j_username">Username</label>: <input type="text" -->
-					<!-- 						id="j_username" name="j_username" /> <br /> <label -->
-					<!-- 						for="j_password">Password</label>: <input type="password" -->
-					<!-- 						id="j_password" name="j_password" /> <br /> <input type="submit" -->
-					<!-- 						value="Log in" /> -->
-					<!-- 				</form> -->
-
+					</div>
 				</div>
+
 			</div>
+			<!-- /. End col-lg-12 -->
 		</div>
+		<!-- /# End row -->
+
 	</div>
+	<!-- /# End layout:fragment content -->
 
 
 </body>
