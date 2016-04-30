@@ -9,16 +9,23 @@ public class Client extends Personne {
 
 	private static final long serialVersionUID = 1L;
 
-	// constructeur par défaut
+	/*
+	 * constructors
+	 * =========================================================================
+	 */
+
 	public Client() {
 	}
 
-	// constructeur avec paramètres
 	public Client(String titre, String nom, String prenom) {
 		super(titre, nom, prenom);
 	}
-
-	// identité
+	
+	/*
+	 * Equals , hashCode, toString
+	 * =========================================================================
+	 */
+	
 	public String toString() {
 		return String.format("Client[%s]", super.toString());
 	}

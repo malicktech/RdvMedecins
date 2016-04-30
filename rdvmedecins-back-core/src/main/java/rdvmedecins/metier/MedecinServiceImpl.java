@@ -42,6 +42,7 @@ public class MedecinServiceImpl implements MedecinService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Medecin> findAllMedecins() {
 		List<Medecin> medecins = medecinRepository.findAll();
 		return medecins;
