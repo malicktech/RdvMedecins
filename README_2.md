@@ -38,6 +38,17 @@ création d'une application Android native*;
 * regrouper  client soncole et thymeleaf
 *  bootstrap ; virer lescomposant bootstrap externe et use les natif inclu dans bootstrap : modal, select etc ...
 * vier lavue jubrotton
+* rename client to "patient"
+* add table and form with responsible 
+* extraire la page login ans une page d'authenticatin à part avec desing perso
+** netoyer les page unitile
+* rename field : firstname, lastname
+* form add, virer tableau , use real form
+* use partie javascript validation in admin
+* Respect de la norme pour les api rest
+* adapter le chemin mapping pour les controlleurs pour les 
+* use popin to add and edit object medecins and autres
+* changer le wording des méthode de service : use creteObjets, finAllObject, ajouter eager and easy ex: fingonewitheagerrelationship, npire to jhipter
 * delete cle étrangère
 * change repository to jpa repo
 ** filterjson p403 p402, se passer des mapper,utiliser  annottion json inspired from ebank youssfi,  
@@ -58,19 +69,22 @@ création d'une application Android native*;
 ** add elastic search
 ** set errorpage with atuator or 
 ** minifier css and js
+** factorise html en layout au max, use replace et include
+** Conf : environnement DEV, STG, PROD
 ** add liquibase | http://blog.soat.fr/2015/10/liquibase-et-le-versioning-de-base-de-donnees/
 ** test api rest | http://blog.soat.fr/2015/12/tester-une-api-rest-spring-mvc-avec-le-spring-testcontext-framework/
-** add letsrypt https
+** add lets' Enrypt https
 ** s'inpirer de  jhipster, ajouter tous les parties : actuator , etc ....
 ** gestion timout RestTemplate
 ** gestion des cookie
+** ajputer "Les cookies nous permettent de fournir, protéger et améliorer les services de Facebook. En continuant à utiliser notre site, vous acceptez notre Politique d’utilisation des cookies."
 ** voir quelle est la bonnepratique pour les sessions spring security , utiliser ou non ? p492 
-** gestion du sessions du user : partir de lex et s'inspirer de mcdo
+** gestion du sessions du user : partir de lexemplle et s'inspirer de mcdo
 ** gestion du cache, avec hazel cache
 ** gestion pool de connexion : HikariCP
 ** gestion des exclusion spring boot , to only keep needed depndency
 ** gestion des messages d'erreur , code et autres ... personnalisation, 
-** gestion page eerreur et exeption avec spring
+** gestion page erreur et exception avec spring ; OptimisticLockException; 
 ** add envoi de mail :  http://www.thymeleaf.org/doc/articles/springmail.html   & Apache Velocity Template & javaMail http://sivalabs.in/2011/05/sending-email-with-attachments-using-javamail/
 ** vérifier la validité des données avec Hibernate validator et javax validator
 * validation form  coté client js
@@ -78,6 +92,16 @@ création d'une application Android native*;
 ** mettre un formulaire d'inscription patient
 ** choix du medecins favoris / MEDECINS TRAINTANTS
 ** présentation des medecins
+** java doc est présente
+** use set in place of list or collection
+** inplément auditing with spring dat jpa; inspire from jhipster
+** use enum in entity field
+
+
+** add " equals, hashcode and tostring " to all class object
+http://javarevisited.blogspot.fr/2015/01/why-override-equals-hashcode-or-tostring-java.html
+http://www.infoq.com/fr/articles/retour-sur-les-bases-equals-et-hashcode
+voir dans les bouquins : jaa efficace,et...
 
 ** créationd'une module : reatJS
 
@@ -90,3 +114,9 @@ création d'une application Android native*;
 </p>
 
 http://www.jmdoudoux.fr/java/dej/chap-validation_donnees.htm
+
+
+
+##
+Column(name = "PRICE", precision = 9, scale = 2)
+  private BigDecimal price;

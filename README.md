@@ -11,9 +11,9 @@ Client / serveur -> maven multi-mod  :
 
 * rdvmedecins-back-core					(DAO & Business Layer | Spring Data JPA & Hibernate & Spring Security)
 * rdvmedecins-back-ws					(API REST Services | Spring MVC)
-* rdvmedecins-front-springmvcthymeleaf	(gui web | Spring MVC & thymeleaf & jquery & Twitter Bootstrap)
+* rdvmedecins-back-admin-springmvcthymeleaf	(gui web | Spring MVC & thymeleaf & jquery & Twitter Bootstrap)
 * rdvmedecins-front-jsf2				(gui web | JSF 2 + primeface 5)
-	
+* rdvmedecins-front-javascript			(gui web | Javascript) 	
 * rdvmedecins-front-angularjs			(gui web | AngularJS 1 & yeoman & grunt & bower )
 	
 ### Stack Technique

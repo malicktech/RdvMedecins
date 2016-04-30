@@ -11,12 +11,23 @@
 <script type="text/javascript" th:src="@{/static/vendors/metisMenu/dist/metisMenu.js}"></script>
 
 <!-- DataTables JavaScript -->
-<script type="text/javascript" th:src="@{/static/vendors/DataTables-1-10.11/media/js/jquery.dataTables.js}"></script>
-<script type="text/javascript" th:src="@{/static/vendors/DataTables-1-10.11/media/js/dataTables.bootstrap.js}"></script>
-<script type="text/javascript" th:src="@{/static/vendors/DataTables-1-10.11/extensions/Responsive/js/dataTables.responsive.js}"></script>
+<script type="text/javascript"
+	th:src="@{/static/vendors/DataTables-1.10.11/media/js/jquery.dataTables.js}"></script>
+<script type="text/javascript"
+	th:src="@{/static/vendors/DataTables-1.10.11/media/js/dataTables.bootstrap.js}"></script>
+<script type="text/javascript"
+	th:src="@{/static/vendors/DataTables-1.10.11/extensions/Responsive/js/dataTables.responsive.js}"></script>
 
 
 <!-- SB Admin Scripts  -->
 <script type="text/javascript"
 	th:src="@{/static/vendors/startbootstrap-sb-admin-2-1.0.8/dist/js/sb-admin-2.js}"></script>
 
+<!-- DataTable Medecins -->
+<script>
+    $(document).ready(function() {
+        $('#dataTables-medecins').DataTable({
+                responsive: true
+        });
+    });
+    </script>
