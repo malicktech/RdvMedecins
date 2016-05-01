@@ -1,12 +1,14 @@
 package rdvmedecins.back.admin.controllers;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,7 +22,7 @@ import rdvmedecins.entities.Client;
 import rdvmedecins.metier.ClientService;
 
 /**
- * Controller for managing Client View.
+ * Controller for managing Patient Admin View.
  */
 
 @Controller
@@ -36,15 +38,17 @@ public class ClientController {
 
 	@Autowired
 	private ClientService clientService;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	/*
 	 * LOCAL ATTRIBUTES
 	 * =========================================================================
 	 */
 
-	private static final String INDEX_VIEW_NAME = "index";
-	private static final String CLIENT_LIST_VIEW_NAME = "client-list";
-	private static final String CLIENT_EDIT_VIEW_NAME = "client-edit";
+	private static final String CLIENT_LIST_VIEW_NAME = "patient-list";
+	private static final String CLIENT_EDIT_VIEW_NAME = "patient-edit";
 	
 	private static final String REDIRECT_CLIENT_LIST_PATH = "redirect:/admin/clients/list";
 	
@@ -53,54 +57,54 @@ public class ClientController {
 	 * =========================================================================
 	 */
 
+	/**
+     * GET  /index -> get all the patients -> return patient-list view
+     */
 	@RequestMapping(value = { "/", "index", "/list", "/savepage" }, method = RequestMethod.GET)
 	public String savePage(Model model) {
 		model.addAttribute("client", new Client());
-		model.addAttribute("allClients", (ArrayList<Client>) clientService.getAllClients());
+		model.addAttribute("allClients", clientService.getAllClients());
 		return CLIENT_LIST_VIEW_NAME;
 	}
 
 	/**
-	 * Save Client
-	 * 
-	 * @param client
-	 * @param redirectAttributes
-	 * @return
-	 */
+     * POST  /admin/medecins/save -> Create a new Patient
+     */
 	@RequestMapping(value = { "/save" }, method = RequestMethod.POST)
 	public String saveClient(@ModelAttribute("client") @Valid Client client, BindingResult bindingResult,
-			final RedirectAttributes redirectAttributes, Model model) {
+			final RedirectAttributes redirectAttributes, Model model, Locale locale) {
+		logger.info("POST -> /clients/save/ -> : " + client.toString() );
 
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("allClients", (ArrayList<Client>) clientService.getAllClients());
+			model.addAttribute("allClients", clientService.getAllClients());
 			return CLIENT_LIST_VIEW_NAME;
 		}
-		if (clientService.createClient(client) != null) {
-			redirectAttributes.addFlashAttribute("saveClient", "success");
+		Client registeredClient = clientService.createClient(client);
+		if ( registeredClient != null) {			
+			String message = "Patient " + registeredClient.getId() + messageSource.getMessage("allert.message.action.add.result.success", null, locale);
+			redirectAttributes.addFlashAttribute("message", message);
+			redirectAttributes.addFlashAttribute("registrationTask", "success");
 		} else {
-			redirectAttributes.addFlashAttribute("saveClient", "unsuccess");
+			redirectAttributes.addFlashAttribute("registrationTask", "unsuccess");
 		}
-
 		return REDIRECT_CLIENT_LIST_PATH;
 	}
 
 	/**
-	 * DELETE or EDIT client
-	 * 
-	 * @param operation
-	 * @param id
-	 * @param redirectAttributes
-	 * @param model
-	 * @return
-	 */
+     * GET  /operation/:id	-> DELETE or EDIT Patient
+     */
 	@RequestMapping(value = "/{operation}/{id}", method = RequestMethod.GET)
 	public String editRemoveClient(@PathVariable("operation") String operation, @PathVariable("id") Long id,
 			final RedirectAttributes redirectAttributes, Model model) {
+
 		if (operation.equals("delete")) {
-			if (clientService.deleteClient(id)) {
+			try {
+				clientService.deleteClient(id);
 				redirectAttributes.addFlashAttribute("deletion", "success");
-			} else {
+				
+			} catch (Exception e) {
 				redirectAttributes.addFlashAttribute("deletion", "unsuccess");
+				redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 			}
 		} else if (operation.equals("edit")) {
 			Client editClient = clientService.findOneClient(id);
@@ -111,27 +115,28 @@ public class ClientController {
 				redirectAttributes.addFlashAttribute("status", "notfound");
 			}
 		}
-
 		return REDIRECT_CLIENT_LIST_PATH;
 	}
 
 	/**
-	 * Update Client
-	 * 
-	 * @param editClient
-	 * @param redirectAttributes
-	 * @return
-	 */
+     * POST  /update -> Updates an existing Patient.
+     */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateClient(@ModelAttribute("editClient") Client editClient,
-			final RedirectAttributes redirectAttributes) {
+	public String updateClient(@ModelAttribute("client") @Valid Client client, BindingResult bindingResult,
+			final RedirectAttributes redirectAttributes, Model model, Locale locale) {
 		
-		logger.info(editClient.toString());
+		logger.info(client.toString());
 		
-		if (clientService.updateClient(editClient) != null) {
-			redirectAttributes.addFlashAttribute("edit", "success");
+		if (bindingResult.hasErrors()) {
+			return CLIENT_EDIT_VIEW_NAME;
+		}
+		Client editedClient = clientService.updateClient(client);
+		if ( editedClient != null) {
+			String message = "Patient " + editedClient.getId() + messageSource.getMessage("allert.message.action.edit.result.success", null, locale);
+			redirectAttributes.addFlashAttribute("message", message);
+			redirectAttributes.addFlashAttribute("modificationTask", "success");
 		} else {
-			redirectAttributes.addFlashAttribute("edit", "unsuccess");
+			redirectAttributes.addFlashAttribute("modificationTask", "unsuccess");
 		}
 		return REDIRECT_CLIENT_LIST_PATH;
 	}

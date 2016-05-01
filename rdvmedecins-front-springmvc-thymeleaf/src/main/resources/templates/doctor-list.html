@@ -18,7 +18,13 @@
 				<h1 class="page-header">MEDECINS</h1>
 			</div>
 		</div>
-		<!-- /.row -->
+
+		<!-- ============================================================================ -->
+		<!-- ALLERT - MSG -->
+		<!-- ============================================================================ -->
+		<!-- Alert Message  -->
+		<div th:replace="fragments/alert-messages :: alert-messages"></div>
+
 
 		<!-- ============================================================================ -->
 		<!-- LIST - MEDECINS -->
@@ -45,25 +51,27 @@
 									</tr>
 								</thead>
 								<tbody>
+									<tr th:if="${#lists.isEmpty(medecins)}" class="btn-warning">
+										<td colspan="4" align="center">No Medecins Registered Yet!!!</td>
+									</tr>
 									<tr th:each="medecin : ${medecins}">
 										<td th:text="${medecin.id}"></td>
 										<td th:text="${medecin.version}"></td>
 										<td th:text="${medecin.titre}"></td>
 										<td th:text="${medecin.nom}"></td>
 										<td th:text="${medecin.prenom}"></td>
-										<td style="text-align: center;">
-											<a href="#" th:href="@{/admin/medecins/edit(id=${medecin.id})}">
-												<button type="button" class="btn btn-default btn-xs">
+										<td align="center" >
+											<a th:href="@{/admin/medecins/edit/{id}(id=${medecin.id})}"><button
+													type="button" class="btn btn-default btn-xs">
 													<span class="glyphicon glyphicon-pencil"></span>
 													&nbsp;&nbsp;Edit
-												</button>
-											</a> &nbsp; <a href="#"
-												th:href="@{/admin/medecins/delete(id=${medecin.id},phase=stage)}">
-												<button type="button" class="btn btn-default btn-xs">
+												</button></a>
+											<span>&nbsp;</span>
+											<a th:href="@{/admin/medecins/delete/{id}(id=${medecin.id})}"><button
+													type="button" class="btn btn-default btn-xs">
 													<span class="glyphicon glyphicon-trash"></span>
 													&nbsp;&nbsp;Delete
-												</button>
-											</a>
+												</button></a>
 										</td>
 									</tr>
 								</tbody>

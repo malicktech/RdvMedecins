@@ -1,89 +1,79 @@
 package rdvmedecins.back.admin.controllers;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import rdvmedecins.back.admin.helpers.Static;
-import rdvmedecins.back.admin.models.ApplicationModel;
-import rdvmedecins.back.admin.models.Response;
-import rdvmedecins.entities.Medecin;
+import rdvmedecins.metier.ClientService;
+import rdvmedecins.metier.CreneauRdvService;
+import rdvmedecins.metier.MedecinService;
 
 @Controller
 public class HomeController {
 
 	private final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+	/*
+	 * DEPENDENCY INJECTION
+	 * =========================================================================
+	 */
+	
 	@Autowired
-	private ApplicationModel application;
+	private ClientService clientService;
+	
+	@Autowired
+	private MedecinService medecinService;
+	
+	@Autowired
+	private CreneauRdvService creneauRdvService;
 
-	private static final String INDEX_VIEW_NAME = "index";
+	/*
+	 * LOCAL ATTRIBUTES
+	 * =========================================================================
+	 */
+	
 	private static final String LOGIN_VIEW_NAME = "login";
-	private static final String ERROR_VIEW_NAME = "error";
 	private static final String HOME_VIEW_NAME = "home";
-	private static final String HELLO_VIEW_NAME = "hello";
+
+	/*
+	 * CONTROLLERS METHODS
+	 * =========================================================================
+	 */
 
 	/**
-	 * Home Page
-	 * 
-	 * @return
-	 */
-	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
-	public String savePage() {
+     * GET  /index -> get Indicators stats number -> return admin index view
+     */
+	@RequestMapping(value = { "/", "/home", "/index" }, method = RequestMethod.GET)
+	public String home(Model model) {
+		logger.info("IN: home, GET");
+		
+		model.addAttribute("totalNumberOfDoctors", medecinService.countAllMedecins());
+		model.addAttribute("totalNumberOfPatients", clientService.countAllClients());
+		model.addAttribute("totalNumberOfRegistredAppointment", creneauRdvService.countAllAppointments());
 		return HOME_VIEW_NAME;
 	}
 
 	/**
-	 * Login form Page
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/login")
+     * GET  /login ->  return login page
+     */
+	@RequestMapping(value = {"/login"}, method = RequestMethod.GET)
 	public String login() {
+		logger.info("IN: Login, GET");		
 		return LOGIN_VIEW_NAME;
 	}
-
+	
 	/**
-	 * logout url
-	 * 
-	 * @return login form view
-	 */
-	@RequestMapping(value = "/logout")
+     * GET  /logout ->  return login page
+     */
+	@RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
 	public String logout() {
+		logger.info("IN: Logout, GET");		
 		return LOGIN_VIEW_NAME;
 	}
 
-	@RequestMapping("/hello")
-	public String hello() {
-		return HELLO_VIEW_NAME;
-	}
-
-	/**
-	 * Error page : DISABLED
-	 * @param request
-	 * @param model
-	 * @return
-	 */	
-	// @RequestMapping("/error")
-	public String error(HttpServletRequest request, Model model) {
-		model.addAttribute("errorCode", request.getAttribute("javax.servlet.error.status_code"));
-		Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
-		String errorMessage = null;
-		if (throwable != null) {
-			errorMessage = throwable.getMessage();
-		}
-		model.addAttribute("errorMessage", errorMessage);
-		return ERROR_VIEW_NAME;
-	}
 
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+	<th:block th:fragment="alert-messages">
+
+
+		<!-- ============================================================================ -->
+		<!-- Alert Messages for DELETE Operation -->
+		<!-- ============================================================================ -->
+		<div th:if="${deletionTask eq 'unsuccess'}">
+			<div class="alert alert-danger alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>Error!</strong>Data Not Deleted.<br /> <strong>ErrorMessage!</strong>
+				<span th:text="${errorMessage}"></span>
+			</div>
+		</div>
+		<div th:if="${deletionTask eq 'success'}">
+			<div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>Success!</strong>Data was Successfully Deleted .
+			</div>
+		</div>
+		<!-- ============================================================================ -->
+		<!-- Alert Messages for EDIT Operation -->
+		<!-- ============================================================================ -->
+		<div th:if="${status eq 'notfound'}">
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>Error!</strong> Not Found.
+			</div>
+		</div>
+		<div th:if="${modificationTask eq 'unsuccess'}">
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>Error!</strong>Data Not Edited.
+			</div>
+		</div>
+		<div th:if="${modificationTask eq 'success'}">
+			<div class="alert alert-success alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>Success!</strong>Data Edited Successfully.
+			</div>
+		</div>
+		<!-- ============================================================================ -->
+		<!-- Alert Messages for SAVE Operation -->
+		<!-- ============================================================================ -->
+		<div th:if="${registrationTask eq 'unsuccess'}">
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>Error!</strong>Data Not Saved.
+			</div>
+		</div>
+		<div th:if="${registrationTask eq 'success'}">
+			<div class="alert alert-success alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>Success!</strong>
+				<span th:text="${message}"></span>
+			</div>
+		</div>
+
+	</th:block>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+
+<head>
+<title th:text="#{medecin.edit.page.title}">Title</title>
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+
+		<!-- ============================================================================ -->
+		<!-- PAGE HEADER -->
+		<!-- ============================================================================ -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">MEDECINS</h1>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<!-- ============================================================================ -->
+		<!-- FORM - EDIT MEDECIN -->
+		<!-- ============================================================================ -->
+		<div class="row">
+			<div class="col-md-offset-3 col-md-6">
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title" th:text="#{medecin.edit.head.title}">Edit</h3>
+					</div>
+					<div class="panel-body">
+						<form th:object="${medecinToEdit}" th:action="@{/admin/medecins/update}" 
+							method="post" role="form" >
+														
+							<input type="text" hidden="hidden" th:value="*{id}" th:field="*{id}" />
+							<input type="text" hidden="hidden" th:value="*{version}" th:field="*{version}" />
+							
+							<div class="form-group" th:classappend="${#fields.hasErrors('titre')} ?: 'has-error'" >
+								<label th:text="#{medecin.list.titre.label}">Titre</label>
+								<input type="text" class="form-control" th:value="*{titre}" th:field="*{titre}" th:errorclass="has-error"></input>
+								<p class="text-danger" th:if="${#fields.hasErrors('titre')}" th:errors="*{titre}">type
+									error</p>
+							</div>
+							<div class="form-group" th:classappend="${#fields.hasErrors('nom')} ?: 'has-error'" >
+								<label th:text="#{medecin.list.nom.label}">Nom</label>
+								<input type="text" class="form-control" th:value="*{nom}" th:field="*{nom}"></input>
+								<p class="text-danger" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">name
+									error</p>
+							</div>
+							<div class="form-group" th:classappend="${#fields.hasErrors('prenom')} ?: 'has-error'" >
+								<label th:text="#{medecin.list.prenom.label}">Prénom</label>
+								<input type="text" class="form-control" th:value="*{prenom}" th:field="*{prenom}"></input>
+								<p class="text-danger" th:if="${#fields.hasErrors('prenom')}"
+									th:errors="*{prenom}">firtsname error</p>
+							</div>
+							<div class="form-group pull-right">
+								<input type="submit" class="btn btn-primary" th:value="#{button.action.update}" />
+							</div>
+						</form>
+					</div>
+
+					<div class="panel-footer">
+						<a th:href="@{/admin/medecins/list}" class="btn btn-success">Back To List</a>
+					</div>
+				</div>
+				<!-- /# End Panel -->
+
+			</div>
+		</div>
+		<!-- /# End row -->
+
+	</div>
+	<!-- /# End layout:fragment content -->
+
+</body>
+</html>
+
