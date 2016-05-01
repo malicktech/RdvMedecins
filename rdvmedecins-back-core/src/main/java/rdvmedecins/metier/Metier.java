@@ -34,28 +34,25 @@ public class Metier implements IMetier {
 	@Autowired
 	private RvRepository rvRepository;
 
-
-	// implémentation interface
+	// TODO DELETE
+	
 	@Override
 	public List<Client> getAllClients() {
 		return Lists.newArrayList(clientRepository.findAll());
 	}
 
+	// TODO DELETE
 	@Override
 	public List<Medecin> getAllMedecins() {
 		return Lists.newArrayList(medecinRepository.findAll());
 	}
 
 	@Override
-	public List<Creneau> getAllCreneaux(long idMedecin) {
-		return Lists.newArrayList(creneauRepository.getAllCreneaux(idMedecin));
-	}
-
-	@Override
 	public List<Rv> getRvMedecinJour(long idMedecin, Date jour) {
-		return Lists.newArrayList(rvRepository.getRvMedecinJour(idMedecin, jour));
+		return Lists.newArrayList(rvRepository.findAppointmentByDoctorByDay(idMedecin, jour));
 	}
 
+	// TODO DELETE
 	@Override
 	public Client getClientById(long id) {
 		return clientRepository.findOne(id);
@@ -66,6 +63,7 @@ public class Metier implements IMetier {
 		return medecinRepository.findOne(id);
 	}
 
+	// TODO DELETE
 	@Override
 	public Rv getRvById(long id) {
 		return rvRepository.findOne(id);
@@ -76,14 +74,21 @@ public class Metier implements IMetier {
 		return creneauRepository.findOne(id);
 	}
 
+	// TODO DELETE
 	@Override
 	public Rv ajouterRv(Date jour, Creneau créneau, Client client) {
 		return rvRepository.save(new Rv(jour, client, créneau));
 	}
 
+	// TODO DELETE
 	@Override
 	public void supprimerRv(long idRv) {
 		rvRepository.delete(idRv);
+	}
+	
+	@Override
+	public List<Creneau> getAllCreneaux(long idDoctor) {
+		return creneauRepository.findAllTimeslotbyDoctor(idDoctor);
 	}
 
 	public AgendaMedecinJour getAgendaMedecinJour(long idMedecin, Date jour) {

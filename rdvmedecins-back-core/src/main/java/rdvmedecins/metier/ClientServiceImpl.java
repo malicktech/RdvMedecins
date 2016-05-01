@@ -61,9 +61,16 @@ public class ClientServiceImpl implements ClientService{
 	}
 
 	@Override
-	public List<Medecin> searchMedecins() {
+	public List<Medecin> searchClients() {
 		// TODO Add elastic search repository
 		return null;
+	}
+
+
+
+	@Override
+	public Long countAllClients() {
+		return clientRepository.count();
 	}
 	
 

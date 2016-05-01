@@ -13,4 +13,6 @@ public interface MedecinService {
     public List<Medecin> findAllMedecins();
     public List<Medecin> searchMedecins();
     
+    public Long countAllMedecins();
+    
 }

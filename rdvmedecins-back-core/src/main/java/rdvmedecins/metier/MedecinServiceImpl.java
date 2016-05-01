@@ -54,4 +54,9 @@ public class MedecinServiceImpl implements MedecinService {
 		return null;
 	}
 
+	@Override
+	public Long countAllMedecins() {		
+		return medecinRepository.count();
+	}
+
 }

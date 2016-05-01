@@ -13,5 +13,7 @@ public interface ClientService {
 	
 	public Client findOneClient(Long empId);
 	public List<Client> getAllClients();
-	public List<Medecin> searchMedecins();
+	public List<Medecin> searchClients();
+	
+	public Long countAllClients();
 }
