@@ -10,6 +10,7 @@ public interface MedecinService {
     public Medecin updateMedecin(Medecin Medecin);
     public void deleteMedecin(Long id);
 
+    public Medecin findOneMedecin(Long empId);
     public List<Medecin> findAllMedecins();
     public List<Medecin> searchMedecins();
     

@@ -17,6 +17,8 @@ public interface CreneauRdvService {
 	public Rv findRvById(Long idRv);
 	public List<Rv> findAppointmentsByDoctorByDay(long idDcotor, Date day);
 	
+	public Long countAllAppointments();
+	
 	// TODO get rv/appointment of the day
 	// TODO get rv/appointment of client (date min : today, or status true)
 	// TODO get rv/appointment of doctor

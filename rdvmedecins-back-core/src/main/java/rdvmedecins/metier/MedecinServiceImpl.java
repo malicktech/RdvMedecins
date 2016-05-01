@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import rdvmedecins.entities.Client;
 import rdvmedecins.entities.Medecin;
 import rdvmedecins.repositories.MedecinRepository;
 
@@ -38,7 +39,7 @@ public class MedecinServiceImpl implements MedecinService {
 
 	@Override
 	public void deleteMedecin(Long id) {
-		medecinRepository.delete(id);
+		medecinRepository.delete (id);
 	}
 
 	@Override
@@ -46,6 +47,12 @@ public class MedecinServiceImpl implements MedecinService {
 	public List<Medecin> findAllMedecins() {
 		List<Medecin> medecins = medecinRepository.findAll();
 		return medecins;
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Medecin findOneMedecin(Long id) {
+		return medecinRepository.findOne(id);
 	}
 
 	@Override
@@ -55,6 +62,7 @@ public class MedecinServiceImpl implements MedecinService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Long countAllMedecins() {		
 		return medecinRepository.count();
 	}

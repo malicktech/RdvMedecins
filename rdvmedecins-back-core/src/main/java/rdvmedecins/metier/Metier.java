@@ -38,13 +38,13 @@ public class Metier implements IMetier {
 	
 	@Override
 	public List<Client> getAllClients() {
-		return Lists.newArrayList(clientRepository.findAll());
+		return clientRepository.findAll();
 	}
 
 	// TODO DELETE
 	@Override
 	public List<Medecin> getAllMedecins() {
-		return Lists.newArrayList(medecinRepository.findAll());
+		return medecinRepository.findAll();
 	}
 
 	@Override
