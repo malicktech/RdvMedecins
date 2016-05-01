@@ -39,7 +39,10 @@ création d'une application Android native*;
 *  bootstrap ; virer lescomposant bootstrap externe et use les natif inclu dans bootstrap : modal, select etc ...
 * vier lavue jubrotton
 * rename client to "patient"
+* change creanau <-> medecins to one to one | delete id externe
 * add table and form with responsible 
+* add java 8 : optionnal, stream , etc
+* add status on rdv : reserved, absent, annulé, réalisé | boolean : active or not, | 
 * extraire la page login ans une page d'authenticatin à part avec desing perso
 ** netoyer les page unitile
 * rename field : firstname, lastname
@@ -85,6 +88,7 @@ création d'une application Android native*;
 ** gestion des exclusion spring boot , to only keep needed depndency
 ** gestion des messages d'erreur , code et autres ... personnalisation, 
 ** gestion page erreur et exception avec spring ; OptimisticLockException; 
+** gestion des log
 ** add envoi de mail :  http://www.thymeleaf.org/doc/articles/springmail.html   & Apache Velocity Template & javaMail http://sivalabs.in/2011/05/sending-email-with-attachments-using-javamail/
 ** vérifier la validité des données avec Hibernate validator et javax validator
 * validation form  coté client js
@@ -96,7 +100,7 @@ création d'une application Android native*;
 ** use set in place of list or collection
 ** inplément auditing with spring dat jpa; inspire from jhipster
 ** use enum in entity field
-
+** add ABSENCE DU MEDECIN
 
 ** add " equals, hashcode and tostring " to all class object
 http://javarevisited.blogspot.fr/2015/01/why-override-equals-hashcode-or-tostring-java.html
