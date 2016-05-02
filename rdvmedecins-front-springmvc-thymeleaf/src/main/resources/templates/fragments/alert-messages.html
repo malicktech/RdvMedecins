@@ -15,7 +15,7 @@
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<strong>Error!</strong>Data Not Deleted.<br /> <strong>ErrorMessage!</strong>
+				<mark>Error!</mark>Data Not Deleted.<br /> <mark>ErrorMessage!</mark>
 				<span th:text="${errorMessage}"></span>
 			</div>
 		</div>
@@ -24,7 +24,7 @@
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<strong>Success!</strong>Data was Successfully Deleted .
+				<mark>Success!</mark>Data was Successfully Deleted .
 			</div>
 		</div>
 		<!-- ============================================================================ -->
@@ -35,7 +35,7 @@
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<strong>Error!</strong> Not Found.
+				<mark>Error!</mark> Not Found.
 			</div>
 		</div>
 		<div th:if="${modificationTask eq 'unsuccess'}">
@@ -43,7 +43,7 @@
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<strong>Error!</strong>Data Not Edited.
+				<mark>Error!</mark>Data Not Edited.
 			</div>
 		</div>
 		<div th:if="${modificationTask eq 'success'}">
@@ -51,7 +51,7 @@
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<strong>Success!</strong>Data Edited Successfully.
+				<mark>Success!</mark>Data Edited Successfully.
 			</div>
 		</div>
 		<!-- ============================================================================ -->

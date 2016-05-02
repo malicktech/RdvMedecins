@@ -36,9 +36,19 @@ création d'une application Android native*;
 * faire module admin back thymeleaf : acce direct service business core + front thymeleaf  accee rest templet a l'api rest
 * Add send email feature tovalid insciption or reset password
 * regrouper  client soncole et thymeleaf
+* pass element from table to modal : http://stackoverflow.com/questions/22833490/how-to-pass-spring-model-attributes-as-parameters-in-thymeleaf-fragments
+* chek validation side in detail
+
 *  bootstrap ; virer lescomposant bootstrap externe et use les natif inclu dans bootstrap : modal, select etc ...
 * vier lavue jubrotton
 * rename client to "patient"
+* popup de confirmation pour les suppressions
+** ORDRE dans l'affichage DES ERREURs FORMULARIE
+** centraliser tous les lien url path dans un fichier enum, y accéder depuis les controlleur et les vue thymeleaf
+** factorise form register client and medecins, form edit ad register
+** datatables i18n
+** alert save , edit, update : factorise in one html file : 
+** use html5 and valider le format html avec : validator W3C
 * change creanau <-> medecins to one to one | delete id externe
 * add table and form with responsible 
 * add java 8 : optionnal, stream , etc
@@ -53,6 +63,8 @@ création d'une application Android native*;
 * use popin to add and edit object medecins and autres
 * changer le wording des méthode de service : use creteObjets, finAllObject, ajouter eager and easy ex: fingonewitheagerrelationship, npire to jhipter
 * delete cle étrangère
+* replace jquery.validate.unobtrusive.js by jquery validate native
+* qhow client validation i18n
 * change repository to jpa repo
 ** filterjson p403 p402, se passer des mapper,utiliser  annottion json inspired from ebank youssfi,  
 * adopter REST HATEOAS   | https://zestedesavoir.com/tutoriels/299/la-theorie-rest-restful-et-hateoas/
@@ -70,6 +82,7 @@ création d'une application Android native*;
 ** deploy Heroku or Amazon Elastic Bean Stalk
 ** cors filter : http://sqli.developpez.com/tutoriels/spring/construire-backend-springboot/#LIV
 ** add elastic search
+** gestion des transaction spring data
 ** set errorpage with atuator or 
 ** minifier css and js
 ** factorise html en layout au max, use replace et include
@@ -80,6 +93,7 @@ création d'une application Android native*;
 ** s'inpirer de  jhipster, ajouter tous les parties : actuator , etc ....
 ** gestion timout RestTemplate
 ** gestion des cookie
+** spring MVC : interceptor
 ** ajputer "Les cookies nous permettent de fournir, protéger et améliorer les services de Facebook. En continuant à utiliser notre site, vous acceptez notre Politique d’utilisation des cookies."
 ** voir quelle est la bonnepratique pour les sessions spring security , utiliser ou non ? p492 
 ** gestion du sessions du user : partir de lexemplle et s'inspirer de mcdo
@@ -102,12 +116,20 @@ création d'une application Android native*;
 ** use enum in entity field
 ** add ABSENCE DU MEDECIN
 
+
 ** add " equals, hashcode and tostring " to all class object
 http://javarevisited.blogspot.fr/2015/01/why-override-equals-hashcode-or-tostring-java.html
 http://www.infoq.com/fr/articles/retour-sur-les-bases-equals-et-hashcode
 voir dans les bouquins : jaa efficace,et...
 
 ** créationd'une module : reatJS
+
+## area
+
+Validation Form client : Jquery Validate
+Validation Modele server side
+POST/Redirect/GET pattern with Flash Attributes 
+thymeleaf layout
 
 ## LINK
 

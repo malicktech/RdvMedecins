@@ -4,6 +4,9 @@
 <!-- jQuery -->
 <script type="text/javascript" th:src="@{/static/vendors/jquery/2.1.4/jquery.min.js}"></script>
 
+<!-- jQuery Validation Plugin -->
+<script type="text/javascript" th:src="@{/static/vendors/jquery-validation-1.15.0/dist/jquery.validate.js}"></script>
+
 <!-- Bootstrap Core JavaScript -->
 <script type="text/javascript" th:src="@{/static/vendors/bootstrap/3.3.4/js/bootstrap.js}"></script>
 
@@ -24,7 +27,7 @@
 	th:src="@{/static/vendors/startbootstrap-sb-admin-2-1.0.8/dist/js/sb-admin-2.js}"></script>
 
 <!-- DataTable Medecins -->
-<script>
+<script type="text/javascript">
     $(document).ready(function() {
         $('#dataTables-medecins').DataTable({
                 responsive: true
@@ -33,5 +36,11 @@
         $('#dataTables-patients').DataTable({
             responsive: true
     });
+
+        $('#registerModal').modal('show');
+
+        // plugin validation 
+        $("#patientRegisterForm").validate();
+        
     });
     </script>
