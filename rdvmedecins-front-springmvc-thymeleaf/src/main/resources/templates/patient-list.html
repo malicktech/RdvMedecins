@@ -11,7 +11,7 @@
 	<div layout:fragment="content">
 
 		<!-- ============================================================================ -->
-		<!-- TITLE - CONTENT-->
+		<!-- TITLE - CONTENT -->
 		<!-- ============================================================================ -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -23,73 +23,7 @@
 		<!-- ALLERT - MSG -->
 		<!-- ============================================================================ -->
 		<!-- Alert Message  -->
-		<div th:replace="fragments/alert-messages :: alert-messages"></div>
-
-
-		<!-- ============================================================================ -->
-		<!-- Modal - Form - Register client  -->
-		<!-- ============================================================================ -->
-
-		<!-- if post error , show modal automoticaly on laod -->
-		<!-- TODO -->
-
-		<!-- Button trigger modal to add Client -->
-		<button class="btn btn-primary btn-lg pull-right" data-toggle="modal"
-			data-target="#registerModal">Add New Client</button>
-		<!-- Modal -->
-		<div class="modal fade" id="registerModal" tabindex="-1" role="dialog"
-			aria-labelledby="registerModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="registerModalLabel">Ajouter un patient</h4>
-					</div>
-					<form id="patientRegisterForm" th:object="${client}"
-						th:action="@{/admin/clients/save}" action="#" method="post">
-						<div class="modal-body">
-							<div class="form-group"
-								th:classappend="${#fields.hasErrors('titre')} ?: 'has-error'">
-								<label th:text="#{medecin.list.titre.label}">Titre</label>
-								<input type="text" class="form-control" th:value="*{titre}" th:field="*{titre}"
-									minlength="2" required="required"></input>
-								<p class="text-danger" th:if="${#fields.hasErrors('titre')}" th:errors="*{titre}">type
-									error</p>
-							</div>
-							<div class="form-group" th:classappend="${#fields.hasErrors('nom')} ?: 'has-error'">
-								<label th:text="#{medecin.list.nom.label}">Nom</label>
-								<input type="text" class="form-control" th:value="*{nom}" th:field="*{nom}"
-									minlength="2" required="required"></input>
-								<p class="text-danger" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">name
-									error</p>
-							</div>
-							<div class="form-group"
-								th:classappend="${#fields.hasErrors('prenom')} ?: 'has-error'">
-								<label th:text="#{medecin.list.prenom.label}">Prénom</label>
-								<input type="text" class="form-control" th:value="*{prenom}" th:field="*{prenom}"
-									minlength="2" required="required"></input>
-								<p class="text-danger" th:if="${#fields.hasErrors('prenom')}"
-									th:errors="*{prenom}">firtsname error</p>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-							<input type="submit" class="btn btn-primary pull-right" value="Save" />
-
-						</div>
-					</form>
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal-dialog -->
-		</div>
-		<!-- /.modal -->
-
-
-		<!-- TODO : with js -->
-		<!-- include modal Modal-ConfirmRemoval -->
-		<div th:include="Modal-ConfirmRemoval :: Modal-ConfirmRemoval(idObjectToRemove)"></div>
-
+		<div th:replace="fragments/alert-messages :: alert-messages">...</div>
 
 		<!-- ============================================================================ -->
 		<!-- Table All client  -->
@@ -125,13 +59,34 @@
 										<td th:text="${client.prenom}"></td>
 										<td th:text="${client.version}"></td>
 										<td align="center">
-											<a th:href="@{/admin/clients/edit/{id}(id=${client.id})}"><span
-													class="glyphicon glyphicon-edit"></span></a>
-											<span>&nbsp; &nbsp;</span>
-											<button class="btn btn-primary btn-xs" data-toggle="modal"
-												data-target="#confirmRemovalModal">
-												<span class="glyphicon glyphicon-trash"></span>
-											</button>
+											<a th:href="@{#}">
+												<button type="button" class="btn btn-primary btn-xs">
+													<span class="glyphicon glyphicon-eye-open"></span>
+													View
+												</button>
+											</a>
+											<span>&nbsp;</span>
+											<a th:href="@{/admin/clients/edit/{id}(id=${client.id})}">
+												<button type="button" class="btn btn-info btn-xs">
+													<span class="glyphicon glyphicon-edit"></span>
+													Edit
+												</button>
+											</a>
+											<span>&nbsp;</span>
+											<a th:href="@{#}">
+												<button type="button" class="btn btn-warning btn-xs">
+													<span class="glyphicon glyphicon-ban-circle"></span>
+													Restore
+												</button>
+											</a>
+											<form method="GET" th:action="@{/admin/clients/delete/{id}(id=${client.id})}"
+												accept-charset="UTF-8" style="display: inline">
+												<button class="btn btn-danger btn-xs " type="button" data-toggle="modal"
+													data-target="#modalConfirmDelete"
+													data-th-attr="data-title=#{modal.title.delete.patient}, data-message=${ '__#{modal.message.delete.patient}__' + '&nbsp;' + client.titre + '&nbsp;' + client.nom + '&nbsp;' + client.prenom} ">
+													<i class="glyphicon glyphicon-trash"></i> Delete
+												</button>
+											</form>
 										</td>
 									</tr>
 								</tbody>
@@ -145,6 +100,38 @@
 			<!-- /. En col-lg-12 -->
 		</div>
 		<!-- /# End row -->
+
+		<!-- test -->
+		<div class="row">
+			<button class="btn btn-xs btn-danger"
+				th:onclick="'javascript:fonctionTest1(\' '+${clientId}+' \');'">
+				<span class="glyphicon glyphicon-trash"></span>
+				th:onclick
+			</button>
+			<button class="btn btn-xs btn-danger"
+				th:onclick="'javascript:fonctionTest2(\'someString\',\' '+${longId}+' \');'">
+				<span class="glyphicon glyphicon-trash"></span>
+				th:onclick 2
+			</button>
+		</div>
+
+		<!-- Button trigger modal to add Client -->
+		<div class="row">
+			<button class="btn btn-primary btn-lg pull-right" data-toggle="modal"
+				data-target="#registerModal">Add New Client</button>
+		</div>
+
+		<!-- ============================================================================ -->
+		<!-- Modals -->
+		<!-- ============================================================================ -->
+
+		<!-- include Modal-RegisterPatient -->
+		<div th:replace="fragments/modal-RegisterPatient :: modal-RegisterPatient"></div>
+
+		<!-- include Modal-ConfirmDelete -->
+		<!-- 			<div th:replace="fragments/Modal-ConfirmRemoval :: Modal-ConfirmRemoval(idObjectToRemove=${clientId}"> -->
+		<div th:replace="fragments/modal-ConfirmDelete :: modal-ConfirmDelete"></div>
+
 
 	</div>
 	<!-- /# End layout:fragment content -->

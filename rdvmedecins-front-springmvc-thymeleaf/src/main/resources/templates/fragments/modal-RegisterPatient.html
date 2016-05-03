@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+	<th:block th:fragment="modal-RegisterPatient">
+
+		<!-- ============================================================================ -->
+		<!-- Modal - Form - Register client  -->
+		<!-- ============================================================================ -->
+		<div class="modal fade" id="registerModal" tabindex="-1" role="dialog"
+			aria-labelledby="registerModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="registerModalLabel">Ajouter un patient</h4>
+					</div>
+					<form id="patientRegisterForm" th:object="${client}"
+						th:action="@{/admin/clients/save}" method="post">
+						<div class="modal-body">
+							<div class="form-group"
+								th:classappend="${#fields.hasErrors('titre')} ?: 'has-error'">
+								<label th:text="#{medecin.list.titre.label}">Titre</label>
+								<input type="text" class="form-control" th:value="*{titre}" th:field="*{titre}"
+									minlength="2" required="required"></input>
+								<p class="text-danger" th:if="${#fields.hasErrors('titre')}" th:errors="*{titre}">type
+									error</p>
+							</div>
+							<div class="form-group" th:classappend="${#fields.hasErrors('nom')} ?: 'has-error'">
+								<label th:text="#{medecin.list.nom.label}">Nom</label>
+								<input type="text" class="form-control" th:value="*{nom}" th:field="*{nom}"
+									minlength="2" required="required"></input>
+								<p class="text-danger" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">name
+									error</p>
+							</div>
+							<div class="form-group"
+								th:classappend="${#fields.hasErrors('prenom')} ?: 'has-error'">
+								<label th:text="#{medecin.list.prenom.label}">Prénom</label>
+								<input type="text" class="form-control" th:value="*{prenom}" th:field="*{prenom}"
+									minlength="2" required="required"></input>
+								<p class="text-danger" th:if="${#fields.hasErrors('prenom')}"
+									th:errors="*{prenom}">firtsname error</p>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+							<input type="submit" class="btn btn-primary pull-right" value="Save" />
+
+						</div>
+					</form>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+
+	</th:block>
+
+</body>
+</html>

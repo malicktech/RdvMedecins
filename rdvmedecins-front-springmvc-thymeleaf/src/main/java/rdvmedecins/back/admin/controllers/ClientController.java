@@ -1,8 +1,11 @@
 package rdvmedecins.back.admin.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import rdvmedecins.entities.Client;
 import rdvmedecins.metier.ClientService;
@@ -61,10 +65,47 @@ public class ClientController {
      * GET  /index -> get all the patients -> return patient-list view
      */
 	@RequestMapping(value = { "/", "index", "/list", "/savepage" }, method = RequestMethod.GET)
-	public String savePage(Model model) {
+	public String savePage(Model model, Locale locale, HttpServletRequest request) {
 		model.addAttribute("client", new Client());
-		model.addAttribute("allClients", clientService.getAllClients());
+		
+		List<Client> clients = clientService.getAllClients();
+		model.addAttribute("allClients", clients);
+			
+		// TODO to delete for test
+		model.addAttribute("clientId", 1);
+		Long testId = 1L;
+		model.addAttribute("longId", testId);
+		
+		// disable automatic show of modal register 
+    	model.addAttribute("isRegisterModalShowOnLoad", false);
+    	
+		setModel(model, locale, null);
+		
+		// check error, check whether flash attributes exists in previous request
+		Map<String,?> inputFlashMap  = RequestContextUtils.getInputFlashMap(request); 
+        if (inputFlashMap != null) {
+        	System.out.println("GET  /index -> inputFlashMap attributes : " + inputFlashMap.keySet().toString());	
+        }
+		
 		return CLIENT_LIST_VIEW_NAME;
+	}
+	
+	// préparation du modèle de la vue vue-01
+	private void setModel(Model model, Locale locale, String message) {
+		// on ne gère que les locales fr-FR, en-US
+		String language = locale.getLanguage();
+		String country = null;
+		if (language.equals("fr")) {
+			country = "FR";
+		}
+		if (language.equals("en")) {
+			country = "US";
+		}
+		model.addAttribute("locale", String.format("%s-%s", language, country));
+		// le message éventuel
+		if (message != null) {
+			model.addAttribute("message", message);
+		}
 	}
 
 	/**
@@ -77,6 +118,7 @@ public class ClientController {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("allClients", clientService.getAllClients());
+			model.addAttribute("isRegisterModalShowOnLoad", true);
 			return CLIENT_LIST_VIEW_NAME;
 		}
 		Client registeredClient = clientService.createClient(client);
@@ -100,10 +142,9 @@ public class ClientController {
 		if (operation.equals("delete")) {
 			try {
 				clientService.deleteClient(id);
-				redirectAttributes.addFlashAttribute("deletion", "success");
-				
+				redirectAttributes.addFlashAttribute("deletionTask", "success");				
 			} catch (Exception e) {
-				redirectAttributes.addFlashAttribute("deletion", "unsuccess");
+				redirectAttributes.addFlashAttribute("deletionTask", "unsuccess");
 				redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 			}
 		} else if (operation.equals("edit")) {
@@ -140,4 +181,9 @@ public class ClientController {
 		}
 		return REDIRECT_CLIENT_LIST_PATH;
 	}
+	
+	/*
+	 * LOCAL METHODS
+	 * =========================================================================
+	 */
 }

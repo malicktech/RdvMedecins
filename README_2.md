@@ -31,8 +31,29 @@ le serveur web / jSON (serveur1) Spring / Thymeleaf,
 le client JS (jQuery),
 création d'une application Android native*;
 
+Template Engine : thymeleaf
 
 ## TODO : 
+
+thymeleaf eclipse plugin 
+http://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html
+thymeleaf test
+
+One Delete Confirm Dialog For All
+
+possible to read from messages.properties: var msg = [[#{msg}]]
+
+
+mettre msg : 
+En poursuivant votre navigation, vous acceptez l'utilisation de cookies afin de réaliser des statistiques d'audiences et vous proposer des services ou des offres adaptés à vos centres d'intérêts
+
+This website uses cookies so that we can provide you the best user experience possible.
+By continuing to browse the site you are agreeing to our use of cookies
+
+
+add Suspend/restore 
+http://heera.it/bootstrap-3-delete-confirm-dialog
+
 * faire module admin back thymeleaf : acce direct service business core + front thymeleaf  accee rest templet a l'api rest
 * Add send email feature tovalid insciption or reset password
 * regrouper  client soncole et thymeleaf
@@ -126,8 +147,9 @@ voir dans les bouquins : jaa efficace,et...
 
 ## area
 
-Validation Form client : Jquery Validate
-Validation Modele server side
+internationalisation(i18n) de jQuery : globalise
+Validation client side : Jquery.Validation plugin
+Validation server side : Bean Validation (JSR 303) + Hibernate Validator, ResourceBundle pour chaque langue  
 POST/Redirect/GET pattern with Flash Attributes 
 thymeleaf layout
 
