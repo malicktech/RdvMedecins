@@ -4,10 +4,9 @@
 </head>
 <body>
 
-<!-- ============================================================================ -->
-		<!-- Modal - Delete Confirmat dialog  -->
-		<!-- ============================================================================ -->
-
+	<!-- ============================================================================ -->
+	<!-- Modal - Delete Confirmat dialog  -->
+	<!-- ============================================================================ -->
 
 	<!-- 	<th:block th:fragment="Modal-ConfirmRemoval(idObjectToRemove)"> -->
 	<th:block th:fragment="modal-ConfirmDelete">
@@ -21,15 +20,11 @@
 						<h4 class="modal-title" id="modalConfirmDeleteLabel">Delete Parmanently</h4>
 					</div>
 					<div class="modal-body">
-						<p>Are you sure about this ?</p>						
+						<p>Are you sure about this ?</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 						<button type="button" class="btn btn-success" id="confirmButton">Delete</button>
-						<!-- 						<a th:href="@{/admin/clients/delete/{id}(id=${idObjectToRemove})}"> -->
-<!-- 						<a th:href="@{/admin/clients/delete/1}"> -->
-<!-- 							<button type="button" class="btn btn-primary">Confirm Suppression</button> -->
-<!-- 						</a> -->
 					</div>
 
 				</div>
@@ -39,17 +34,7 @@
 		</div>
 		<!-- /.modal -->
 
-
 	</th:block>
 
 </body>
 </html>
-
-<!-- 						<p>Confirm suppresion of Patient suivant :</p> -->
-<!-- 						<p> -->
-<!-- 							id : -->
-<!-- 							<span th:text="${idObjectToRemove}"></span> -->
-<!-- 						</p> -->
-<!-- 						<p>nom : X</p> -->
-<!-- 						<p>Prenom : X</p> -->
-<!-- 						<br /> -->
