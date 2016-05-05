@@ -99,8 +99,8 @@ public class Static {
 		// dictionnaire <String,Object>
 		Map<String, Object> hash = new HashMap<String, Object>();
 		hash.put("id", rv.getId());
-		hash.put("idClient", rv.getIdClient());
-		hash.put("idCreneau", rv.getIdCreneau());
+		hash.put("idClient", rv.getClient().getId());
+		hash.put("idCreneau", rv.getCreneau().getId());
 		// on rend le dictionnaire
 		return hash;
 	}

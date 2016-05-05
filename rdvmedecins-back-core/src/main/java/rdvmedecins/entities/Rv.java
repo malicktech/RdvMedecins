@@ -17,54 +17,44 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 @Table(name = "rv")
 @JsonFilter("rvFilter")
 public class Rv extends AbstractEntity {
+
 	private static final long serialVersionUID = 1L;
 
-	// caractéristiques d'un Rv
+	/*
+	 * Fields
+	 * =========================================================================
+	 */
+
 	@Temporal(TemporalType.DATE)
 	private Date jour;
 
-	// un rv est lié à un client
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_client")
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "id_client", insertable = false, nullable=false ,updatable=true)
 	private Client client;
 
-	// un rv est lié à un créneau
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_creneau")
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "id_creneau", insertable = false, nullable=false ,updatable=true)
 	private Creneau creneau;
 
-	// clés étrangères
-	@Column(name = "id_client", insertable = false, updatable = false)
-	private long idClient;
-	@Column(name = "id_creneau", insertable = false, updatable = false)
-	private long idCreneau;
-
-	// constructeur par défaut
+	/*
+	 * constructors
+	 * =========================================================================
+	 */
+	
 	public Rv() {
 	}
 
-	// avec paramètres
 	public Rv(Date jour, Client client, Creneau creneau) {
 		this.jour = jour;
 		this.client = client;
 		this.creneau = creneau;
 	}
 
-	// toString
-	public String toString() {
-		return String.format("Rv[%d, %s, %d, %d]", id, jour, client.id, creneau.id);
-	}
 
-	// clés étrangères
-	public long getIdCreneau() {
-		return idCreneau;
-	}
-
-	public long getIdClient() {
-		return idClient;
-	}
-
-	// getters et setters
+	/*
+	 * getters et setters
+	 * =========================================================================
+	 */
 
 	public Client getClient() {
 		return client;
@@ -89,5 +79,53 @@ public class Rv extends AbstractEntity {
 	public void setCreneau(Creneau creneau) {
 		this.creneau = creneau;
 	}
+
+	/*
+	 * Equals , hashCode, toString
+	 * =========================================================================
+	 */
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((client == null) ? 0 : client.hashCode());
+		result = prime * result + ((creneau == null) ? 0 : creneau.hashCode());
+		result = prime * result + ((jour == null) ? 0 : jour.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rv other = (Rv) obj;
+		if (client == null) {
+			if (other.client != null)
+				return false;
+		} else if (!client.equals(other.client))
+			return false;
+		if (creneau == null) {
+			if (other.creneau != null)
+				return false;
+		} else if (!creneau.equals(other.creneau))
+			return false;
+		if (jour == null) {
+			if (other.jour != null)
+				return false;
+		} else if (!jour.equals(other.jour))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Rv [jour=" + jour + ", client=" + client + ", creneau=" + creneau + ", id=" + id + ", version="
+				+ version + "]";
+	}	
 
 }

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
 public class AbstractEntity implements Serializable {
@@ -31,6 +32,7 @@ public class AbstractEntity implements Serializable {
 	 * rows count which increment on every update statement execution
 	 */
 	@Version
+	@NotNull
 	protected Long version;
 	
 	/*
