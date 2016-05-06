@@ -58,38 +58,60 @@ https://www.google.fr/search?q=spring+message+properties+javascript&oq=spring+me
 
 http://formvalidation.io/
 
-* faire module admin back thymeleaf : acce direct service business core + front thymeleaf  accee rest templet a l'api rest
-* Add send email feature tovalid insciption or reset password
-* regrouper  client soncole et thymeleaf
-* pass element from table to modal : http://stackoverflow.com/questions/22833490/how-to-pass-spring-model-attributes-as-parameters-in-thymeleaf-fragments
-* chek validation side in detail
+## Back - CORE
+ rename client to "patient"
+add java 8 : optionnal, stream , etc
+add status on rdv : reserved, absent, annulé, réalisé | boolean : active or not, |
+* manage jsonignore and jsonfilter
+* transform list to set
+add elastic search
+* changer le wording des méthode de service : use creteObjets, finAllObject, ajouter eager and easy ex: fingonewitheagerrelationship, npire to jhipter
+** gestion des transaction spring data
+** set errorpage with atuator or 
+** minifier css and js
+** manage date time, check jhipster
+** Conf : environnement DEV, STG, PROD
+** add liquibase | http://blog.soat.fr/2015/10/liquibase-et-le-versioning-de-base-de-donnees/
 
-*  bootstrap ; virer lescomposant bootstrap externe et use les natif inclu dans bootstrap : modal, select etc ...
-* vier lavue jubrotton
-* rename client to "patient"
-* popup de confirmation pour les suppressions
-** ORDRE dans l'affichage DES ERREURs FORMULARIE
-** centraliser tous les lien url path dans un fichier enum, y accéder depuis les controlleur et les vue thymeleaf
-** factorise form register client and medecins, form edit ad register
-** datatables i18n
-** alert save , edit, update : factorise in one html file : 
-** use html5 and valider le format html avec : validator W3C
-* change creanau <-> medecins to one to one | delete id externe
-* add table and form with responsible 
-* add java 8 : optionnal, stream , etc
-* add status on rdv : reserved, absent, annulé, réalisé | boolean : active or not, | 
-* extraire la page login ans une page d'authenticatin à part avec desing perso
+## Back - ADMIN FRONT 
+login page : error login
+i18n error message
+error page :  404
+extraire la page login ans une page d'authenticatin à part avec desing perso
+add appli monitor in backend, accee rest templet a l'api rest
+chek client validation side in detail
+	ORDRE dans l'affichage DES ERREURs FORMULARIE
+virer lescomposant bootstrap externe et use les natif inclu dans bootstrap : modal, select etc ...
+use html5 and valider le format html avec : validator W3C
+datatables i18n
+** netoyer les page unitile
+factorise form register client and medecins, form edit ad register
+centraliser tous les lien url path dans un fichier enum, y accéder depuis les controlleur et les vue thymeleaf
+correct responsive design
+
+
+## Front - client console
+extraire la page login ans une page d'authenticatin à part avec desing perso
+rebuild with javaFX
+regrouper  client soncole et thymeleaf
+
+## front - PATIENT Angularjs
+send email feature to valid insciption or reset password
+bootstrap ; virer lescomposant bootstrap externe et use les natif inclu dans bootstrap : modal, select etc ...
+vier lavue jubrotton
+** netoyer les page unitile
+
+## Back - API Web service
+** monitoring with actuator | https://dzone.com/articles/disable-spring-boot-production
+** api rest : expose hypermedia link | Hypermedia-Driven REST services
 ** netoyer les page unitile
 * rename field : firstname, lastname
 * form add, virer tableau , use real form
 * use partie javascript validation in admin
 * Respect de la norme pour les api rest
 * adapter le chemin mapping pour les controlleurs pour les 
-* use popin to add and edit object medecins and autres
-* changer le wording des méthode de service : use creteObjets, finAllObject, ajouter eager and easy ex: fingonewitheagerrelationship, npire to jhipter
 
-* manage jsonignore and jsonfilter
-* transform list to set
+
 * replace jquery.validate.unobtrusive.js by jquery validate native
 * qhow client validation i18n
 * change repository to jpa repo
@@ -109,14 +131,8 @@ http://formvalidation.io/
 ** deploy Heroku or Amazon Elastic Bean Stalk
 ** static helpers : check if it's really need element
 ** cors filter : http://sqli.developpez.com/tutoriels/spring/construire-backend-springboot/#LIV
-** add elastic search
-** gestion des transaction spring data
-** set errorpage with atuator or 
-** minifier css and js
-** manage date time, check jhipster
-** factorise html en layout au max, use replace et include
-** Conf : environnement DEV, STG, PROD
-** add liquibase | http://blog.soat.fr/2015/10/liquibase-et-le-versioning-de-base-de-donnees/
+
+
 ** test api rest | http://blog.soat.fr/2015/12/tester-une-api-rest-spring-mvc-avec-le-spring-testcontext-framework/
 ** add lets' Enrypt https
 ** s'inpirer de  jhipster, ajouter tous les parties : actuator , etc ....
@@ -147,8 +163,7 @@ http://formvalidation.io/
 ** add ABSENCE DU MEDECIN
 ** code barre
 ** echange de mal entre medein et patient
-** monitoring with actuator | https://dzone.com/articles/disable-spring-boot-production
-** api rest : expose hypermedia link | Hypermedia-Driven REST services
+
 ** add spring loader pour le rechargement à chaud
 http://javarevisited.blogspot.fr/2015/01/why-override-equals-hashcode-or-tostring-java.html
 http://www.infoq.com/fr/articles/retour-sur-les-bases-equals-et-hashcode

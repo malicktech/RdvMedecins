@@ -32,7 +32,7 @@ public class Creneau extends AbstractEntity {
 
 	/** a timeslot is linked to one medecin */
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "id_medecin")
+	@JoinColumn(name = "id_medecin", insertable = false, nullable=false ,updatable=true)
 	private Medecin medecin;
 	
 	@OneToMany(mappedBy = "creneau" , fetch=FetchType.LAZY)   

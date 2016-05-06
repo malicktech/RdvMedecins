@@ -30,19 +30,19 @@
 							<input type="hidden" th:field="*{id}" />
 							<input type="hidden" th:field="*{version}" />
 
-							<div class="form-group" th:errorclass="has-error">
+							<div class="form-group" th:classappend="${#fields.hasErrors('titre')} ?: 'has-error'">
 								<input type="text" th:field="*{titre}" class="form-control"
 									placeholder="Client Name" />
 								<p class="text-danger" th:if="${#fields.hasErrors('titre')}" th:errors="*{titre}">type
 									error</p>
 							</div>
-							<div class="form-group" th:errorclass="has-error">
+							<div class="form-group" th:classappend="${#fields.hasErrors('nom')} ?: 'has-error'">
 								<input type="text" th:field="*{prenom}" class="form-control"
 									placeholder="Client Prenom" />
 								<p class="text-danger" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">name
 									error</p>
 							</div>
-							<div class="form-group" th:errorclass="has-error">
+							<div class="form-group" th:classappend="${#fields.hasErrors('prenom')} ?: 'has-error'">
 								<input type="text" th:field="*{nom}" class="form-control" placeholder="Client Nom" />
 								<p class="text-danger" th:if="${#fields.hasErrors('prenom')}"
 									th:errors="*{prenom}">name error</p>

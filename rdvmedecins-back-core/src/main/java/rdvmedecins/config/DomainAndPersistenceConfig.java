@@ -27,7 +27,7 @@ public class DomainAndPersistenceConfig {
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/dbrdvmedecins2");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/dbrdvmedecins");
 		dataSource.setUsername("admin");
 		dataSource.setPassword("admin");
 		return dataSource;
@@ -39,7 +39,7 @@ public class DomainAndPersistenceConfig {
 	public JpaVendorAdapter jpaVendorAdapter() {
 		HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
 		hibernateJpaVendorAdapter.setShowSql(false);
-		hibernateJpaVendorAdapter.setGenerateDdl(true);
+		hibernateJpaVendorAdapter.setGenerateDdl(false);
 		hibernateJpaVendorAdapter.setDatabase(Database.MYSQL);
 		return hibernateJpaVendorAdapter;
 	}

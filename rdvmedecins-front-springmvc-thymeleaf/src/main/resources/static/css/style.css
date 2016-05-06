@@ -1,47 +1,23 @@
-/* @CHARSET "UTF-8"; */
+@CHARSET "UTF-8";
 
+/* ===================================================== */
+ /* General */
+ /* ===================================================== */
+ 
 body {
-    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-    padding-bottom: 40px;
-    background-color: #f5f5f5;
+
 }
 
 .layout-content {
-	margin-top:80px;
-}
-
-.top-spacer {
-	margin-top: 20px;
-}
-
-.form-narrow {
-    max-width: 490px;
-    padding: 19px 29px 29px;
-    margin: 0 auto 20px;
-    background-color: #fff;
-    border: 1px solid #e5e5e5;
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-            border-radius: 5px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	
 }
 
 
-/* check if bootstatp class replace with */
-.cursor-pointer{cursor: pointer;}
-.cursor-croshair{cursor: crosshair;}
-.cursor-eresize{cursor: e-resize;}
-.cursor-move{cursor: move;}
-
-/* .error { */
-/* 	color: red; */
-/* } */
-
-.no-border-on-me>thead>tr>th, .no-border-on-me>tbody>tr>th,
-	.no-border-on-me>tfoot>tr>th, .no-border-on-me>thead>tr>td,
-	.no-border-on-me>tbody>tr>td, .no-border-on-me>tfoot>tr>td {
-	border-top-style: none;
-	border-bottom-style: none;
+/* ===================================================== */
+ /* Js Validation FORM Error */
+ /* ===================================================== */
+/* id start with "-error" */
+[id$=-error] {
+	color:red;
 }
+
