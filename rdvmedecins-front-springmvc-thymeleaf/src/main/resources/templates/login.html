@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -33,7 +33,8 @@
 			<div class="col-md-4 col-md-offset-4">
 				<div class="login-panel panel panel-default">
 					<div class="panel-heading">
-						<!-- 						<h3 class="panel-title">Please Sign In</h3> -->
+						<h3 class="panel-title">Please Sign In</h3>
+						<a th:href="@{?lang=fr}">English</a> | <a th:href="@{?lang=en}">Spanish</a>
 					</div>
 					<div class="panel-body">
 
@@ -42,8 +43,10 @@
 							<img th:src="@{/static/images/logo.png}" alt="logo" class="img-responsive" />
 
 							<!-- Erros -->
-							<div th:if="${param.error}" class="alert alert-error">Invalid username and password.</div>
-							<div th:if="${param.logout}" class="alert alert-success">You have been logged out.</div>
+							<div th:if="${param.error}" class="alert alert-error">Invalid username and
+								password.</div>
+							<div th:if="${param.logout}" class="alert alert-success">You have been logged
+								out.</div>
 
 							<div>
 								<!-- 						<label class="control-label">Login *: </label> -->

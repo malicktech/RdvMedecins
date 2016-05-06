@@ -1,13 +1,21 @@
 package rdvmedecins.entities;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import rdvmedecins.enums.Civility;
 
 @MappedSuperclass
 public class Personne extends AbstractEntity {
@@ -23,6 +31,10 @@ public class Personne extends AbstractEntity {
 	@NotNull
 	@NotEmpty
 	private String titre;
+	// TODO replace 
+	@Column(name="civility", length=12)
+    @Enumerated(EnumType.STRING)
+    private Civility civility ;
 
 	@Column(name="nom", length = 25, nullable = false)
 	@NotNull(message = "{error.medecin.lastname.null}")
@@ -35,6 +47,11 @@ public class Personne extends AbstractEntity {
 	@NotEmpty(message = "{error.medecin.firstname.empty}")
 	@Size(min = 2, max = 25, message = "{error.medecin.firstname.size}")
 	private String prenom;
+	
+	@Temporal(TemporalType.DATE)
+	private LocalDate DateOfBirthday;
+	
+	
 
 	/*
 	 * constructors
@@ -79,6 +96,23 @@ public class Personne extends AbstractEntity {
 		this.prenom = prenom;
 	}
 
+	public LocalDate getDateOfBirthday() {
+		return DateOfBirthday;
+	}
+
+	public void setDateOfBirthday(LocalDate dateOfBirthday) {
+		DateOfBirthday = dateOfBirthday;
+	}
+	
+	public Civility getCivility() {
+		return civility;
+	}
+
+	public void setCivility(Civility civility) {
+		this.civility = civility;
+	}
+
+	
 	/*
 	 * Equals , hashCode, toString
 	 * =========================================================================

@@ -74,9 +74,10 @@ add elastic search
 ** add liquibase | http://blog.soat.fr/2015/10/liquibase-et-le-versioning-de-base-de-donnees/
 
 ## Back - ADMIN FRONT 
-login page : error login
-i18n error message
+i18n error message login page
+localize client side validation messages
 error page :  404
+transform date to localdate and use AttributeConverter
 extraire la page login ans une page d'authenticatin à part avec desing perso
 add appli monitor in backend, accee rest templet a l'api rest
 chek client validation side in detail
@@ -217,7 +218,7 @@ Les relations entre les tables gérant les rendez-vous sont les suivantes :
 • un client a 0 ou plusieurs rendez-vous : 1:p bidirectionellle
 • à un créneau horaire est associé 0 ou plusieurs rendez-vous (à des jours différents)
 
-
+ contrainte d'unicité sur les valeurs des colonnes jointes (JOUR, ID_CRENEAU) de la table rv, pour empêcher que que deux RV ont été pris au même moment pour le même médecin
 
 [schemas workbench]
 

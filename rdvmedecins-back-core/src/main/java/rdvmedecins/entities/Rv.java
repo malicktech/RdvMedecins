@@ -10,11 +10,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 
 @Entity
-@Table(name = "rv")
+@Table(name = "rv", uniqueConstraints = {
+		@UniqueConstraint(name = "jour_creneau", columnNames = { "jour", "id_creneau" }) })
 @JsonFilter("rvFilter")
 public class Rv extends AbstractEntity {
 
@@ -25,22 +30,25 @@ public class Rv extends AbstractEntity {
 	 * =========================================================================
 	 */
 
+	@Column(name="jour", nullable = false)
 	@Temporal(TemporalType.DATE)
+	@NotNull
+	@NotEmpty
 	private Date jour;
 
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "id_client", insertable = false, nullable=false ,updatable=true)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_client", insertable = false, nullable = false, updatable = false)
 	private Client client;
 
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "id_creneau", insertable = false, nullable=false ,updatable=true)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_creneau", insertable = false, nullable = false, updatable = false)
 	private Creneau creneau;
 
 	/*
 	 * constructors
 	 * =========================================================================
 	 */
-	
+
 	public Rv() {
 	}
 
@@ -49,7 +57,6 @@ public class Rv extends AbstractEntity {
 		this.client = client;
 		this.creneau = creneau;
 	}
-
 
 	/*
 	 * getters et setters
@@ -84,7 +91,7 @@ public class Rv extends AbstractEntity {
 	 * Equals , hashCode, toString
 	 * =========================================================================
 	 */
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -126,6 +133,6 @@ public class Rv extends AbstractEntity {
 	public String toString() {
 		return "Rv [jour=" + jour + ", client=" + client + ", creneau=" + creneau + ", id=" + id + ", version="
 				+ version + "]";
-	}	
+	}
 
 }

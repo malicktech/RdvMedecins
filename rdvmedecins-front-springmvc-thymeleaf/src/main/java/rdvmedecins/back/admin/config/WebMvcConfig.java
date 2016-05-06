@@ -53,26 +53,31 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.setBasename("i18n/messages");
+		messageSource.setUseCodeAsDefaultMessage(true);
+	    messageSource.setDefaultEncoding("UTF-8");
+	    messageSource.setCacheSeconds(0);
 		return messageSource;
 	}
 
-	// @Bean
-	public LocaleChangeInterceptor localeChangeInterceptor() {
+//	@Bean
+//	public LocaleChangeInterceptor localeChangeInterceptor() {
+//		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+//		localeChangeInterceptor.setParamName("lang");
+//		return localeChangeInterceptor;
+//	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
 		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
 		localeChangeInterceptor.setParamName("lang");
-		return localeChangeInterceptor;
+		registry.addInterceptor(localeChangeInterceptor);
 	}
 
-	// @Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(localeChangeInterceptor());
-	}
-
-	// @Bean
+	@Bean
 	public CookieLocaleResolver localeResolver() {
 		CookieLocaleResolver localeResolver = new CookieLocaleResolver();
 		localeResolver.setCookieName("lang");
-		localeResolver.setDefaultLocale(new Locale("fr"));
+		localeResolver.setDefaultLocale(Locale.FRENCH);
 		return localeResolver;
 	}
 
