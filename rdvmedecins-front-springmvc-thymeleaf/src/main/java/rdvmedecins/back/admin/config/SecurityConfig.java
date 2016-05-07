@@ -1,6 +1,5 @@
 package rdvmedecins.back.admin.config;
 
-import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +14,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 import org.springframework.security.web.authentication.RememberMeServices;
+import org.springframework.security.web.csrf.CsrfFilter;
+
+import rdvmedecins.security.CustomAccessDeniedHandler;
 
 
 @Configuration
@@ -37,13 +40,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
     private RememberMeServices rememberMeServices;
 
-
-	@Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
 	
 	/*
 	 * Beans
@@ -55,6 +51,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 	
+    @Bean
+    public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
+        return new SecurityEvaluationContextExtension();
+    }
+    
 	/*
 	 * Overrided Config Methods
 	 * =========================================================================
@@ -64,10 +65,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        web.ignoring()
 	            .antMatchers("/static/**/*.{js,html,css}")
 	            .antMatchers("/i18n/**")
-	            .antMatchers("/assets/**")
+	            .antMatchers("/webjars/**")
 	            .antMatchers("/test/**");
 	    }
-	 
+	 /*
 	@Override
 	protected void configure(AuthenticationManagerBuilder registry) throws Exception {
 		// l'authentification est faite par le bean [appUserDetailsService]
@@ -78,16 +79,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// registry.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
 
 	}
+	*/
+	@Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+            .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
+    }
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {		
 		http
-        .csrf().disable()
-        .authorizeRequests()
-            .antMatchers("/", "/register", "/static/**", "/webjars/**").permitAll()
-            .antMatchers("/admin","/admin/**").hasRole("ADMIN")
-            .anyRequest().authenticated()
-            .and()
+        .csrf()
+    .and()
+        .exceptionHandling()
+        .accessDeniedHandler(new CustomAccessDeniedHandler())
+        // .authenticationEntryPoint(authenticationEntryPoint)
+    .and()
+        .rememberMe()
+        .rememberMeServices(rememberMeServices)
+        .rememberMeParameter("remember-me")
+        .key(env.getProperty("jhipster.security.rememberme.key"))
+    .and()
         .formLogin()
         	.loginPage("/login")
         	.defaultSuccessUrl("/", false)
@@ -95,6 +108,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         	.and()
         .logout()
 			.invalidateHttpSession(true)
-			.permitAll();   
+			.deleteCookies("JSESSIONID", "CSRF-TOKEN")
+			.permitAll()
+			.and()
+        .headers()
+            .frameOptions()
+            .disable()
+            .and()
+        .authorizeRequests()    
+        	.antMatchers("/login").permitAll()    
+        	.antMatchers("/", "/api/register").permitAll()
+            .antMatchers("/api/activate").permitAll()
+            .antMatchers("/api/**").authenticated()
+            .antMatchers("/admin","/admin/**").hasRole("ADMIN")
+            .anyRequest().authenticated()
+			;   
 	}
 }
