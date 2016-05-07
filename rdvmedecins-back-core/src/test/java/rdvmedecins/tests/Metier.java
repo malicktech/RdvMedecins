@@ -15,12 +15,12 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import rdvmedecins.config.DomainAndPersistenceConfig;
-import rdvmedecins.domain.AgendaMedecinJour;
-import rdvmedecins.entities.Client;
-import rdvmedecins.entities.Creneau;
-import rdvmedecins.entities.Medecin;
-import rdvmedecins.entities.Rv;
-import rdvmedecins.metier.IMetier;
+import rdvmedecins.domain.dto.AgendaMedecinJour;
+import rdvmedecins.domain.Client;
+import rdvmedecins.domain.Creneau;
+import rdvmedecins.domain.Medecin;
+import rdvmedecins.domain.Rv;
+import rdvmedecins.service.IMetier;
 
 @SpringApplicationConfiguration(classes = DomainAndPersistenceConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)

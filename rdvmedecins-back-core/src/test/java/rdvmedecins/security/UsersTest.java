@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import rdvmedecins.config.DomainAndPersistenceConfig;
+import rdvmedecins.domain.User;
 
 import com.google.common.collect.Lists;
 
@@ -19,6 +20,7 @@ import com.google.common.collect.Lists;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UsersTest {
 
+	/*
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -67,4 +69,5 @@ public class UsersTest {
 			System.out.println(element);
 		}
 	}
+	*/
 }

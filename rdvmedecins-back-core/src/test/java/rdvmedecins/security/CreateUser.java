@@ -4,12 +4,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import rdvmedecins.config.DomainAndPersistenceConfig;
-import rdvmedecins.security.Role;
-import rdvmedecins.security.RoleRepository;
-import rdvmedecins.security.User;
-import rdvmedecins.security.UserRepository;
-import rdvmedecins.security.UserRole;
-import rdvmedecins.security.UserRoleRepository;
+import rdvmedecins.domain.User;
+import rdvmedecins.repository.UserRepository;
+
 
 /**
  * classe exécutable capable de créer un utilisateur avec un rôle
@@ -33,10 +30,11 @@ public class CreateUser {
 		String password = args[1];
 		String roleName = String.format("ROLE_%s", args[2].toUpperCase());
 		
+		/*
 		// contexte Spring
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DomainAndPersistenceConfig.class);
 		UserRepository userRepository = context.getBean(UserRepository.class);
-		RoleRepository roleRepository = context.getBean(RoleRepository.class);
+		Autho roleRepository = context.getBean(RoleRepository.class);
 		UserRoleRepository userRoleRepository = context.getBean(UserRoleRepository.class);
 		
 		// le rôle existe-t-il déjà ?
@@ -73,6 +71,7 @@ public class CreateUser {
 
 		// fermeture contexte Spring
 		context.close();
+		*/
 	}
 
 }
