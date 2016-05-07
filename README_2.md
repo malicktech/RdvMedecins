@@ -51,6 +51,7 @@ This website uses cookies so that we can provide you the best user experience po
 By continuing to browse the site you are agreeing to our use of cookies
 
 
+
 add Suspend/restore 
 http://heera.it/bootstrap-3-delete-confirm-dialog
 
@@ -59,12 +60,25 @@ https://www.google.fr/search?q=spring+message+properties+javascript&oq=spring+me
 http://formvalidation.io/
 
 ## Back - CORE
- rename client to "patient"
+spring security : persistent token / remember me
+add gender : male , female (Mr, Me)
+rename client to "patient"
 add java 8 : optionnal, stream , etc
 add status on rdv : reserved, absent, annulé, réalisé | boolean : active or not, |
 * manage jsonignore and jsonfilter
 * transform list to set
-add elastic search
+** use enum in entity field
+** Column(name = "PRICE", precision = 9, scale = 2)
+**  private BigDecimal price;
+
+** manage liquibase db
+** gestion auditing with spring data jpa; inspire from jhipster; 
+** gestion du cache, avec hazelcast
+** gestion pool de connexion : HikariCP
+
+-add elastic search
+improve database : forme normal, add index
+** manage - cascade type  - and fetchtype
 * changer le wording des méthode de service : use creteObjets, finAllObject, ajouter eager and easy ex: fingonewitheagerrelationship, npire to jhipter
 ** gestion des transaction spring data
 ** set errorpage with atuator or 
@@ -72,10 +86,19 @@ add elastic search
 ** manage date time, check jhipster
 ** Conf : environnement DEV, STG, PROD
 ** add liquibase | http://blog.soat.fr/2015/10/liquibase-et-le-versioning-de-base-de-donnees/
+** add " equals, hashcode and tostring " to all class object : quand 2 rv sont égaux, quand deux creneaux sont egaux ? etc
+générer hascode et equals depuis l'ide depuis l'IDE
+test rv même creneau , même medecin, même client
+define this in abstract entity
+* CSRF
+** static helpers : check if it's really need element
+** cors filter : http://sqli.developpez.com/tutoriels/spring/construire-backend-springboot/#LIV
+
 
 ## Back - ADMIN FRONT 
 i18n error message login page
 localize client side validation messages
+* i18n, internationalisation
 error page :  404
 transform date to localdate and use AttributeConverter
 extraire la page login ans une page d'authenticatin à part avec desing perso
@@ -90,21 +113,31 @@ factorise form register client and medecins, form edit ad register
 centraliser tous les lien url path dans un fichier enum, y accéder depuis les controlleur et les vue thymeleaf
 correct responsive design
 
+## security 
+secure technique service (web service) : authentification de type BASIC
+secure user access : html form , login/password
 
 ## Front - client console
 extraire la page login ans une page d'authenticatin à part avec desing perso
 rebuild with javaFX
 regrouper  client soncole et thymeleaf
+* replace la partie console par test junit du service web
 
 ## front - PATIENT Angularjs
-send email feature to valid insciption or reset password
+send email feature to valid insciption or reset password | inspire from jhipster
 bootstrap ; virer lescomposant bootstrap externe et use les natif inclu dans bootstrap : modal, select etc ...
 vier lavue jubrotton
 ** netoyer les page unitile
+* mettre la partie angular dans un dossier app ,à part, dans le dossier maven 
+* ou dans  : src/main/resources/static
+** mettre un formulaire d'inscription patient
+* validation form  coté client js
 
 ## Back - API Web service
 ** monitoring with actuator | https://dzone.com/articles/disable-spring-boot-production
 ** api rest : expose hypermedia link | Hypermedia-Driven REST services
+** filterjson p403 p402, se passer des mapper,utiliser  annottion json inspired from ebank youssfi,  
+* adopter REST HATEOAS   | https://zestedesavoir.com/tutoriels/299/la-theorie-rest-restful-et-hateoas/
 ** netoyer les page unitile
 * rename field : firstname, lastname
 * form add, virer tableau , use real form
@@ -113,26 +146,6 @@ vier lavue jubrotton
 * adapter le chemin mapping pour les controlleurs pour les 
 
 
-* replace jquery.validate.unobtrusive.js by jquery validate native
-* qhow client validation i18n
-* change repository to jpa repo
-** filterjson p403 p402, se passer des mapper,utiliser  annottion json inspired from ebank youssfi,  
-* adopter REST HATEOAS   | https://zestedesavoir.com/tutoriels/299/la-theorie-rest-restful-et-hateoas/
-* add : js (jquery , ajax) et bootstrapts à la page web
-* replace la partie console par test junit
-** Spring MVC
-		layout with thymeleaf : http://www.thymeleaf.org/doc/articles/layouts.html
-		redirection
-		ajax, js
-* CSRF
-* mettre la partie angular dans un dossier app ,à part, dans le dossier maven 
-* ou dans  : src/main/resources/static
-* i18n, internationalisation
-** add spring mvc example in spring demo.
-** deploy Heroku or Amazon Elastic Bean Stalk
-** static helpers : check if it's really need element
-** cors filter : http://sqli.developpez.com/tutoriels/spring/construire-backend-springboot/#LIV
-
 
 ** test api rest | http://blog.soat.fr/2015/12/tester-une-api-rest-spring-mvc-avec-le-spring-testcontext-framework/
 ** add lets' Enrypt https
@@ -140,41 +153,42 @@ vier lavue jubrotton
 ** gestion timout RestTemplate
 ** gestion des cookie
 ** spring MVC : interceptor
-** ajputer "Les cookies nous permettent de fournir, protéger et améliorer les services de Facebook. En continuant à utiliser notre site, vous acceptez notre Politique d’utilisation des cookies."
+** ajouter "Les cookies nous permettent de fournir, protéger et améliorer les services de Facebook. En continuant à utiliser notre site, vous acceptez notre Politique d’utilisation des cookies."
 ** voir quelle est la bonnepratique pour les sessions spring security , utiliser ou non ? p492 
 ** gestion du sessions du user : partir de lexemplle et s'inspirer de mcdo
-** gestion du cache, avec hazel cache
-** gestion pool de connexion : HikariCP
+
 ** gestion des exclusion spring boot , to only keep needed depndency
 ** gestion des messages d'erreur , code et autres ... personnalisation, 
 ** gestion page erreur et exception avec spring ; OptimisticLockException; 
-** gestion des log
+** gestion des log : fichier log and console : slf4j + logback
 ** add envoi de mail :  http://www.thymeleaf.org/doc/articles/springmail.html   & Apache Velocity Template & javaMail http://sivalabs.in/2011/05/sending-email-with-attachments-using-javamail/
-** vérifier la validité des données avec Hibernate validator et javax validator
-* validation form  coté client js
-** improve database : table personne , medecins, ..... add index, ...
-** mettre un formulaire d'inscription patient
-** choix du medecins favoris / MEDECINS TRAINTANTS
-** présentation des medecins
+
+
+
+
 ** java doc est présente
 ** use set in place of list or collection
-** manage - cascade type  - and fetchtype
-** inplément auditing with spring dat jpa; inspire from jhipster
-** use enum in entity field
+** add ajax, refreash layout bloc by ajax
+
+### ADDITIONAL FEATURES
+** localize doctor : map google
+http://www.challenges.fr/entreprise/20140221.CHA0767/la-guerre-des-applis-qui-gerent-les-rdv-chez-le-medecin.html
+** doctor speciality : 
+http://www.mondocteur.fr/
+https://www.doctolib.fr/
+https://www.zocdoc.com/
+** choix du medecins favoris / MEDECINS TRAINTANTS
+** présentation des medecins
 ** add ABSENCE DU MEDECIN
+** protection contre des attaques (XSS, CSRF, injections…).
 ** code barre
 ** echange de mal entre medein et patient
+** deploy Heroku or Amazon Elastic Bean Stalk, cloudfoundery
 
 ** add spring loader pour le rechargement à chaud
 http://javarevisited.blogspot.fr/2015/01/why-override-equals-hashcode-or-tostring-java.html
 http://www.infoq.com/fr/articles/retour-sur-les-bases-equals-et-hashcode
 voir dans les bouquins : jaa efficace,et...
-
-** add " equals, hashcode and tostring " to all class object : quand 2 rv sont égaux, quand deux creneaux sont egaux ? etc
-générer hascode et equals depuis l'ide depuis l'IDE
-test rv même creneau , même medecin, même client
-define this in abstract entity
-
 ** créationd'une module : reatJS
 
 ## area
@@ -193,32 +207,6 @@ thymeleaf layout
   </a>
 </p>
 
-http://www.jmdoudoux.fr/java/dej/chap-validation_donnees.htm
 
 
-
-##
-Column(name = "PRICE", precision = 9, scale = 2)
-  private BigDecimal price;
-
-
-###  Database - data modele
-
-Les rendez-vous sont gérés par les tables suivantes :
-• [medecins] : contient la liste des médecins du cabinet ;
-• [clients] : contient la liste des patienst du cabinet ;
-• [creneaux] : contient les créneaux horaires de chacun des médecins ;
-• [rv] : contient la liste des rendez-vous des médecins.
-• Les tables [roles], [users] et [users_roles] sont des tables liées à l'authentification. 
-
-Les relations entre les tables gérant les rendez-vous sont les suivantes :
-
-• un créneau horaire appartient à un médecin – un médecin a 0 ou plusieurs créneaux horaires : 1:p bidirectionellle
-• un rendez-vous réunit à la fois un client et un médecin via un créneau horaire de ce dernier ;
-• un client a 0 ou plusieurs rendez-vous : 1:p bidirectionellle
-• à un créneau horaire est associé 0 ou plusieurs rendez-vous (à des jours différents)
-
- contrainte d'unicité sur les valeurs des colonnes jointes (JOUR, ID_CRENEAU) de la table rv, pour empêcher que que deux RV ont été pris au même moment pour le même médecin
-
-[schemas workbench]
 

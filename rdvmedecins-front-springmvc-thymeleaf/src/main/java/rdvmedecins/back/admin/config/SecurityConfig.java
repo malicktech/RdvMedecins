@@ -1,22 +1,73 @@
 package rdvmedecins.back.admin.config;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.RememberMeServices;
 
-import rdvmedecins.security.AppUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	/*
+	 * Dependency injection
+	 * =========================================================================
+	 */
+	
 	@Autowired
-	private AppUserDetailsService appUserDetailsService;
+	private Environment env;
+	
+	@Autowired
+    private UserDetailsService userDetailsService;
+	
+	@Autowired
+    private RememberMeServices rememberMeServices;
 
+
+	@Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+            .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
+    }
+	
+	/*
+	 * Beans
+	 * =========================================================================
+	 */
+	
+	@Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+	
+	/*
+	 * Overrided Config Methods
+	 * =========================================================================
+	 */
+	 @Override
+	    public void configure(WebSecurity web) throws Exception {
+	        web.ignoring()
+	            .antMatchers("/static/**/*.{js,html,css}")
+	            .antMatchers("/i18n/**")
+	            .antMatchers("/assets/**")
+	            .antMatchers("/test/**");
+	    }
+	 
 	@Override
 	protected void configure(AuthenticationManagerBuilder registry) throws Exception {
 		// l'authentification est faite par le bean [appUserDetailsService]

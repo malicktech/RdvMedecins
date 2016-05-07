@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import rdvmedecins.back.admin.models.ApplicationModel;
-import rdvmedecins.entities.Client;
-import rdvmedecins.entities.Medecin;
-import rdvmedecins.metier.MedecinService;
+import rdvmedecins.domain.Client;
+import rdvmedecins.domain.Medecin;
+import rdvmedecins.service.MedecinService;
 
 @Controller
 @RequestMapping(value = "/admin/medecins")

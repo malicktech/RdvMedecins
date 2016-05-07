@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 
 import rdvmedecins.back.admin.helpers.Static;
 import rdvmedecins.domain.AgendaMedecinJour;
-import rdvmedecins.entities.Client;
-import rdvmedecins.entities.Creneau;
-import rdvmedecins.entities.Medecin;
-import rdvmedecins.entities.Rv;
-import rdvmedecins.metier.IMetier;
+import rdvmedecins.domain.Client;
+import rdvmedecins.domain.Creneau;
+import rdvmedecins.domain.Medecin;
+import rdvmedecins.domain.Rv;
+import rdvmedecins.service.IMetier;
 
 /**
  * classe [ApplicationModel] un composant Spring. un seul objet de ce type sera instancié (singleton)

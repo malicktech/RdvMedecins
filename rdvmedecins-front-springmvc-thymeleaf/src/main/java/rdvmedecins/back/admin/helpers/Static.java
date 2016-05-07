@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import rdvmedecins.domain.AgendaMedecinJour;
-import rdvmedecins.domain.CreneauMedecinJour;
-import rdvmedecins.entities.Creneau;
-import rdvmedecins.entities.Rv;
+import rdvmedecins.domain.Creneau;
+import rdvmedecins.domain.Rv;
+import rdvmedecins.domain.dto.CreneauMedecinJour;
 
 /**
  * regroupe l'ensemble des méthodes statiques utilitaires qui n'ont pas d'aspect " métier " ou " web "

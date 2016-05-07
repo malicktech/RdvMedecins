@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import rdvmedecins.metier.ClientService;
-import rdvmedecins.metier.CreneauRdvService;
-import rdvmedecins.metier.MedecinService;
+import rdvmedecins.service.ClientService;
+import rdvmedecins.service.CreneauRdvService;
+import rdvmedecins.service.MedecinService;
 
 @Controller
 public class HomeController {

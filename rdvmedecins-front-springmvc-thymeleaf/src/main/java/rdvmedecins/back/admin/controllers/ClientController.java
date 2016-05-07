@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import rdvmedecins.entities.Client;
-import rdvmedecins.metier.ClientService;
+import rdvmedecins.domain.Client;
+import rdvmedecins.service.ClientService;
 
 /**
  * Controller for managing Patient Admin View.

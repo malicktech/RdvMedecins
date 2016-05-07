@@ -28,10 +28,10 @@ import rdvmedecins.back.admin.models.PostAjouterRv;
 import rdvmedecins.back.admin.models.PostSupprimerRv;
 import rdvmedecins.back.admin.models.Response;
 import rdvmedecins.domain.AgendaMedecinJour;
-import rdvmedecins.entities.Client;
-import rdvmedecins.entities.Creneau;
-import rdvmedecins.entities.Medecin;
-import rdvmedecins.entities.Rv;
+import rdvmedecins.domain.Client;
+import rdvmedecins.domain.Creneau;
+import rdvmedecins.domain.Medecin;
+import rdvmedecins.domain.Rv;
 
 @RestController
 public class RdvMedecinsController {

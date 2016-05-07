@@ -1,12 +1,11 @@
 # RdvMedecins
-## UTBM Learning project
 
+## Learning project
 Projet d'étude dans le cadre de mon cursus à l'UTBM
 Application de prise de rendez-vous pour un cabinet medical. 
 
 
 ### Architecture
-
 Client / serveur -> maven multi-mod  :
 
 * rdvmedecins-back-core					(DAO & Business Layer | Spring Data JPA & Hibernate & Spring Security)
@@ -44,6 +43,26 @@ Client / serveur -> maven multi-mod  :
 - Une fois le rendez-vous validé, il est ramené automatiquement à l'agenda où le nouveau rendez-vous est désormais inscrit. 
 - Ce rendez-vous pourra être ultérieurement supprimé
 
-i18n  : FR & EN
+- internationalization i18n  : FR & EN
+
+###  Database - data modele
+
+Les rendez-vous sont gérés par les tables suivantes :
+• [medecins] : contient la liste des médecins du cabinet ;
+• [clients] : contient la liste des patienst du cabinet ;
+• [creneaux] : contient les créneaux horaires de chacun des médecins ;
+• [rv] : contient la liste des rendez-vous des médecins.
+• Les tables [roles], [users] et [users_roles] sont des tables liées à l'authentification. 
+
+Les relations entre les tables gérant les rendez-vous sont les suivantes :
+
+• un créneau horaire appartient à un médecin – un médecin a 0 ou plusieurs créneaux horaires : 1:p bidirectionellle
+• un rendez-vous réunit à la fois un client et un médecin via un créneau horaire de ce dernier ;
+• un client a 0 ou plusieurs rendez-vous : 1:p bidirectionellle
+• à un créneau horaire est associé 0 ou plusieurs rendez-vous (à des jours différents)
+
+ contrainte d'unicité sur les valeurs des colonnes jointes (JOUR, ID_CRENEAU) de la table rv, pour empêcher que que deux RV ont été pris au même moment pour le même médecin
+
+[schemas workbench]
 
 	
