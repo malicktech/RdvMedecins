@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import rdvmedecins.config.DomainAndPersistenceConfig;
+import rdvmedecins.config.DatabaseConfig;
 import rdvmedecins.domain.dto.AgendaMedecinJour;
 import rdvmedecins.domain.Client;
 import rdvmedecins.domain.Creneau;
@@ -22,7 +22,7 @@ import rdvmedecins.domain.Medecin;
 import rdvmedecins.domain.Rv;
 import rdvmedecins.service.IMetier;
 
-@SpringApplicationConfiguration(classes = DomainAndPersistenceConfig.class)
+@SpringApplicationConfiguration(classes = DatabaseConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 public class Metier {
 

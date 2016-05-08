@@ -3,7 +3,7 @@ package rdvmedecins.security;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
-import rdvmedecins.config.DomainAndPersistenceConfig;
+import rdvmedecins.config.DatabaseConfig;
 import rdvmedecins.domain.User;
 import rdvmedecins.repository.UserRepository;
 

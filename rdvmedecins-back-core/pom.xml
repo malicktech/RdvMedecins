@@ -15,50 +15,170 @@
 	<name>rdvmedecins-back-core</name>
 	<packaging>jar</packaging>
 
+	<!-- PROPERTIES -->
+	<!-- ============================================================================================== -->
+
 	<properties>
 		<start-class>rdvmedecins.boot.Boot</start-class>
 		<commons-io.version>2.4</commons-io.version>
 		<commons-lang.version>2.6</commons-lang.version>
+		<javax.inject.version>1</javax.inject.version>
+		<hikaricp.version>2.4.1</hikaricp.version>
+		<assertj-core.version>3.1.0</assertj-core.version>
 	</properties>
+
+	<!-- DEPENDENCIES -->
+	<!-- ============================================================================================== -->
 
 	<dependencies>
 		<!-- Spring -->
+		<!-- Spring | Context Support -->
+		<!-- Various Application Context utilities, including EhCache, JavaMail, 
+			Quartz, and Freemarker integration -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<!-- Spring | Actuator -->
+		<!-- Production ready features to monitor and manage application -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-actuator</artifactId>
+		</dependency>
+		<!-- Spring | Loader Tools -->
+		<!-- used by Spring Boot Maven and Gradle plugins to actually generate 
+			jars -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-loader-tools</artifactId>
+		</dependency>
+		<!-- Spring | Autoconfigure -->
+		<!-- attempts to automatically configure your Spring application based 
+			on the jar dependencies that you have added -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- Spring | AOP -->
+		<!-- Support for aspect-oriented programming including spring-aop and AspectJ -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<!-- Spring | DATA JPA -->
+		<!-- Support for the JPA including spring-data-jpa, spring-orm and Hibernate -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<!-- Spring | WEB -->
+		<!-- Support for full-stack web development, including Tomcat and spring-webmvc -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>javax.validation</groupId> -->
-		<!-- <artifactId>validation-api</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.hibernate</groupId> -->
-		<!-- <artifactId>hibernate-validator</artifactId> -->
-		<!-- <version>${hibernate.version}</version> -->
-		<!-- </dependency> -->
-		<!-- test -->
+		<!-- Spring | Thymeleaf -->
+		<!-- Support for the Thymeleaf templating engine, including integration 
+			with Spring -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<!-- Spring | Log -->
+		<!-- technical startersImport Spring Boot’s default logging framework (Logback). -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+		<!-- Spring | security -->
+		<!-- Support for spring-security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-data</artifactId>
+		</dependency>
+		<!-- Spring | test -->
+		<!-- Support for common test dependencies, including JUnit, Hamcrest and 
+			Mockito along with the spring-test module -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- H2 test -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
 		</dependency>
-		<!-- security -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-data</artifactId>
-        </dependency>
+
+
+		<!-- Hibernate -->
+		<!-- Integration for Ehcache into Hibernate as a second-level caching service -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>net.sf.ehcache</groupId>
+					<artifactId>ehcache-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- enable auditing/versioning of persistent classes. http://hibernate.org/orm/envers/ -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-envers</artifactId>
+		</dependency>
+		<!-- Hibernate's Bean Validation (JSR-303) reference implementation -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+
+		<!-- @inject API -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>${javax.inject.version}</version>
+		</dependency>
+		<!-- Assert J -->
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj-core.version}</version>
+			<scope>test</scope>
+		</dependency>
 		<!-- pilote JDBC du SGBD MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- Hikri / connection JDBC pool -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>tools</artifactId>
+					<groupId>com.sun</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- Apache common -->
 		<dependency>
@@ -81,16 +201,33 @@
 			<artifactId>commons-pool</artifactId>
 		</dependency>
 		<!-- bibliothèque Jackson de gestion du JSON -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.fasterxml.jackson.core</groupId> -->
+		<!-- <artifactId>jackson-databind</artifactId> -->
+		<!-- </dependency> -->
+		<!-- Add-on module for Jackson to support Hibernate version 4.x data types. -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hibernate4</artifactId>
 		</dependency>
-		<!-- bibliothèque Google de gestion des collections -->
+		<!-- Add-on module for Jackson to support High-Performance Primitive Collections -->
 		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>16.0.1</version>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hppc</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
+		<!-- Add-on module to support JSR-310 (Java 8 Date & Time API) data types. -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+		<!-- Support for datatypes of "org.json" JSON library (see http://json.org/java) -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-json-org</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -101,6 +238,9 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<!-- REPOSITORIES -->
+	<!-- ============================================================================================== -->
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>

@@ -11,12 +11,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import rdvmedecins.config.DomainAndPersistenceConfig;
+import rdvmedecins.config.DatabaseConfig;
 import rdvmedecins.domain.User;
 
-import com.google.common.collect.Lists;
-
-@SpringApplicationConfiguration(classes = DomainAndPersistenceConfig.class)
+@SpringApplicationConfiguration(classes = DatabaseConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UsersTest {
 

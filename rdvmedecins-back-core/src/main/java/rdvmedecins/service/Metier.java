@@ -8,8 +8,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.common.collect.Lists;
-
 import rdvmedecins.domain.dto.AgendaMedecinJour;
 import rdvmedecins.domain.Client;
 import rdvmedecins.domain.Creneau;
@@ -49,7 +47,7 @@ public class Metier implements IMetier {
 
 	@Override
 	public List<Rv> getRvMedecinJour(long idMedecin, Date jour) {
-		return Lists.newArrayList(rvRepository.findAppointmentByDoctorByDay(idMedecin, jour));
+		return rvRepository.findAppointmentByDoctorByDay(idMedecin, jour);
 	}
 
 	// TODO DELETE
