@@ -8,7 +8,7 @@ Application de prise de rendez-vous pour un cabinet medical.
 ### Architecture
 Client / serveur -> maven multi-mod  :
 
-* rdvmedecins-back-core					(DAO & Business Layer | Spring Data JPA & Hibernate & Spring Security)
+* rdvmedecins-back-core					(DAO & Business Layer | Spring Data JPA & Hibernate & Spring Security) Domain access module
 * rdvmedecins-back-ws					(API REST Services | Spring MVC)
 * rdvmedecins-back-admin-springmvcthymeleaf	(gui web | Spring MVC & thymeleaf & jquery & Twitter Bootstrap)
 * rdvmedecins-front-jsf2				(gui web | JSF 2 + primeface 5)
@@ -19,10 +19,26 @@ Client / serveur -> maven multi-mod  :
 
 * [Spring Boot] [Spring Data] [Spring Security] [Spring MVC];
 * [Actuator]
-* [JUnit 4]
+* [JUnit 4] et assert j : TU
 *  
 * [Mysql] - Pour le SGBD
 * [Angular ou JSF] - pour le front
+
+[HikariCP] Pool de connection JDBC
+
+[Hibernate Envers] Audit et Suivi de version des entités / tracer les modifications sur les objets métiers
+[liquibase]
+
+[EHCache] JSR-107 (JCache) provider, used for hibernate second level cache
+
+[dropwizard.metrics] Metrics
+[Actuator] hEALTH cHECK
+
+[Elastic Search] search engine
+
+[]
+
+[snakeyml] configuration expressed in YAML syntax, in a hierarchical format. YAML support is specific to Spring Boot
 
 
 ### Outils utilisés

@@ -95,8 +95,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		<!-- Spring | Cache -->
+		<!-- Support for Spring’s Cache abstraction -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
 		<!-- Spring | Log -->
-		<!-- technical startersImport Spring Boot’s default logging framework (Logback). -->
+		<!-- technical starters, Import Spring Boot’s default logging framework 
+			(Logback). -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>
@@ -119,12 +126,70 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Assert J | test -->
+		<!-- providing easy to use rich typed assertions -->
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj-core.version}</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- H2 test -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- DROPWIZARD Metrics -->
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-annotation</artifactId>
+			<version>${dropwizard-metrics.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-ehcache</artifactId>
+			<version>${dropwizard-metrics.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-graphite</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-healthchecks</artifactId>
+			<version>${dropwizard-metrics.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-json</artifactId>
+			<version>${dropwizard-metrics.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-jvm</artifactId>
+			<version>${dropwizard-metrics.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-servlet</artifactId>
+			<version>${dropwizard-metrics.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-servlets</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>metrics-healthchecks</artifactId>
+					<groupId>io.dropwizard.metrics</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 
@@ -150,6 +215,11 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
+		<!-- To detect error in field annotation while buittime -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator-annotation-processor</artifactId>
+		</dependency>
 
 		<!-- @inject API -->
 		<dependency>
@@ -157,19 +227,12 @@
 			<artifactId>javax.inject</artifactId>
 			<version>${javax.inject.version}</version>
 		</dependency>
-		<!-- Assert J -->
-		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core</artifactId>
-			<version>${assertj-core.version}</version>
-			<scope>test</scope>
-		</dependency>
 		<!-- pilote JDBC du SGBD MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		<!-- Hikri / connection JDBC pool -->
+		<!-- Hikari / connection JDBC pool -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
@@ -230,43 +293,69 @@
 
 	</dependencies>
 
+	<!-- BUILD - plugin -->
+	<!-- ============================================================================================== -->
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+					<jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments>
+					<arguments>
+						<argument>--spring.profiles.active=dev</argument>
+					</arguments>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
+	<!-- PROFILEs -->
+	<!-- ============================================================================================== -->
+	<profiles>
+
+		<!-- DEVELLOPEMENT -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<!-- <properties> -->
+			<!-- <logback.loglevel>DEBUG</logback.loglevel> -->
+			<!-- </properties> -->
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-devtools</artifactId>
+					<optional>true</optional>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 
 	<!-- REPOSITORIES -->
 	<!-- ============================================================================================== -->
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>http://repo.spring.io/libs-milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>org.jboss.repository.releases</id>
-			<name>JBoss Maven Release Repository</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
+			<url>http://repo.spring.io/milestone</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>http://repo.spring.io/libs-milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
+			<url>http://repo.spring.io/milestone</url>
 		</pluginRepository>
 	</pluginRepositories>
+
 </project>
+
+<!-- NOTES -->
+<!-- metrics-ehcache and hibernate-ehcache provide ehcache-core : exclude 
+	one of them -->

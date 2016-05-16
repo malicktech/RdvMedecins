@@ -39,7 +39,6 @@ public class Rv extends AbstractEntity {
 	@Column(name="jour", nullable = false)
 	@Temporal(TemporalType.DATE)
 	@NotNull
-	@NotEmpty
 	private Date jour;
 
 	@ManyToOne(fetch = FetchType.EAGER)

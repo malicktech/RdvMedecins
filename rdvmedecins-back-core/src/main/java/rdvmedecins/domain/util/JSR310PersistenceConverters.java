@@ -8,6 +8,12 @@ import javax.persistence.Converter;
 
 import rdvmedecins.domain.util.JSR310DateConverters.*;
 
+/**
+ * Converting Date and Time API
+ * 
+ * @author Malick
+ *
+ */
 public final class JSR310PersistenceConverters {
 
     private JSR310PersistenceConverters() {}

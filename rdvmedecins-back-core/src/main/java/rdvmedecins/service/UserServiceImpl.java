@@ -228,6 +228,7 @@ public class UserServiceImpl implements UserService {
      * This is scheduled to get fired everyday, at midnight.
      * </p>
      */
+    @Override
     @Scheduled(cron = "0 0 0 * * ?")
     public void removeOldPersistentTokens() {
         LocalDate now = LocalDate.now();
@@ -246,6 +247,7 @@ public class UserServiceImpl implements UserService {
      * This is scheduled to get fired everyday, at 01:00 (am).
      * </p>
      */
+    @Override
     @Scheduled(cron = "0 0 1 * * ?")
     public void removeNotActivatedUsers() {
         ZonedDateTime now = ZonedDateTime.now();

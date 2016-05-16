@@ -2,40 +2,35 @@ package rdvmedecins.config;
 
 import java.util.Arrays;
 
-import javax.inject.Inject;
 import javax.sql.DataSource;
 
-import org.apache.commons.dbcp.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.orm.jpa.JpaVendorAdapter;
-import org.springframework.orm.jpa.vendor.Database;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.codahale.metrics.MetricRegistry;
 import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 
-@Configuration
-//@EnableAutoConfiguration
-@ComponentScan(basePackages = { "rdvmedecins" })
-//@EntityScan(basePackages = { "rdvmedecins.domain"})
-@EnableJpaRepositories(basePackages = { "rdvmedecins.repository"})
 //@PropertySource({ "classpath:application.properties" })
+//@EnableAutoConfiguration
+//@EntityScan(basePackages = { "rdvmedecins.domain"})
+
+
+@Configuration
+@ComponentScan(basePackages = { "rdvmedecins" })
+@EnableJpaRepositories("rdvmedecins.repository")
 @EnableTransactionManagement
 public class DatabaseConfig {
 
@@ -44,7 +39,11 @@ public class DatabaseConfig {
 	@Autowired
     private Environment env;
 	
+	@Autowired(required = false)
+    private MetricRegistry metricRegistry;
+	
     @Bean(destroyMethod = "close")
+    @ConditionalOnExpression("#{!environment.acceptsProfiles('cloud') && !environment.acceptsProfiles('heroku')}")
     public DataSource dataSource(DataSourceProperties dataSourceProperties, AppProperties appProperties) {
         log.debug("Configuring Datasource ...");
         
@@ -75,12 +74,10 @@ public class DatabaseConfig {
             config.addDataSourceProperty("cachePrepStmts", appProperties.getDatasource().isCachePrepStmts());
             config.addDataSourceProperty("prepStmtCacheSize", appProperties.getDatasource().getPrepStmtCacheSize());
             config.addDataSourceProperty("prepStmtCacheSqlLimit", appProperties.getDatasource().getPrepStmtCacheSqlLimit());
-        }
-        /*
+        }       
         if (metricRegistry != null) {
             config.setMetricRegistry(metricRegistry);
         }
-        */
         return new HikariDataSource(config);
     }
 	

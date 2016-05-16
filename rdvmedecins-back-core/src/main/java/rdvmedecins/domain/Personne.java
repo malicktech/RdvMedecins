@@ -55,7 +55,8 @@ public class Personne extends AbstractEntity {
 	@Size(min = 2, max = 25, message = "{error.medecin.firstname.size}")
 	private String prenom;
 
-	@Temporal(TemporalType.DATE)
+	//@Temporal(TemporalType.DATE) 
+	// no need to add temporal annotation, converter with do that
 	private LocalDate DateOfBirthday;
 
 	/*

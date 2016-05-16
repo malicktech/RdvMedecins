@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.3.3.RELEASE</version>
+		<version>1.3.5.RELEASE</version>
 		<relativePath />
 	</parent>
 
@@ -16,12 +16,27 @@
 	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>rdvmedecins</name>
+	<description>Webapp doctor Appointement</description>
+	<url>http://projects.spring.io/spring-boot/</url>
+
+	<organization>
+		<name>Daktic Software, Inc.</name>
+		<url>http://www.daktic.fr</url>
+	</organization>
 
 	<!-- REPOSITORIES -->
 	<!-- ============================================================================================== -->
 	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<url>http://repo.spring.io/milestone</url>
+		</repository>
 	</repositories>
 	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<url>http://repo.spring.io/milestone</url>
+		</pluginRepository>
 	</pluginRepositories>
 
 	<!-- PROPERTIES -->
@@ -48,13 +63,165 @@
 	<!-- ============================================================================================== -->
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.8.2</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<!-- //////////// CONFIGURATION COMMUNE -->
+
+	<!-- PROFILEs -->
+	<!-- ============================================================================================== -->
+	<profiles>
+
+		<!-- DEVELLOPEMENT -->
+		<profile>
+			<id>dev</id>
+			<!-- <activation> <activeByDefault>true</activeByDefault> </activation> -->
+			<!-- <modules> <module>rdvmedecins-front-springmvc-thymeleaf</module> 
+				<module>rdvmedecins-back-core</module> </modules> -->
+			<properties>
+				<logback.loglevel>DEBUG</logback.loglevel>
+			</properties>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-tomcat</artifactId>
+					</dependency>
+					<dependency>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-devtools</artifactId>
+						<optional>true</optional>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+		</profile>
+
+		<!-- FAST -->
+		<profile>
+			<id>fast</id>
+			<properties>
+				<logback.loglevel>DEBUG</logback.loglevel>
+			</properties>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-undertow</artifactId>
+					</dependency>
+					<dependency>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-devtools</artifactId>
+						<optional>true</optional>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.springframework.boot</groupId>
+							<artifactId>spring-boot-maven-plugin</artifactId>
+							<configuration>
+								<executable>true</executable>
+								<arguments>
+									<argument>--spring.profiles.active=dev,fast</argument>
+								</arguments>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+
+			</build>
+		</profile>
+
+		<!-- PRODUCTION -->
+		<profile>
+			<id>prod</id>
+			<properties>
+				<logback.loglevel>INFO</logback.loglevel>
+			</properties>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-tomcat</artifactId>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>com.github.trecloux</groupId>
+							<artifactId>yeoman-maven-plugin</artifactId>
+							<version>0.4</version>
+							<executions>
+								<execution>
+									<id>run-frontend-build</id>
+									<phase>generate-resources</phase>
+									<goals>
+										<goal>build</goal>
+									</goals>
+									<configuration>
+										<buildTool>grunt</buildTool>
+										<buildArgs>build --no-color</buildArgs>
+									</configuration>
+								</execution>
+							</executions>
+							<configuration>
+								<yeomanProjectDirectory>${project.basedir}</yeomanProjectDirectory>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-clean-plugin</artifactId>
+							<version>3.0.0</version>
+							<configuration>
+								<filesets>
+									<fileset>
+										<directory>src/main/webapp/dist</directory>
+									</fileset>
+									<fileset>
+										<directory>.tmp</directory>
+									</fileset>
+									<fileset>
+										<directory>node_modules</directory>
+									</fileset>
+								</filesets>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.springframework.boot</groupId>
+							<artifactId>spring-boot-maven-plugin</artifactId>
+							<configuration>
+								<executable>true</executable>
+								<arguments>
+									<argument>--spring.profiles.active=prod</argument>
+								</arguments>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+
+
+	</profiles>
+
+	<!-- plugin managment -->
+	<!-- ============================================================================================== -->
+	<pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.19</version>
+			</plugin>
+		</plugins>
+	</pluginManagement>
+
+
+
 
 
 </project>

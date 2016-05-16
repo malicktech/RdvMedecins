@@ -30,4 +30,8 @@ public interface UserService {
 
 	public User getUserWithAuthorities();
 
+	void removeOldPersistentTokens();
+
+	void removeNotActivatedUsers();
+
 }

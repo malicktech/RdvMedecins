@@ -43,6 +43,14 @@ One Delete Confirm Dialog For All
 
 possible to read from messages.properties: var msg = [[#{msg}]]
 
+DROPWIZARD ,?
+http://blog.takipi.com/java-bootstrap-dropwizard-vs-spring-boot/
+
+MapStruct ou Dozzer ?
+[MapStruct] Java Bean Mappings
+plus rapide que Dozzert
+http://javaetmoi.com/2015/09/benchmark-frameworks-javas-mapping-objet/
+http://blog.netapsys.fr/mapping-dozer-is-died-welcom-to-mapstruct/
 
 mettre msg : 
 En poursuivant votre navigation, vous acceptez l'utilisation de cookies afin de réaliser des statistiques d'audiences et vous proposer des services ou des offres adaptés à vos centres d'intérêts
@@ -50,7 +58,15 @@ En poursuivant votre navigation, vous acceptez l'utilisation de cookies afin de 
 This website uses cookies so that we can provide you the best user experience possible.
 By continuing to browse the site you are agreeing to our use of cookies
 
+configuration properties
+http://blog.codeleak.pl/2014/09/using-configurationproperties-in-spring.html
+http://www.java-allandsundry.com/2015/07/spring-boot-configurationproperties.html
 
+maven report plugin / sonarqube etc ... jhipter
+
+test de performace : benchmark
+
+use constant or enum : authority, profile, gender etc ...
 
 add Suspend/restore 
 http://heera.it/bootstrap-3-delete-confirm-dialog
@@ -60,6 +76,20 @@ https://www.google.fr/search?q=spring+message+properties+javascript&oq=spring+me
 http://formvalidation.io/
 
 ## Back - CORE
+** Conf deployment and devellopment environnement :  DEV, STG, PROD
+	separate configuration files in "src/main/resources/config"  – one for each profile
+	follow the application-.yml naming convention
+		 application-dev.yml
+		 application-production.yml
+		 application-default.yml (default configurations, When no active profile is set)
+		 application.yml (will always be included by Spring, regardless of what profiles are or not active.)
+		 
+		 https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html
+
+-- factoriser la confg DB dans le core module :
+	make the domain module and the higher level application properties to be loaded by Spring.
+	http://stackoverflow.com/questions/23138494/spring-boot-application-properties-maven-multi-module-projects
+replace @inject et @Autowired by 
 spring security : persistent token / remember me
 add gender : male , female (Mr, Me)
 rename client to "patient"
@@ -84,7 +114,7 @@ improve database : forme normal, add index
 ** set errorpage with atuator or 
 ** minifier css and js
 ** manage date time, check jhipster
-** Conf : environnement DEV, STG, PROD
+
 ** add liquibase | http://blog.soat.fr/2015/10/liquibase-et-le-versioning-de-base-de-donnees/
 ** add " equals, hashcode and tostring " to all class object : quand 2 rv sont égaux, quand deux creneaux sont egaux ? etc
 générer hascode et equals depuis l'ide depuis l'IDE
@@ -96,6 +126,7 @@ define this in abstract entity
 
 
 ## Back - ADMIN FRONT 
+make design like jsipster siteweb, : comme 
 i18n error message login page
 localize client side validation messages
 * i18n, internationalisation
@@ -132,6 +163,9 @@ vier lavue jubrotton
 * ou dans  : src/main/resources/static
 ** mettre un formulaire d'inscription patient
 * validation form  coté client js
+* modifier archtecture : passser de mvc a une archi orienté omposant comme sur jhipster
+
+
 
 ## Back - API Web service
 ** monitoring with actuator | https://dzone.com/articles/disable-spring-boot-production
@@ -148,6 +182,7 @@ vier lavue jubrotton
 
 
 ** test api rest | http://blog.soat.fr/2015/12/tester-une-api-rest-spring-mvc-avec-le-spring-testcontext-framework/
+tst : assertj , hamcrest
 ** add lets' Enrypt https
 ** s'inpirer de  jhipster, ajouter tous les parties : actuator , etc ....
 ** gestion timout RestTemplate
@@ -164,13 +199,14 @@ vier lavue jubrotton
 ** add envoi de mail :  http://www.thymeleaf.org/doc/articles/springmail.html   & Apache Velocity Template & javaMail http://sivalabs.in/2011/05/sending-email-with-attachments-using-javamail/
 
 
-
+Une interface pour rapidement faire une recherche dans les logs
 
 ** java doc est présente
 ** use set in place of list or collection
 ** add ajax, refreash layout bloc by ajax
 
 ### ADDITIONAL FEATURES
+expore excel , spring batch
 ** localize doctor : map google
 http://www.challenges.fr/entreprise/20140221.CHA0767/la-guerre-des-applis-qui-gerent-les-rdv-chez-le-medecin.html
 ** doctor speciality : 
@@ -191,6 +227,8 @@ http://www.infoq.com/fr/articles/retour-sur-les-bases-equals-et-hashcode
 voir dans les bouquins : jaa efficace,et...
 ** créationd'une module : reatJS
 
+maven ; avoid all duplicat pom coe : profil conf, plugin cong, etc
+
 ## area
 
 internationalisation(i18n) de jQuery : globalise
@@ -198,6 +236,8 @@ Validation client side : Jquery.Validation plugin
 Validation server side : Bean Validation (JSR 303) + Hibernate Validator, ResourceBundle pour chaque langue  
 POST/Redirect/GET pattern with Flash Attributes 
 thymeleaf layout
+
+Support Date and Time API with jpa2.1 : use of attribute converter   
 
 ## LINK
 
