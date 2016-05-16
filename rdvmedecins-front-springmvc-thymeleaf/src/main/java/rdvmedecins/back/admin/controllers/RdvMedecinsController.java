@@ -27,7 +27,7 @@ import rdvmedecins.back.admin.models.ApplicationModel;
 import rdvmedecins.back.admin.models.PostAjouterRv;
 import rdvmedecins.back.admin.models.PostSupprimerRv;
 import rdvmedecins.back.admin.models.Response;
-import rdvmedecins.domain.AgendaMedecinJour;
+import rdvmedecins.domain.dto.AgendaMedecinJour;
 import rdvmedecins.domain.Client;
 import rdvmedecins.domain.Creneau;
 import rdvmedecins.domain.Medecin;

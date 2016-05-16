@@ -7,9 +7,10 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:rdvmedecins.back.admin.Application</config>
+		<config>java:rdvmedecins.Application</config>
 	</configs>
 	<autoconfigs>
+		<config>java:rdvmedecins.back.admin.config.AppConfig</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

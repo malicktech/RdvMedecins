@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import rdvmedecins.domain.AgendaMedecinJour;
+import rdvmedecins.domain.dto.AgendaMedecinJour;
 import rdvmedecins.domain.Creneau;
 import rdvmedecins.domain.Rv;
 import rdvmedecins.domain.dto.CreneauMedecinJour;

@@ -9,5 +9,6 @@
         </dependent-module>
         <property name="context-root" value="rdvmedecins-front-springmvc-thymeleaf"/>
         <property name="java-output-path" value="/rdvmedecins-front-springmvc-thymeleaf/target/classes"/>
+        <property name="component.exclusion.patterns" value="WEB-INF/lib/tomcat-*.jar"/>
     </wb-module>
 </project-modules>

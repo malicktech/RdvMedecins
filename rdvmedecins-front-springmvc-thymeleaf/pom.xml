@@ -7,6 +7,8 @@
 		<groupId>net.webapp</groupId>
 		<artifactId>rdvmedecins</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<!-- chemin d'ace au pom parent -->
+		<relativePath />
 	</parent>
 
 	<artifactId>rdvmedecins-front-springmvc-thymeleaf</artifactId>
@@ -18,6 +20,9 @@
 
 	<properties>
 		<!-- <start-class>rdvmedecins.web.boot.Boot</start-class> -->
+		<assertj-core.version>3.1.0</assertj-core.version>
+		<maven-enforcer-plugin.version>1.3.1</maven-enforcer-plugin.version>
+
 	</properties>
 
 	<dependencies>
@@ -28,32 +33,29 @@
 			<version>${project.parent.version}</version>
 		</dependency>
 
-		<!-- Spring -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.springframework.boot</groupId> -->
-		<!-- <artifactId>spring-boot-devtools</artifactId> -->
-		<!-- <optional>true</optional> -->
-		<!-- </dependency> -->
-
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.boot</groupId> -->
-<!-- 			<artifactId>spring-boot-starter-web</artifactId> -->
-<!-- 		</dependency> -->
-		
+		<!-- test dependencies , no include with subdependecy -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj-core.version}</version>
+			<scope>test</scope>
 		</dependency>
 
-		<!-- thymeleaf -->
+		<!-- thymeleaf - additionnal dependencies for layout and security -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
-		<dependency>
-        <groupId>nz.net.ultraq.thymeleaf</groupId>
-        <artifactId>thymeleaf-layout-dialect</artifactId>
-    </dependency>
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
@@ -64,7 +66,6 @@
 		<dependency>
 			<groupId>net.sourceforge.nekohtml</groupId>
 			<artifactId>nekohtml</artifactId>
-			<version>1.9.22</version>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -77,27 +78,203 @@
 			<version>2.1.4</version>
 		</dependency>
 
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+		<!-- include in spring boot web -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.boot</groupId> -->
+		<!-- <artifactId>spring-boot-starter-tomcat</artifactId> -->
+		<!-- <scope>provided</scope> -->
+		<!-- </dependency> -->
 	</dependencies>
 
+	<!-- PLUGINS -->
+	<!-- ============================================================================================== -->
 	<build>
+		<defaultGoal>spring-boot:run</defaultGoal>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/*.xml</exclude>
+				</excludes>
+			</resource>
+		</resources>
 		<plugins>
+			<!-- MAVEN BOOT Plugin | provides Spring Boot support in Maven, allow 
+				to package executable jar or war archives and run application “in-place” -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+					<jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments>
+					<arguments>
+						<argument>--spring.profiles.active=dev</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+
+			<!-- MAVEN ECLIPSE Plugin |used to generate Eclipse IDE files (*.classpath, 
+				*.project, *.wtpmodules and the .settings folder) -->
+			<!-- Retired , no longerIt is no longer maintained -->
+			<!-- use m2e , instead of this plugin -->
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.maven.plugins</groupId> -->
+			<!-- <artifactId>maven-eclipse-plugin</artifactId> -->
+			<!-- </plugin> -->
+
+			<!-- MAVEN SURFIRE Plugin | is used during the test phase of the build 
+				lifecycle to execute the unit tests of an application -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<argLine>-Xmx256m ${surefireArgLine}</argLine>
+					<runOrder>alphabetical</runOrder>
+				</configuration>
+			</plugin>
+
+			<!-- MAVEN WAR Plugin | responsible for collecting all artifact dependencies, 
+				classes and resources of the web application and packaging them into a web 
+				application archive -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<packagingExcludes>WEB-INF/lib/tomcat-*.jar</packagingExcludes>
+				</configuration>
+			</plugin>
+
+			<!-- MAVEN ENFORCER Plugin | provides goals to control certain environmental 
+				constraints (Maven version, prsence of pplugin version, JDK version and OS 
+				family ..) -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>${maven-enforcer-plugin.version}</version>
+				<configuration>
+					<rules>
+						<requireMavenVersion>
+							<message>You are running an older version of Maven. JHipster
+								requires at least Maven 3.2</message>
+							<version>[3.2.0,)</version>
+						</requireMavenVersion>
+						<requireJavaVersion>
+							<message>You are running an older version of Java. JHipster
+								requires at least JDK ${java.version}</message>
+							<version>[${java.version}.0,)</version>
+						</requireJavaVersion>
+						<requirePluginVersions>
+							<message>Définissez plugin.version !</message>
+						</requirePluginVersions>
+					</rules>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
+	<!-- REPORTING -->
+	<!-- ============================================================================================== -->
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<!-- PROFILEs -->
+	<!-- ============================================================================================== -->
+	<profiles>
+
+		<!-- DEVELLOPEMENT -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- ERROR, WARN, INFO and DEBUG are logged -->
+				<logback.loglevel>DEBUG</logback.loglevel>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-devtools</artifactId>
+					<optional>true</optional>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<!-- FAST -->
+		<profile>
+			<id>fast</id>
+			<!-- <properties> -->
+			<!-- <logback.loglevel>DEBUG</logback.loglevel> -->
+			<!-- </properties> -->
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-undertow</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-devtools</artifactId>
+					<optional>true</optional>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- PRODUCTION -->
+		<profile>
+			<id>prod</id>
+			<!-- <properties> -->
+			<!-- <logback.loglevel>INFO</logback.loglevel> -->
+			<!-- </properties> -->
+			<!-- <dependencies> -->
+			<!-- <dependency> -->
+			<!-- <groupId>org.springframework.boot</groupId> -->
+			<!-- <artifactId>spring-boot-starter-tomcat</artifactId> -->
+			<!-- </dependency> -->
+			<!-- </dependencies> -->
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.trecloux</groupId>
+						<artifactId>yeoman-maven-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-clean-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>

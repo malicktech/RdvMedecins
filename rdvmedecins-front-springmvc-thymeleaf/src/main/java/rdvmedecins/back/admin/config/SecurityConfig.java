@@ -1,6 +1,8 @@
 package rdvmedecins.back.admin.config;
 
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,13 +34,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	
 	@Autowired
-	private Environment env;
-	
-	@Autowired
     private UserDetailsService userDetailsService;
 	
-	@Autowired
+	@Inject
     private RememberMeServices rememberMeServices;
+	
+	
+	@Autowired
+	private Environment env;
 
 	
 	/*
@@ -49,6 +52,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+	
+	//@Autowired
+	@Inject
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+            .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
 	
     @Bean
@@ -74,33 +85,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// l'authentification est faite par le bean [appUserDetailsService]
 		// le mot de passe est crypté par l'algorithme de hachage BCrypt
 		registry.userDetailsService(appUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-		
-		// registry.inMemoryAuthentication().withUser("user").password("password").roles("USER");
-		// registry.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
-
 	}
 	*/
-	@Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
+
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {		
 		http
         .csrf()
-    .and()
-        .exceptionHandling()
-        .accessDeniedHandler(new CustomAccessDeniedHandler())
-        // .authenticationEntryPoint(authenticationEntryPoint)
-    .and()
+        	.and()
+            //.addFilterAfter(new CsrfCookieGeneratorFilter(), CsrfFilter.class)
+        	.exceptionHandling()
+        	.accessDeniedHandler(new CustomAccessDeniedHandler())
+        	//.authenticationEntryPoint(authenticationEntryPoint)
+        	.and()
         .rememberMe()
-        .rememberMeServices(rememberMeServices)
-        .rememberMeParameter("remember-me")
-        .key(env.getProperty("jhipster.security.rememberme.key"))
-    .and()
+        	.rememberMeServices(rememberMeServices)
+        	// The name of the “check box”
+        	.rememberMeParameter("remember-me")
+        	.key(env.getProperty("zocdoc.security.rememberme.key"))
+        	.and()
         .formLogin()
         	.loginPage("/login")
         	.defaultSuccessUrl("/", false)

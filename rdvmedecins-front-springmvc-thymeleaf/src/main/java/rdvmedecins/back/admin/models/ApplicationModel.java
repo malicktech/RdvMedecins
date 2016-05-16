@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import rdvmedecins.back.admin.helpers.Static;
-import rdvmedecins.domain.AgendaMedecinJour;
+import rdvmedecins.domain.dto.AgendaMedecinJour;
 import rdvmedecins.domain.Client;
 import rdvmedecins.domain.Creneau;
 import rdvmedecins.domain.Medecin;
