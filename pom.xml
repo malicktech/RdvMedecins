@@ -42,29 +42,114 @@
 	<!-- PROPERTIES -->
 	<!-- ============================================================================================== -->
 	<properties>
+		<spring.boot.version>1.3.5.RELEASE</spring.boot.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<java.version>1.8</java.version>
+		<javax.inject.version>1</javax.inject.version>
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<commons-io.version>2.4</commons-io.version>
+		<commons-lang.version>2.6</commons-lang.version>
+		<javax.inject.version>1</javax.inject.version>
+		<hikaricp.version>2.4.1</hikaricp.version>
+		<assertj-core.version>3.1.0</assertj-core.version>
+		<!-- Liquibase -->
+		<liquibase.version>3.5.1</liquibase.version>
+		<liquibase-slf4j.version>2.0.0</liquibase-slf4j.version>
+		<liquibase-hibernate4.version>3.5</liquibase-hibernate4.version>
+
+		<assertj-core.version>3.1.0</assertj-core.version>
+		<maven-enforcer-plugin.version>1.3.1</maven-enforcer-plugin.version>
+
 	</properties>
 
 	<!-- MODULES -->
 	<!-- ============================================================================================== -->
 	<modules>
 		<module>rdvmedecins-back-core</module>
-		<module>rdvmedecins-back-ws</module>
-		<module>rdvmedecins-front-jsf2</module>
-		<module>rdvmedecins-front-client-cors</module>
+<!-- 		<module>rdvmedecins-back-ws</module> -->
+<!-- 		<module>rdvmedecins-front-jsf2</module> -->
+<!-- 		<module>rdvmedecins-front-client-cors</module> -->
 		<module>rdvmedecins-front-springmvc-thymeleaf</module>
 	</modules>
 
-	<!-- DEPENDENCIES -->
+	<!-- GLOBAL DEPENDENCIES VERSION -->
+	<!-- les dépendances redéclré ds les sous-modules hérite des version définis 
+		ici -->
 	<!-- ============================================================================================== -->
 	<dependencyManagement>
 		<dependencies>
 		</dependencies>
 	</dependencyManagement>
+
+	<!-- GLOBAL DEPENDENCIES -->
+	<!-- les dépendances sont héritées dans tous les sous-modules -->
+	<!-- ============================================================================================== -->
+	<dependencies>
+
+		<!-- @inject API -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>${javax.inject.version}</version>
+		</dependency>
+
+		<!-- Spring | Actuator -->
+		<!-- Production ready features to monitor and manage application -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-actuator</artifactId>
+		</dependency>
+		<!-- Spring | Autoconfigure -->
+		<!-- attempts to automatically configure your Spring application based 
+			on the jar dependencies that you have added -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Spring | Log -->
+		<!-- technical starters, Import Spring Boot’s default logging framework 
+			(Logback). -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+
+		<!-- Spring | test -->
+		<!-- Support for common test dependencies, including JUnit, Hamcrest and 
+			Mockito along with the spring-test module -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- Assert J | test -->
+		<!-- providing easy to use rich typed assertions -->
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- H2 | embedded DB for test -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
 
 	<!-- //////////// CONFIGURATION COMMUNE -->
 
@@ -210,17 +295,14 @@
 
 	<!-- plugin managment -->
 	<!-- ============================================================================================== -->
-	<pluginManagement>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>2.19</version>
-			</plugin>
-		</plugins>
-	</pluginManagement>
+	<build>
+		<pluginManagement>
+			<plugins>
+				
+			</plugins>
+		</pluginManagement>
 
-
+	</build>
 
 
 

@@ -15,7 +15,7 @@ spring:
         active: dev
     devtools:
         restart:
-            enabled: false
+            enabled: true
         livereload:
             enabled: false # we use Grunt + BrowserSync for livereload
     datasource:
@@ -48,48 +48,50 @@ spring:
         #cache-seconds: 1
     thymeleaf:
         cache: false
-        #enabled: true 
-        #mode: HTML5
-        #encoding: UTF-8
-        #prefix: classpath:/templates/
-        #suffix: .html
-        #check-template-location: true
-        #content-type: text/html
+        enabled: true 
+        mode: HTML5
+        encoding: UTF-8
+        prefix: classpath:/templates/
+        suffix: .html
+        check-template-location: true
+        content-type: text/html
         #template-resolver-order: 0
+
+# LIQUIBASE
 
 liquibase:
     enabled: false # enable liquibase support
-    #contexts: dev
+    contexts: dev # Comma-separated list of runtime contexts to use.
+    change-log:  classpath:config/liquibase/master.xml # classpath:/db/changelog/db.changelog-master.yaml # Change log configuration path.
+    check-change-log-location: true # Check the change log location exists.
+    default-schema: dbrdvmedecins3 # Default database schema.
+    drop-first: false # Drop the database schema first.
+    #labels:  # Comma-separated list of runtime labels to use.
+    #parameters.*:  # Change log parameters.
+    #--database access no need to set, the primary configured data source is used
+    #password:  # Login password of the database to migrate.
+    #url:  # JDBC url of the database to migrate.
+    #user:  # Login user of the database to migrate.
 
 # EMBEDDED SERVER CONFIGURATION
+
 server:
     port: 8080
     
 # ENDPOINTS
 endpoints:
     enabled: true
-    autoconfig:
-        enabled: true
-    beans: 
-        enabled: false
-    configprops:
-        enabled: false
-    dump:
-        enabled: false
-    env:
-        enabled: false
-    health:
-        enabled: true
-    info:
-        enabled: true
-    metrics:
-        enabled: false
-    mappings:
-        enabled: false
-    shutdown:
-        enabled: false
-    trace:
-        enabled: false
+    autoconfig.enabled: true
+    beans.enabled: false
+    configprops.enabled: false
+    dump.enabled: false
+    env.enabled: false
+    health.enabled: true
+    info.enabled: true
+    metrics.enabled: false
+    mappings.enabled: false
+    shutdown.enabled: false
+    trace.enabled: false
 
 # ===================================================================
 # ZocDoc specific properties

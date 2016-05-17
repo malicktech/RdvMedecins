@@ -20,11 +20,6 @@
 
 	<properties>
 		<start-class>rdvmedecins.boot.Boot</start-class>
-		<commons-io.version>2.4</commons-io.version>
-		<commons-lang.version>2.6</commons-lang.version>
-		<javax.inject.version>1</javax.inject.version>
-		<hikaricp.version>2.4.1</hikaricp.version>
-		<assertj-core.version>3.1.0</assertj-core.version>
 	</properties>
 
 	<!-- DEPENDENCIES -->
@@ -39,12 +34,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
-		<!-- Spring | Actuator -->
-		<!-- Production ready features to monitor and manage application -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-actuator</artifactId>
-		</dependency>
+
 		<!-- Spring | Loader Tools -->
 		<!-- used by Spring Boot Maven and Gradle plugins to actually generate 
 			jars -->
@@ -52,18 +42,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-loader-tools</artifactId>
 		</dependency>
-		<!-- Spring | Autoconfigure -->
-		<!-- attempts to automatically configure your Spring application based 
-			on the jar dependencies that you have added -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-autoconfigure</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
+		
 		<!-- Spring | AOP -->
 		<!-- Support for aspect-oriented programming including spring-aop and AspectJ -->
 		<dependency>
@@ -101,13 +80,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
-		<!-- Spring | Log -->
-		<!-- technical starters, Import Spring Boot’s default logging framework 
-			(Logback). -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-logging</artifactId>
-		</dependency>
+		
 		<!-- Spring | security -->
 		<!-- Support for spring-security -->
 		<dependency>
@@ -118,28 +91,23 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-data</artifactId>
 		</dependency>
-		<!-- Spring | test -->
-		<!-- Support for common test dependencies, including JUnit, Hamcrest and 
-			Mockito along with the spring-test module -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!-- Assert J | test -->
-		<!-- providing easy to use rich typed assertions -->
-		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core</artifactId>
-			<version>${assertj-core.version}</version>
-			<scope>test</scope>
-		</dependency>
+		
 
-		<!-- H2 test -->
+		<!-- LIQUIBASE | Database Versionning -->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>test</scope>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>jetty-servlet</artifactId>
+					<groupId>org.eclipse.jetty</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.mattbertolini</groupId>
+			<artifactId>liquibase-slf4j</artifactId>
+			<version>${liquibase-slf4j.version}</version>
 		</dependency>
 
 		<!-- DROPWIZARD Metrics -->
@@ -221,12 +189,7 @@
 			<artifactId>hibernate-validator-annotation-processor</artifactId>
 		</dependency>
 
-		<!-- @inject API -->
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>${javax.inject.version}</version>
-		</dependency>
+		
 		<!-- pilote JDBC du SGBD MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>

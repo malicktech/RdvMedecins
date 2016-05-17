@@ -33,7 +33,7 @@ import rdvmedecins.domain.Creneau;
 import rdvmedecins.domain.Medecin;
 import rdvmedecins.domain.Rv;
 
-@RestController
+//@RestController
 public class RdvMedecinsController {
 
 	@Autowired

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,6 +22,9 @@ import com.codahale.metrics.MetricRegistry;
 import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+
+import liquibase.integration.spring.SpringLiquibase;
+import rdvmedecins.config.liquibase.AsyncSpringLiquibase;
 
 
 //@PropertySource({ "classpath:application.properties" })
@@ -42,6 +46,9 @@ public class DatabaseConfig {
 	@Autowired(required = false)
     private MetricRegistry metricRegistry;
 	
+	/**
+	 * Configure Datasource with Hikaripool connection
+	 */
     @Bean(destroyMethod = "close")
     @ConditionalOnExpression("#{!environment.acceptsProfiles('cloud') && !environment.acceptsProfiles('heroku')}")
     public DataSource dataSource(DataSourceProperties dataSourceProperties, AppProperties appProperties) {
@@ -80,6 +87,34 @@ public class DatabaseConfig {
         }
         return new HikariDataSource(config);
     }
+    
+    
+    @Bean
+    public SpringLiquibase liquibase(DataSource dataSource, DataSourceProperties dataSourceProperties,
+        LiquibaseProperties liquibaseProperties) {
+
+        // Use liquibase.integration.spring.SpringLiquibase if you don't want Liquibase to start asynchronously
+        SpringLiquibase liquibase = new AsyncSpringLiquibase();
+        liquibase.setDataSource(dataSource);
+        liquibase.setChangeLog(liquibaseProperties.getChangeLog());
+        liquibase.setContexts(liquibaseProperties.getContexts());
+        liquibase.setDefaultSchema(liquibaseProperties.getDefaultSchema());
+        liquibase.setDropFirst(liquibaseProperties.isDropFirst());
+        liquibase.setShouldRun(liquibaseProperties.isEnabled());
+        if (env.acceptsProfiles(Constants.SPRING_PROFILE_FAST)) {
+            if ("org.h2.jdbcx.JdbcDataSource".equals(dataSourceProperties.getDriverClassName())) {
+                liquibase.setShouldRun(true);
+                log.warn("Using '{}' profile with H2 database in memory is not optimal, you should consider switching to" +
+                    " MySQL or Postgresql to avoid rebuilding your database upon each start.", Constants.SPRING_PROFILE_FAST);
+            } else {
+                liquibase.setShouldRun(false);
+            }
+        } else {
+            log.debug("Configuring Liquibase");
+        }
+        return liquibase;
+    }
+    
 	
 	 /** 
 	  * Hibernate4Module to  add in MappingJackson2HttpMessageConverter  to Avoid Jackson serialization on non fetched lazy objects

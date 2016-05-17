@@ -27,7 +27,10 @@ Client / serveur -> maven multi-mod  :
 [HikariCP] Pool de connection JDBC
 
 [Hibernate Envers] Audit et Suivi de version des entités / tracer les modifications sur les objets métiers
-[liquibase]
+
+[liquibase] versioning de base de données 
+Manage Database Changes 
+control database schemas source
 
 [EHCache] JSR-107 (JCache) provider, used for hibernate second level cache
 

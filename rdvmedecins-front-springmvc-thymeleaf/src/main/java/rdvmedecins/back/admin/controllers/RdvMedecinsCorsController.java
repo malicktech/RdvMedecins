@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import rdvmedecins.back.admin.models.ApplicationModel;
 
-@Controller
+//@Controller
 public class RdvMedecinsCorsController {
 
 	@Autowired
