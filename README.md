@@ -24,6 +24,7 @@ Client / serveur -> maven multi-mod  :
 * [Mysql] - Pour le SGBD
 * [Angular ou JSF] - pour le front
 
+
 [HikariCP] Pool de connection JDBC
 
 [Hibernate Envers] Audit et Suivi de version des entités / tracer les modifications sur les objets métiers
@@ -33,14 +34,14 @@ Client / serveur -> maven multi-mod  :
 [EHCache] JSR-107 (JCache) provider, used for hibernate second level cache
 
 [dropwizard.metrics] Metrics
+
 [Actuator] hEALTH cHECK
 
 [Elastic Search] search engine
 
-[]
-
 [snakeyml] configuration expressed in YAML syntax, in a hierarchical format. YAML support is specific to Spring Boot
 
+[Spring DevTools] set of tools to improve productivity : provide additional development-time features : livereload and Automatic restart
 
 ### Outils utilisés
 

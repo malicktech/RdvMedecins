@@ -75,18 +75,9 @@ https://www.google.fr/search?q=spring+message+properties+javascript&oq=spring+me
 http://formvalidation.io/
 
 ## Back - CORE
-** Conf deployment and devellopment environnement :  DEV, STG, PROD
-	separate configuration files in "src/main/resources/config"  – one for each profile
-	follow the application-.yml naming convention
-		 application-dev.yml
-		 application-production.yml
-		 application-default.yml (default configurations, When no active profile is set)
-		 application.yml (will always be included by Spring, regardless of what profiles are or not active.)
-		 
-		 https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html
+** gestion auditing with spring data jpa; inspire from jhipster;
+** ElasticSearch
 
-
-replace @inject et @Autowired by 
 spring security : persistent token / remember me
 add gender : male , female (Mr, Me)
 rename client to "patient"
@@ -97,21 +88,19 @@ add status on rdv : reserved, absent, annulé, réalisé | boolean : active or n
 ** use enum in entity field
 ** Column(name = "PRICE", precision = 9, scale = 2)
 **  private BigDecimal price;
-
-** add liquibase | 
-** manage liquibase db
-
-** gestion auditing with spring data jpa; inspire from jhipster; 
+ 
 ** gestion du cache, avec hazelcast
 ** gestion pool de connexion : HikariCP
+changer le wording des méthode de service : use creteObjets, finAllObject, ajouter eager and easy ex: fingonewitheagerrelationship, npire to jhipter
 
+
+## DATA MODEL
 -add elastic search
-improve database : forme normal, add index
+-improve database : forme normal, add index
 ** manage - cascade type  - and fetchtype
-* changer le wording des méthode de service : use creteObjets, finAllObject, ajouter eager and easy ex: fingonewitheagerrelationship, npire to jhipter
-** gestion des transaction spring data
-** set errorpage with atuator or 
-** minifier css and js
+
+
+
 
 
 ** add " equals, hashcode and tostring " to all class object : quand 2 rv sont égaux, quand deux creneaux sont egaux ? etc
@@ -141,6 +130,7 @@ datatables i18n
 factorise form register client and medecins, form edit ad register
 centraliser tous les lien url path dans un fichier enum, y accéder depuis les controlleur et les vue thymeleaf
 correct responsive design
+** minifier css and js
 
 ## security 
 secure technique service (web service) : authentification de type BASIC

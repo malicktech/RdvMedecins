@@ -1,6 +1,5 @@
 package rdvmedecins.back.admin.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -90,7 +89,9 @@ public class ClientController {
 		return CLIENT_LIST_VIEW_NAME;
 	}
 	
-	// préparation du modèle de la vue vue-01
+	/**
+	 * préparation du modèle de la vue
+	 */
 	private void setModel(Model model, Locale locale, String message) {
 		// on ne gère que les locales fr-FR, en-US
 		String language = locale.getLanguage();
