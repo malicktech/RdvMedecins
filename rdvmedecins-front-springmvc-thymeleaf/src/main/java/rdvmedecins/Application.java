@@ -28,11 +28,13 @@ import rdvmedecins.back.admin.config.AppConfig;
 import rdvmedecins.config.AppProperties;
 import rdvmedecins.config.Constants;
 
-@ComponentScan
+
 //@SpringBootApplication
 //@Import({ AppConfig.class })
+
+@ComponentScan
 @EnableAutoConfiguration(exclude = { MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class })
-@EnableConfigurationProperties({ AppProperties.class})
+@EnableConfigurationProperties({ AppProperties.class, LiquibaseProperties.class })
 public class Application {
 
     private static final Logger log = LoggerFactory.getLogger(Application.class);

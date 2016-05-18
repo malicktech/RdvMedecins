@@ -60,7 +60,7 @@ spring:
 
 liquibase:
     enabled: true # enable liquibase support
-    contexts: dev # Comma-separated list of runtime contexts to use.
+    contexts: dev # runtime contexts to use.
     change-log:  classpath:config/liquibase/master.xml # classpath:/db/changelog/db.changelog-master.yaml # Change log configuration path.
     check-change-log-location: true # Check the change log location exists.
     default-schema: dbrdvmedecins3 # Default database schema.

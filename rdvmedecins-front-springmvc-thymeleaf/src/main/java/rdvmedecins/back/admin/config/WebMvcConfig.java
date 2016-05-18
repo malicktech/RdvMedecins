@@ -36,13 +36,14 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	 * =========================================================================
 	 * set up view controllers for index and login
 	 */
-
+	/*
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		// registry.addViewController("/index").setViewName("index");
 		// registry.addViewController("/").setViewName("home");
-		registry.addViewController("/login").setViewName("login");
+		// registry.addViewController("/login").setViewName("login");
 	}
+	*/
 
 
 

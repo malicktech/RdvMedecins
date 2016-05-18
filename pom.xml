@@ -56,9 +56,9 @@
 		<javax.inject.version>1</javax.inject.version>
 		<hikaricp.version>2.4.1</hikaricp.version>
 		<assertj-core.version>3.1.0</assertj-core.version>
-		<!-- Liquibase -->
-		<liquibase.version>3.5.1</liquibase.version>
-		<liquibase-slf4j.version>2.0.0</liquibase-slf4j.version>
+
+		<liquibase.version>3.4.2</liquibase.version>
+		<liquibase-slf4j.version>1.2.1</liquibase-slf4j.version>
 		<liquibase-hibernate4.version>3.5</liquibase-hibernate4.version>
 
 		<assertj-core.version>3.1.0</assertj-core.version>
@@ -96,6 +96,35 @@
 			<artifactId>javax.inject</artifactId>
 			<version>${javax.inject.version}</version>
 		</dependency>
+		<!-- Spring -->
+		<!-- Spring | Context Support -->
+		<!-- Various Application Context utilities, including EhCache, JavaMail, 
+			Quartz, and Freemarker integration -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+
+		<!-- Spring | Loader Tools -->
+		<!-- used by Spring Boot Maven and Gradle plugins to actually generate 
+			jars -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-loader-tools</artifactId>
+		</dependency>
+
+		<!-- Spring | AOP -->
+		<!-- Support for aspect-oriented programming including spring-aop and AspectJ -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<!-- Spring | DATA JPA -->
+		<!-- Support for the JPA including spring-data-jpa, spring-orm and Hibernate -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 
 		<!-- Spring | Actuator -->
 		<!-- Production ready features to monitor and manage application -->
@@ -103,7 +132,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-actuator</artifactId>
 		</dependency>
-		
+
 		<!-- Spring | Autoconfigure -->
 		<!-- attempts to automatically configure your Spring application based 
 			on the jar dependencies that you have added -->
@@ -115,6 +144,55 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<!-- Spring | security -->
+		<!-- Support for spring-security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-data</artifactId>
+		</dependency>
+
+		<!-- Spring | Cache -->
+		<!-- Support for Spring’s Cache abstraction -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+
+		<!-- Hibernate -->
+		<!-- Integration for Ehcache into Hibernate as a second-level caching service -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>net.sf.ehcache</groupId>
+					<artifactId>ehcache-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- pilote JDBC du SGBD MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!-- Hikari / connection JDBC pool -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>tools</artifactId>
+					<groupId>com.sun</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- LIQUIBASE | Database Versionning -->
@@ -140,6 +218,84 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+
+		<!-- bibliothèque Jackson de gestion du JSON -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.fasterxml.jackson.core</groupId> -->
+		<!-- <artifactId>jackson-databind</artifactId> -->
+		<!-- </dependency> -->
+		<!-- Add-on module for Jackson to support Hibernate version 4.x data types. -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hibernate4</artifactId>
+		</dependency>
+		<!-- Add-on module for Jackson to support High-Performance Primitive Collections -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hppc</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<!-- Add-on module to support JSR-310 (Java 8 Date & Time API) data types. -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+		<!-- Support for datatypes of "org.json" JSON library (see http://json.org/java) -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-json-org</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<!-- DROPWIZARD Metrics -->
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-annotation</artifactId>
+			<version>${dropwizard-metrics.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-ehcache</artifactId>
+			<version>${dropwizard-metrics.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-graphite</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-healthchecks</artifactId>
+			<version>${dropwizard-metrics.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-json</artifactId>
+			<version>${dropwizard-metrics.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-jvm</artifactId>
+			<version>${dropwizard-metrics.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-servlet</artifactId>
+			<version>${dropwizard-metrics.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-servlets</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>metrics-healthchecks</artifactId>
+					<groupId>io.dropwizard.metrics</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- Spring | test -->

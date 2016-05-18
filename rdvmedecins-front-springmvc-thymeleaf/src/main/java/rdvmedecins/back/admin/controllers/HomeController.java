@@ -60,20 +60,20 @@ public class HomeController {
 	/**
      * GET  /login ->  return login page
      */
-//	@RequestMapping(value = {"/login"}, method = RequestMethod.GET)
-//	public String login() {
-//		logger.info("IN: Login, GET");		
-//		return LOGIN_VIEW_NAME;
-//	}
+	@RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+	public String login() {
+		logger.info("IN: Login, GET");		
+		return LOGIN_VIEW_NAME;
+	}
 	
 	/**
      * GET  /logout ->  return login page
      */
-//	@RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
-//	public String logout() {
-//		logger.info("IN: Logout, GET");		
-//		return LOGIN_VIEW_NAME;
-//	}
+	@RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
+	public String logout() {
+		logger.info("IN: Logout, GET");		
+		return LOGIN_VIEW_NAME;
+	}
 
 
 }
