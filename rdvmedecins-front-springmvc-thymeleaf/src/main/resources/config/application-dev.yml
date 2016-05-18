@@ -28,7 +28,6 @@ spring:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         database: MYSQL
         show-sql: true
-        generate-ddl: false # Initialize the schema on startup, not used if Hibernate autoconfig is active           
         properties:
             hibernate.cache.use_second_level_cache: true
             hibernate.cache.use_query_cache: false
@@ -60,12 +59,12 @@ spring:
 # LIQUIBASE
 
 liquibase:
-    enabled: false # enable liquibase support
+    enabled: true # enable liquibase support
     contexts: dev # Comma-separated list of runtime contexts to use.
     change-log:  classpath:config/liquibase/master.xml # classpath:/db/changelog/db.changelog-master.yaml # Change log configuration path.
     check-change-log-location: true # Check the change log location exists.
     default-schema: dbrdvmedecins3 # Default database schema.
-    drop-first: false # Drop the database schema first.
+    drop-first: false # Drop the database schema first.    
     #labels:  # Comma-separated list of runtime labels to use.
     #parameters.*:  # Change log parameters.
     #--database access no need to set, the primary configured data source is used

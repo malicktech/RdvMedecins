@@ -61,7 +61,7 @@
 			<artifactId>spring-security-data</artifactId>
 		</dependency>
 
-<!-- Spring | DATA JPA -->
+		<!-- Spring | DATA JPA -->
 		<!-- Support for the JPA including spring-data-jpa, spring-orm and Hibernate -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -156,6 +156,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
+				 	<skipTests>true</skipTests>
 					<testFailureIgnore>true</testFailureIgnore>
 					<argLine>-Xmx256m ${surefireArgLine}</argLine>
 					<runOrder>alphabetical</runOrder>
@@ -199,61 +200,60 @@
 				</configuration>
 			</plugin>
 
-			<!-- liquibase -->
-			
-			<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-report-plugin</artifactId>
-					<version>2.19</version>
-				</plugin>
+			<!-- SURFIRE PLUGIN  -->
 
-				<!-- LIQUIBASE PLUGN | to Generate the database changeLog file -->
-				<plugin>
-					<groupId>org.liquibase</groupId>
-					<artifactId>liquibase-maven-plugin</artifactId>
-					<version>${liquibase.version}</version>
-					<configuration>
-<!-- 						<propertyFile>src/main/resources/config/liquibase/liquibase.properties</propertyFile> -->
-						<changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
-						<diffChangeLogFile>src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
-						<driver>com.mysql.jdbc.Driver</driver>
-						<url>jdbc:mysql://localhost:3306/dbrdvmedecins3</url>
-						<defaultSchemaName>dbrdvmedecins3</defaultSchemaName>
-						<username>admin</username>
-						<password>admin</password>
-						<referenceUrl>hibernate:spring:rdvmedeins.domain?dialect=org.hibernate.dialect.MySQL5InnoDBDialect</referenceUrl>
-						<verbose>true</verbose>
-						<logging>debug</logging>
-						<promptOnNonLocalDatabase>true</promptOnNonLocalDatabase>
-					</configuration>
-					<dependencies>
-						<!-- Javassist (JAVA programming ASSISTant) | class library for editing 
-							bytecodes in Java -->
-						<dependency>
-							<groupId>org.javassist</groupId>
-							<artifactId>javassist</artifactId>
-							<version>3.18.2-GA</version>
-						</dependency>
-						<!-- Liquibase extension for hibernate integration including generating 
-							changesets based on changed hibernate mapping files -->
-						<dependency>
-							<groupId>org.liquibase.ext</groupId>
-							<artifactId>liquibase-hibernate4</artifactId>
-							<version>${liquibase-hibernate4.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.springframework.boot</groupId>
-							<artifactId>spring-boot-starter-data-jpa</artifactId>
-							<version>${spring.boot.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>mysql</groupId>
-							<artifactId>mysql-connector-java</artifactId>
-							<version>5.1.38</version>
-						</dependency>
-					</dependencies>
-				</plugin>
-			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.19</version>
+			</plugin>
+
+			<!-- LIQUIBASE PLUGN | to Generate the database changeLog file -->
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>${liquibase.version}</version>
+				<configuration>
+					<!-- <propertyFile>src/main/resources/config/liquibase/liquibase.properties</propertyFile> -->
+					<changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
+					<diffChangeLogFile>src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
+					<driver>com.mysql.jdbc.Driver</driver>
+					<url>jdbc:mysql://localhost:3306/dbrdvmedecins3</url>
+					<defaultSchemaName>dbrdvmedecins3</defaultSchemaName>
+					<username>admin</username>
+					<password>admin</password>
+					<referenceUrl>hibernate:spring:rdvmedeins.domain?dialect=org.hibernate.dialect.MySQL5InnoDBDialect</referenceUrl>
+					<verbose>true</verbose>
+					<logging>debug</logging>
+				</configuration>
+				<dependencies>
+					<!-- Javassist (JAVA programming ASSISTant) | class library for editing 
+						bytecodes in Java -->
+					<dependency>
+						<groupId>org.javassist</groupId>
+						<artifactId>javassist</artifactId>
+						<version>3.18.2-GA</version>
+					</dependency>
+					<!-- Liquibase extension for hibernate integration including generating 
+						changesets based on changed hibernate mapping files -->
+					<dependency>
+						<groupId>org.liquibase.ext</groupId>
+						<artifactId>liquibase-hibernate4</artifactId>
+						<version>${liquibase-hibernate4.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-data-jpa</artifactId>
+						<version>${spring.boot.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>5.1.38</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
 		</plugins>
 	</build>
 
@@ -261,14 +261,14 @@
 	<!-- ============================================================================================== -->
 
 	<reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.19</version>
-            </plugin>
-        </plugins>
-    </reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.19</version>
+			</plugin>
+		</plugins>
+	</reporting>
 
 	<!-- PROFILEs -->
 	<!-- ============================================================================================== -->
