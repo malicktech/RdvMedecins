@@ -28,9 +28,7 @@ Client / serveur -> maven multi-mod  :
 
 [Hibernate Envers] Audit et Suivi de version des entités / tracer les modifications sur les objets métiers
 
-[liquibase] versioning de base de données 
-Manage Database Changes 
-control database schemas source
+[liquibase] database schema versioning and upgrades 
 
 [EHCache] JSR-107 (JCache) provider, used for hibernate second level cache
 

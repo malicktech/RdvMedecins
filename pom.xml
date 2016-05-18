@@ -70,9 +70,9 @@
 	<!-- ============================================================================================== -->
 	<modules>
 		<module>rdvmedecins-back-core</module>
-<!-- 		<module>rdvmedecins-back-ws</module> -->
-<!-- 		<module>rdvmedecins-front-jsf2</module> -->
-<!-- 		<module>rdvmedecins-front-client-cors</module> -->
+		<!-- <module>rdvmedecins-back-ws</module> -->
+		<!-- <module>rdvmedecins-front-jsf2</module> -->
+		<!-- <module>rdvmedecins-front-client-cors</module> -->
 		<module>rdvmedecins-front-springmvc-thymeleaf</module>
 	</modules>
 
@@ -103,6 +103,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-actuator</artifactId>
 		</dependency>
+		
 		<!-- Spring | Autoconfigure -->
 		<!-- attempts to automatically configure your Spring application based 
 			on the jar dependencies that you have added -->
@@ -114,6 +115,23 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<!-- LIQUIBASE | Database Versionning -->
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>jetty-servlet</artifactId>
+					<groupId>org.eclipse.jetty</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.mattbertolini</groupId>
+			<artifactId>liquibase-slf4j</artifactId>
+			<version>${liquibase-slf4j.version}</version>
 		</dependency>
 
 		<!-- Spring | Log -->
@@ -298,7 +316,7 @@
 	<build>
 		<pluginManagement>
 			<plugins>
-				
+
 			</plugins>
 		</pluginManagement>
 

@@ -91,24 +91,6 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-data</artifactId>
 		</dependency>
-		
-
-		<!-- LIQUIBASE | Database Versionning -->
-		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>jetty-servlet</artifactId>
-					<groupId>org.eclipse.jetty</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>com.mattbertolini</groupId>
-			<artifactId>liquibase-slf4j</artifactId>
-			<version>${liquibase-slf4j.version}</version>
-		</dependency>
 
 		<!-- DROPWIZARD Metrics -->
 		<dependency>

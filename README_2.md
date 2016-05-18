@@ -62,7 +62,6 @@ configuration properties
 http://blog.codeleak.pl/2014/09/using-configurationproperties-in-spring.html
 http://www.java-allandsundry.com/2015/07/spring-boot-configurationproperties.html
 
-maven report plugin / sonarqube etc ... jhipter
 
 test de performace : benchmark
 
@@ -86,9 +85,7 @@ http://formvalidation.io/
 		 
 		 https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html
 
--- factoriser la confg DB dans le core module :
-	make the domain module and the higher level application properties to be loaded by Spring.
-	http://stackoverflow.com/questions/23138494/spring-boot-application-properties-maven-multi-module-projects
+
 replace @inject et @Autowired by 
 spring security : persistent token / remember me
 add gender : male , female (Mr, Me)
@@ -101,7 +98,9 @@ add status on rdv : reserved, absent, annulé, réalisé | boolean : active or n
 ** Column(name = "PRICE", precision = 9, scale = 2)
 **  private BigDecimal price;
 
+** add liquibase | 
 ** manage liquibase db
+
 ** gestion auditing with spring data jpa; inspire from jhipster; 
 ** gestion du cache, avec hazelcast
 ** gestion pool de connexion : HikariCP
@@ -113,9 +112,8 @@ improve database : forme normal, add index
 ** gestion des transaction spring data
 ** set errorpage with atuator or 
 ** minifier css and js
-** manage date time, check jhipster
 
-** add liquibase | http://blog.soat.fr/2015/10/liquibase-et-le-versioning-de-base-de-donnees/
+
 ** add " equals, hashcode and tostring " to all class object : quand 2 rv sont égaux, quand deux creneaux sont egaux ? etc
 générer hascode et equals depuis l'ide depuis l'IDE
 test rv même creneau , même medecin, même client
@@ -159,7 +157,6 @@ send email feature to valid insciption or reset password | inspire from jhipster
 bootstrap ; virer lescomposant bootstrap externe et use les natif inclu dans bootstrap : modal, select etc ...
 vier lavue jubrotton
 ** netoyer les page unitile
-* mettre la partie angular dans un dossier app ,à part, dans le dossier maven 
 * ou dans  : src/main/resources/static
 ** mettre un formulaire d'inscription patient
 * validation form  coté client js
@@ -205,14 +202,27 @@ Une interface pour rapidement faire une recherche dans les logs
 ** use set in place of list or collection
 ** add ajax, refreash layout bloc by ajax
 
+
+## MAVEN 
+** ientifier les dependences communes et factoriser 
+* mettre la partie angular dans un dossier app ,à part, dans le dossier maven 
+maven report plugin / sonarqube etc ... jhipter
+maven ; avoid all duplicat pom coe : profil conf, plugin cong, etc
+
+-- factoriser la confg DB dans le core module :
+	make the domain module and the higher level application properties to be loaded by Spring.
+	http://stackoverflow.com/questions/23138494/spring-boot-application-properties-maven-multi-module-projects
+
+
 ### ADDITIONAL FEATURES
 expore excel , spring batch
 ** localize doctor : map google
 http://www.challenges.fr/entreprise/20140221.CHA0767/la-guerre-des-applis-qui-gerent-les-rdv-chez-le-medecin.html
 ** doctor speciality : 
+https://www.zocdoc.com/
 http://www.mondocteur.fr/
 https://www.doctolib.fr/
-https://www.zocdoc.com/
+https://www.direct-rdv.com/
 ** choix du medecins favoris / MEDECINS TRAINTANTS
 ** présentation des medecins
 ** add ABSENCE DU MEDECIN
@@ -227,7 +237,6 @@ http://www.infoq.com/fr/articles/retour-sur-les-bases-equals-et-hashcode
 voir dans les bouquins : jaa efficace,et...
 ** créationd'une module : reatJS
 
-maven ; avoid all duplicat pom coe : profil conf, plugin cong, etc
 
 ## area
 
