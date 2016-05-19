@@ -6,10 +6,10 @@ import java.time.temporal.Temporal;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class PastValidator implements ConstraintValidator<Past, Temporal> {
+public class PastValidator implements ConstraintValidator<Past310, Temporal> {
 
     @Override
-    public void initialize(Past constraintAnnotation) {
+    public void initialize(Past310 constraintAnnotation) {
     }
 
     @Override

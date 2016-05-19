@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import rdvmedecins.enums.Civility;
-import rdvmedecins.validator.Past;
+import rdvmedecins.validator.Past310;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -66,7 +66,7 @@ public abstract class Personne implements Serializable {
 	private String firstName;
 
 	@Column(name = "birthday")
-	@Past(message = "La date de naissance doit se situer dans le passé")
+	@Past310(message = "La date de naissance doit se situer dans le passé")
 	private LocalDate Birthday;
 	
     @Pattern(regexp = "[0-9]{10}")

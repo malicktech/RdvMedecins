@@ -17,7 +17,7 @@ import javax.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PastValidator.class)
 @Documented
-public @interface Past {
+public @interface Past310 {
  
     String message() default "it.jdev.example.jsr310.validator.Past.message";
  
