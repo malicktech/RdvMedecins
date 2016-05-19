@@ -1,17 +1,12 @@
 package rdvmedecins.service;
 
-import rdvmedecins.domain.Authority;
-import rdvmedecins.domain.PersistentToken;
-import rdvmedecins.domain.User;
-import rdvmedecins.repository.AuthorityRepository;
-import rdvmedecins.repository.PersistentTokenRepository;
-import rdvmedecins.repository.UserRepository;
-//import rdvmedecins.repository.search.UserSearchRepository;
-import rdvmedecins.security.SecurityUtils;
-import rdvmedecins.service.util.RandomUtil;
-import rdvmedecins.domain.dto.ManagedUserDTO;
-import java.time.ZonedDateTime;
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +15,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.ZonedDateTime;
-import java.util.*;
+import rdvmedecins.domain.Authority;
+import rdvmedecins.domain.User;
+import rdvmedecins.domain.dto.ManagedUserDTO;
+import rdvmedecins.repository.AuthorityRepository;
+import rdvmedecins.repository.PersistentTokenRepository;
+import rdvmedecins.repository.UserRepository;
+//import rdvmedecins.repository.search.UserSearchRepository;
+import rdvmedecins.security.SecurityUtils;
+import rdvmedecins.service.util.RandomUtil;
 
 /**
  * Service class for managing users.
@@ -113,8 +115,6 @@ public class UserServiceImpl implements UserService {
         newUser.setLogin(login);
         // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
-        newUser.setFirstName(firstName);
-        newUser.setLastName(lastName);
         newUser.setEmail(email);
         newUser.setLangKey(langKey);
         // new user is not active
@@ -133,8 +133,6 @@ public class UserServiceImpl implements UserService {
     public User createUser(ManagedUserDTO managedUserDTO) {
         User user = new User();
         user.setLogin(managedUserDTO.getLogin());
-        user.setFirstName(managedUserDTO.getFirstName());
-        user.setLastName(managedUserDTO.getLastName());
         user.setEmail(managedUserDTO.getEmail());
         if (managedUserDTO.getLangKey() == null) {
             user.setLangKey("en"); // default language is English
@@ -162,8 +160,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUserInformation(String firstName, String lastName, String email, String langKey) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).ifPresent(u -> {
-            u.setFirstName(firstName);
-            u.setLastName(lastName);
             u.setEmail(email);
             u.setLangKey(langKey);
             userRepository.save(u);

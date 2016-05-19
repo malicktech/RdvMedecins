@@ -1,11 +1,9 @@
 package rdvmedecins.domain;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@DiscriminatorValue("A")
 @Table(name = "admin")
 public class Admin extends Personne {
 

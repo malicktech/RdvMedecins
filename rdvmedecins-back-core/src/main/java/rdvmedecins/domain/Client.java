@@ -4,22 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@DiscriminatorValue("P")
 @Table(name = "clients")
 public class Client extends Personne {
 
+	/*
+	 * Serial Version UID
+	 * =========================================================================
+	 */
+	
 	private static final long serialVersionUID = 1L;
 	
 	/*

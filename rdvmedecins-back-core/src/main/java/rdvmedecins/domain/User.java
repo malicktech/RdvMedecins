@@ -7,8 +7,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,8 +24,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import rdvmedecins.enums.Civility;
 
 /**
  * A user.
@@ -64,17 +60,7 @@ public class User extends AbstractEntity {
     @Size(min = 60, max = 60) 
     @Column(name = "password_hash",length = 60)
     private String password;
-	
-	@Size(max = 50)
-    @Column(name = "first_name", length = 50)
-    private String firstName;
-
-    @Size(max = 50)
-    @Column(name = "last_name", length = 50)
-    private String lastName;
-    
-    
-
+      
     @Email
     @Size(max = 100)
     @Column(length = 100, unique = true, nullable = false )
@@ -102,8 +88,8 @@ public class User extends AbstractEntity {
     /**
 	 * Person (Doctor & Patient & Admin) linked to the User account
 	 */
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "client_account_id", referencedColumnName = "id")
+	@OneToOne(fetch=FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name = "person_user_id", referencedColumnName = "id")
 	private Personne person;
 	
     @JsonIgnore
@@ -158,22 +144,6 @@ public class User extends AbstractEntity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -272,8 +242,6 @@ public class User extends AbstractEntity {
     public String toString() {
         return "User{" +
             "login='" + login + '\'' +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
             ", activated='" + activated + '\'' +
             ", langKey='" + langKey + '\'' +
