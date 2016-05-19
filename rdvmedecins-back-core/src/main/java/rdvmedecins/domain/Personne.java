@@ -5,23 +5,53 @@ import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+
 import rdvmedecins.enums.Civility;
 
-@MappedSuperclass
+@Entity
+@Table(name = "person")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+		name = "type_user", 
+		discriminatorType = DiscriminatorType.STRING, length = 1)
+@JsonTypeInfo(
+		use=JsonTypeInfo.Id.NAME, 
+		include=JsonTypeInfo.As.PROPERTY,
+		property="type")
+@JsonSubTypes({
+		@Type(name="P", value=Client.class),
+		@Type(name="D", value=Medecin.class),
+		@Type(name="A", value=Admin.class)})
+
 public class Personne extends AbstractEntity {
+
+	/*
+	 * Serial Version UID
+	 * =========================================================================
+	 */
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,9 +68,8 @@ public class Personne extends AbstractEntity {
 	@NotNull
 	@NotEmpty
 	private String titre;
-	// TODO replace
-	@Column(name = "civility", length = 12)
-	@Enumerated(EnumType.STRING)
+
+	@Enumerated(value = EnumType.STRING)
 	private Civility civility;
 
 	@Column(name = "nom", length = 25, nullable = false)
@@ -55,7 +84,7 @@ public class Personne extends AbstractEntity {
 	@Size(min = 2, max = 25, message = "{error.medecin.firstname.size}")
 	private String prenom;
 
-	//@Temporal(TemporalType.DATE) 
+	// @Temporal(TemporalType.DATE)
 	// no need to add temporal annotation, converter with do that
 	private LocalDate DateOfBirthday;
 

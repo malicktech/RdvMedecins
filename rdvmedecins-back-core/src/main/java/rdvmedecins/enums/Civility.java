@@ -1,5 +1,19 @@
 package rdvmedecins.enums;
 
+/**
+ * 
+ * Enum for Civility.
+ */
 public enum Civility {
-	MR, MS
+	
+	/**
+	 * Mister (Monsieur; M.)
+	 */
+	MR,
+	
+	/**
+	 * Missis (Madame; Mme)
+	 */
+	MRS;
+
 }

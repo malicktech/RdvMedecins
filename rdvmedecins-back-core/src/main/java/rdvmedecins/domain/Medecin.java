@@ -3,25 +3,26 @@ package rdvmedecins.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
+@DiscriminatorValue("D")
 @Table(name = "medecins")
 public class Medecin extends Personne {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	/*
 	 * Fields
 	 * =========================================================================
 	 */
-	
-	@OneToMany(mappedBy = "medecin" , fetch=FetchType.LAZY)   
-    private List<Creneau> creneaux = new ArrayList<>();
+
+	@OneToMany(mappedBy = "medecin", fetch = FetchType.LAZY)
+	private List<Creneau> creneaux = new ArrayList<>();
 
 	/*
 	 * constructors
@@ -31,15 +32,11 @@ public class Medecin extends Personne {
 	public Medecin() {
 	}
 
-	public Medecin(String titre, String nom, String prenom) {
-		super(titre, nom, prenom);
-	}
-	
 	/*
 	 * getters et setters
 	 * =========================================================================
 	 */
-	
+
 	public List<Creneau> getCreneaux() {
 		return creneaux;
 	}
@@ -56,7 +53,5 @@ public class Medecin extends Personne {
 	public String toString() {
 		return String.format("Medecin[%s]", super.toString());
 	}
-
-
 
 }

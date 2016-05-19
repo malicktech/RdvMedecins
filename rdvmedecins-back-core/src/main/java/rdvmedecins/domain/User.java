@@ -7,6 +7,9 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,20 +17,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import rdvmedecins.domain.Authority;
-import rdvmedecins.domain.PersistentToken;
-import rdvmedecins.domain.User;
+import rdvmedecins.enums.Civility;
 
 /**
  * A user.
@@ -38,10 +38,17 @@ import rdvmedecins.domain.User;
 public class User extends AbstractEntity {
 	
 	/*
+	 * Serial Version UID
+	 * =========================================================================
+	 */
+
+	private static final long serialVersionUID = -4917251397951821572L;
+	
+	/*
 	 * Fields
 	 * =========================================================================
 	 */
-	
+
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -65,10 +72,12 @@ public class User extends AbstractEntity {
     @Size(max = 50)
     @Column(name = "last_name", length = 50)
     private String lastName;
+    
+    
 
     @Email
     @Size(max = 100)
-    @Column(length = 100, unique = true)
+    @Column(length = 100, unique = true, nullable = false )
     private String email;
 
     @Column(nullable = false)
@@ -90,6 +99,13 @@ public class User extends AbstractEntity {
     @Column(name = "reset_date", nullable = true)
     private ZonedDateTime resetDate = null;
 
+    /**
+	 * Person (Doctor & Patient & Admin) linked to the User account
+	 */
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "client_account_id", referencedColumnName = "id")
+	private Personne person;
+	
     @JsonIgnore
     @ManyToMany
     @JoinTable(
