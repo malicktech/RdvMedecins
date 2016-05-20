@@ -2,35 +2,62 @@ package rdvmedecins.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "ADDRESS")
+@Table(name = "adress")
 public class Address extends AbstractEntity {
+	
+	/*
+	 * Serial Version UID
+	 * =========================================================================
+	 */
 	
     private static final long serialVersionUID = 1L;
    
-
+    /*
+	 * Fields
+	 * =========================================================================
+	 */
+    
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
 	
-    @Column(name = "STREET_NAME", nullable = false,length = 50)
+    @Column(name = "street_name", nullable = false,length = 50)
     @Size(max = 50)
     @NotEmpty
     private String streetName;
 
-    @Column(name = "CITY", nullable = false, length = 25)
+    @Column(name = "city", nullable = false, length = 25)
     @Size(max = 25)
     @NotEmpty
     private String city;
+    
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_client", insertable = false, nullable = false, updatable = false)
+	private Client client;
 
+    /*
+	 * constructors
+	 * =========================================================================
+	 */
+    public Address() {
+	}
+
+    /*
+	 * getters et setters
+	 * =========================================================================
+	 */
 	public Long getId() {
 		return id;
 	}
@@ -54,7 +81,11 @@ public class Address extends AbstractEntity {
 	public void setCity(String city) {
 		this.city = city;
 	}
-    
+	
+	/*
+	 * Equals , hashCode, toString
+	 * =========================================================================
+	 */
     
     
 

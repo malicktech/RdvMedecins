@@ -28,7 +28,7 @@ public class Client extends Personne {
 	@OneToMany(mappedBy = "client" , fetch=FetchType.LAZY)   
     private List<Rv> rv = new ArrayList<>();
 	
-	@OneToMany(mappedBy="person", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="client", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     private List<Address> addresses;
 
 	/*

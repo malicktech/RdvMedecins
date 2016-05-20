@@ -80,6 +80,7 @@ http://formvalidation.io/
 	Use JSF 2 new features
 
 ## Back - CORE
+** FK for user to client&medecins
 ** gestion auditing with spring data jpa; inspire from jhipster;
 ** ElasticSearch
 

@@ -88,7 +88,8 @@ public class User extends AbstractEntity {
     /**
 	 * Person (Doctor & Patient & Admin) linked to the User account
 	 */
-	@OneToOne(fetch=FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	//@OneToOne(fetch=FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "person_user_id", referencedColumnName = "id")
 	private Personne person;
 	

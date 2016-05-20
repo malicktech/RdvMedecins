@@ -21,7 +21,7 @@
 	</properties>
 
 	<dependencies>
-	
+
 		<!-- Module dependency -->
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
@@ -74,7 +74,7 @@
 		<!-- <artifactId>spring-boot-starter-tomcat</artifactId> -->
 		<!-- <scope>provided</scope> -->
 		<!-- </dependency> -->
-		
+
 	</dependencies>
 
 	<!-- PLUGINS -->
@@ -84,6 +84,8 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
+				<!-- remplace references property defined in ressource file (eg . .properties 
+					) by value defined in pom.xml. -->
 				<filtering>true</filtering>
 				<includes>
 					<include>**/*.xml</include>
@@ -185,17 +187,20 @@
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>${liquibase.version}</version>
 				<configuration>
+					<!-- Use property file -->
+					<!-- <propertyFileWillOverride>false</propertyFileWillOverride> -->
 					<!-- <propertyFile>src/main/resources/config/liquibase/liquibase.properties</propertyFile> -->
-                    <changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
-                    <diffChangeLogFile>src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
+					<!-- Use Direct property config -->
+					<changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
 					<driver>com.mysql.jdbc.Driver</driver>
 					<url>jdbc:mysql://localhost:3306/dbrdvmedecins3</url>
 					<defaultSchemaName>dbrdvmedecins3</defaultSchemaName>
 					<username>admin</username>
 					<password>admin</password>
-					<referenceUrl>hibernate:spring:rdvmedeins.domain?dialect=org.hibernate.dialect.MySQL5InnoDBDialect</referenceUrl>
 					<verbose>true</verbose>
 					<logging>debug</logging>
+					<diffChangeLogFile>src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
+					<referenceUrl>hibernate:spring:rdvmedecins.domain?dialect=org.hibernate.dialect.MySQL5InnoDBDialect</referenceUrl>
 				</configuration>
 				<dependencies>
 					<!-- Javassist (JAVA programming ASSISTant) | class library for editing 

@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.TableGenerator;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -27,6 +28,7 @@ import rdvmedecins.validator.Past310;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 //public abstract class Personne extends AbstractEntity {
 public abstract class Personne implements Serializable {
+	
 	/*
 	 * Serial Version UID
 	 * =========================================================================
@@ -40,7 +42,8 @@ public abstract class Personne implements Serializable {
 	 */
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "person_gen")
+	@TableGenerator(name = "person_gen", table = "id_gen", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", allocationSize = 1)
 	protected Long id;
 
 	@Version
@@ -69,6 +72,7 @@ public abstract class Personne implements Serializable {
 	@Past310(message = "La date de naissance doit se situer dans le passé")
 	private LocalDate Birthday;
 	
+	@Column(name = "mobile_phone_number")
     @Pattern(regexp = "[0-9]{10}")
 	private String mobilePhoneNumber;
 	

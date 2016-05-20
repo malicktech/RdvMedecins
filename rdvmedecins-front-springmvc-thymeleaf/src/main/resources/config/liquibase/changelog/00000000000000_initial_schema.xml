@@ -26,7 +26,8 @@
 			<column name="id" type="BIGINT" autoIncrement="${autoIncrement}">
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
-			 <column name="login" type="varchar(50)">
+			<column name="person_user_id" type="BIGINT"/>
+			<column name="login" type="varchar(50)">
                 <constraints unique="true" nullable="false"/>
             </column>
             <column name="password_hash" type="VARCHAR(60)">
@@ -35,8 +36,6 @@
             <column name="email" type="VARCHAR(100)" >
                 <constraints unique="true"/>
             </column>
-            <column name="first_name" type="VARCHAR(50)" />
-            <column name="last_name" type="VARCHAR(50)" /> 
             <column name="activated" type="BIT(1)">
 				<constraints nullable="false" />
 			</column> 
@@ -53,7 +52,7 @@
 			<column name="last_modified_date" type="timestamp" />			
 			<column name="activation_key" type="VARCHAR(20)" />
 			<column name="lang_key" type="VARCHAR(5)" />
-			<column name="reset_date" type="datetime(6)" />
+			<column name="reset_date" type="timestamp" />
 			<column name="reset_key" type="VARCHAR(20)" />
 		</createTable>
 				
@@ -118,25 +117,6 @@
                                  constraintName="fk_user_persistent_token"
                                  referencedColumnNames="id"
                                  referencedTableName="zocdoc_user"/>                        
-		
-        <loadData encoding="UTF-8"
-                  file="config/liquibase/users.csv"
-                  separator=";"
-                  tableName="zocdoc_user">
-            <column name="activated" type="boolean"/>
-            <column name="created_date" type="timestamp"/>
-        </loadData>
-        <dropDefaultValue tableName="zocdoc_user" columnName="created_date" columnDataType="datetime"/>
-
-        <loadData encoding="UTF-8"
-                  file="config/liquibase/authorities.csv"
-                  separator=";"
-                  tableName="zocdoc_authority"/>
-
-        <loadData encoding="UTF-8"
-                  file="config/liquibase/users_authorities.csv"
-                  separator=";"
-                  tableName="zocdoc_user_authority"/>
                                   
  
          <createTable tableName="zocdoc_persistent_audit_event">
