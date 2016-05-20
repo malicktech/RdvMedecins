@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 @Entity
 @Table(name = "creneaux")
 @JsonFilter("creneauFilter")
-public class Creneau extends AbstractEntity {
+public class Creneau extends AbstractAuditingEntity {
 
 	private static final long serialVersionUID = 1L;
 	

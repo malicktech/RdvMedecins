@@ -14,8 +14,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "adress")
-public class Address extends AbstractEntity {
+@Table(name = "address")
+public class Address extends AbstractAuditingEntity {
 	
 	/*
 	 * Serial Version UID

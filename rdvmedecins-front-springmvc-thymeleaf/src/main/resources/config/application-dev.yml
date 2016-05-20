@@ -10,6 +10,11 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
+# EMBEDDED SERVER CONFIGURATION
+
+server:
+    port: 8080
+    
 spring:
     profiles:
         active: dev
@@ -72,25 +77,21 @@ liquibase:
     #url:  # JDBC url of the database to migrate.
     #user:  # Login user of the database to migrate.
 
-# EMBEDDED SERVER CONFIGURATION
-
-server:
-    port: 8080
     
 # ENDPOINTS
-endpoints:
-    enabled: true
-    autoconfig.enabled: true
-    beans.enabled: false
-    configprops.enabled: false
-    dump.enabled: false
-    env.enabled: false
-    health.enabled: true
-    info.enabled: true
-    metrics.enabled: false
-    mappings.enabled: false
-    shutdown.enabled: false
-    trace.enabled: false
+#endpoints:
+#    enabled: true
+#    autoconfig.enabled: true
+#    beans.enabled: false
+#    configprops.enabled: false
+#    dump.enabled: false
+#    env.enabled: false
+#    health.enabled: true
+#    info.enabled: true
+#    metrics.enabled: false
+#    mappings.enabled: false
+#    shutdown.enabled: false
+#    trace.enabled: false
 
 # ===================================================================
 # ZocDoc specific properties

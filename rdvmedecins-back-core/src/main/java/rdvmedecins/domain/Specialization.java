@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "specialisation")
-public class Specialization extends AbstractEntity {
+public class Specialization extends AbstractAuditingEntity {
 
 	/*
 	 * Serial Version UID

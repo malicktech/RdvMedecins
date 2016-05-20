@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 @Table(name = "rv", uniqueConstraints = {
 		@UniqueConstraint(name = "jour_creneau", columnNames = { "jour", "id_creneau" }) })
 @JsonFilter("rvFilter")
-public class Rv extends AbstractEntity {
+public class Rv extends AbstractAuditingEntity {
 
 	private static final long serialVersionUID = 1L;
 

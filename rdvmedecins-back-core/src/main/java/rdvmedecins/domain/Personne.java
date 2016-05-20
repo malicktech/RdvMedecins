@@ -26,8 +26,7 @@ import rdvmedecins.validator.Past310;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-//public abstract class Personne extends AbstractEntity {
-public abstract class Personne implements Serializable {
+public abstract class Personne extends AbstractAuditingEntity  implements Serializable {
 	
 	/*
 	 * Serial Version UID
@@ -45,10 +44,6 @@ public abstract class Personne implements Serializable {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "person_gen")
 	@TableGenerator(name = "person_gen", table = "id_gen", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", allocationSize = 1)
 	protected Long id;
-
-	@Version
-	@NotNull
-	protected Long version;
 	
 	@Column(name = "civility", nullable = false)
 	@Enumerated(value = EnumType.STRING)
@@ -99,16 +94,6 @@ public abstract class Personne implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-
-	public Long getVersion() {
-		return version;
-	}
-
-
-	public void setVersion(Long version) {
-		this.version = version;
 	}
 
 

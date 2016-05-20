@@ -31,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "zocdoc_user")
-public class User extends AbstractEntity {
+public class User extends AbstractAuditingEntity {
 	
 	/*
 	 * Serial Version UID
