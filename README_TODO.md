@@ -1,8 +1,14 @@
 ## rdv medecins :
 
+ZocDoc, the medical appointment-booking website
+
+Zocdoc is an online medical care scheduling service, providing free of charge medical care search facility for end users by integrating information about medical practices and doctors' individual schedules in a central location.
+
+The end user-searchable database includes specialties, range of services, office locations, photographs, personnel educational background and user-submitted reviews
+
+appointment booking system
 
 ## module client-springmvc-thymeleaf
-
 
 
 application.properties
@@ -13,11 +19,6 @@ server.port=9000
 
 # fixe le contexte de l'application web
 server.context-path= /intro
-
-
-
-link :
-http://localhost:9000/intro/exemple-01.html
 
 
 ## archi 
@@ -52,11 +53,7 @@ plus rapide que Dozzert
 http://javaetmoi.com/2015/09/benchmark-frameworks-javas-mapping-objet/
 http://blog.netapsys.fr/mapping-dozer-is-died-welcom-to-mapstruct/
 
-mettre msg : 
-En poursuivant votre navigation, vous acceptez l'utilisation de cookies afin de réaliser des statistiques d'audiences et vous proposer des services ou des offres adaptés à vos centres d'intérêts
 
-This website uses cookies so that we can provide you the best user experience possible.
-By continuing to browse the site you are agreeing to our use of cookies
 
 configuration properties
 http://blog.codeleak.pl/2014/09/using-configurationproperties-in-spring.html
@@ -73,6 +70,14 @@ http://heera.it/bootstrap-3-delete-confirm-dialog
 https://www.google.fr/search?q=spring+message+properties+javascript&oq=spring+message+properties+in+js+&aqs=chrome.1.69i57j0.13021j0j1&sourceid=chrome&ie=UTF-8
 
 http://formvalidation.io/
+
+## L'algorithme : 
+	* use map may be more easiest
+
+## Front JSF
+* prettyFace pour les url
+	* richface
+	Use JSF 2 new features
 
 ## Back - CORE
 ** gestion auditing with spring data jpa; inspire from jhipster;
@@ -93,14 +98,12 @@ add status on rdv : reserved, absent, annulé, réalisé | boolean : active or n
 ** gestion pool de connexion : HikariCP
 changer le wording des méthode de service : use creteObjets, finAllObject, ajouter eager and easy ex: fingonewitheagerrelationship, npire to jhipter
 
+extarnaliser pattern validation jpa présent sur les entity
 
 ## DATA MODEL
 -add elastic search
 -improve database : forme normal, add index
 ** manage - cascade type  - and fetchtype
-
-
-
 
 
 ** add " equals, hashcode and tostring " to all class object : quand 2 rv sont égaux, quand deux creneaux sont egaux ? etc
@@ -170,27 +173,37 @@ vier lavue jubrotton
 
 ** test api rest | http://blog.soat.fr/2015/12/tester-une-api-rest-spring-mvc-avec-le-spring-testcontext-framework/
 tst : assertj , hamcrest
+
 ** add lets' Enrypt https
-** s'inpirer de  jhipster, ajouter tous les parties : actuator , etc ....
+
 ** gestion timout RestTemplate
+
 ** gestion des cookie
+mettre msg : 
+> En poursuivant votre navigation, vous acceptez l'utilisation de cookies afin de réaliser des statistiques d'audiences et vous proposer des services ou des offres adaptés à vos centres d'intérêts
+This website uses cookies so that we can provide you the best user experience possible. By continuing to browse the site you are agreeing to our use of cookies
+
 ** spring MVC : interceptor
 ** ajouter "Les cookies nous permettent de fournir, protéger et améliorer les services de Facebook. En continuant à utiliser notre site, vous acceptez notre Politique d’utilisation des cookies."
 ** voir quelle est la bonnepratique pour les sessions spring security , utiliser ou non ? p492 
 ** gestion du sessions du user : partir de lexemplle et s'inspirer de mcdo
-
-** gestion des exclusion spring boot , to only keep needed depndency
 ** gestion des messages d'erreur , code et autres ... personnalisation, 
 ** gestion page erreur et exception avec spring ; OptimisticLockException; 
+
 ** gestion des log : fichier log and console : slf4j + logback
-** add envoi de mail :  http://www.thymeleaf.org/doc/articles/springmail.html   & Apache Velocity Template & javaMail http://sivalabs.in/2011/05/sending-email-with-attachments-using-javamail/
+- Une interface pour rapidement faire une recherche dans les logs
+
+** add envoi de mail :  
+http://www.thymeleaf.org/doc/articles/springmail.html  & Apache Velocity Template & javaMail http://sivalabs.in/2011/05/sending-email-with-attachments-using-javamail/
 
 
-Une interface pour rapidement faire une recherche dans les logs
 
 ** java doc est présente
 ** use set in place of list or collection
 ** add ajax, refreash layout bloc by ajax
+
+## Spring boot
+- gestion des exclusion spring boot , to only keep needed depndency
 
 
 ## MAVEN 
