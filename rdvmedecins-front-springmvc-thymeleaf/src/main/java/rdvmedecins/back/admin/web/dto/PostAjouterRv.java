@@ -1,4 +1,4 @@
-package rdvmedecins.back.admin.models;
+package rdvmedecins.back.admin.web.dto;
 
 public class PostAjouterRv {
 

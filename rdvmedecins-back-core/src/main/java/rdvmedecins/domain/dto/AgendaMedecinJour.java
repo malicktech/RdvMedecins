@@ -7,8 +7,8 @@ import java.util.Date;
 import rdvmedecins.domain.Medecin;
 
 /**
- * L'entité [AgendaMedecinJour] est un entité métier
- * il est l'agenda d'un médecin pour un jour donné, ç-à-d la liste de ses rendez-vous
+ * L'entité [AgendaMedecinJour] est un entité métier il est l'agenda d'un
+ * médecin pour un jour donné, ç-à-d la liste de ses rendez-vous
  * 
  * @author Malick
  *
@@ -16,7 +16,7 @@ import rdvmedecins.domain.Medecin;
 public class AgendaMedecinJour implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	// champs
 	private Medecin medecin;
 	private Date jour;
@@ -39,33 +39,34 @@ public class AgendaMedecinJour implements Serializable {
 			str.append(" ");
 			str.append(cr.toString());
 		}
-		return String.format("Agenda[%s,%s,%s]", medecin, new SimpleDateFormat("dd/MM/yyyy").format(jour), str.toString());
+		return String.format("Agenda[%s,%s,%s]", medecin, new SimpleDateFormat("dd/MM/yyyy").format(jour),
+				str.toString());
 	}
 
 	// getters et setters
 
-  public CreneauMedecinJour[] getCreneauxMedecinJour() {
-    return creneauxMedecinJour;
-  }
+	public CreneauMedecinJour[] getCreneauxMedecinJour() {
+		return creneauxMedecinJour;
+	}
 
-  public void setCreneauxMedecinJour(CreneauMedecinJour[] creneauxMedecinJour) {
-    this.creneauxMedecinJour = creneauxMedecinJour;
-  }
+	public void setCreneauxMedecinJour(CreneauMedecinJour[] creneauxMedecinJour) {
+		this.creneauxMedecinJour = creneauxMedecinJour;
+	}
 
-  public Date getJour() {
-    return jour;
-  }
+	public Date getJour() {
+		return jour;
+	}
 
-  public void setJour(Date jour) {
-    this.jour = jour;
-  }
+	public void setJour(Date jour) {
+		this.jour = jour;
+	}
 
-  public Medecin getMedecin() {
-    return medecin;
-  }
+	public Medecin getMedecin() {
+		return medecin;
+	}
 
-  public void setMedecin(Medecin medecin) {
-    this.medecin = medecin;
-  }
-  
+	public void setMedecin(Medecin medecin) {
+		this.medecin = medecin;
+	}
+
 }

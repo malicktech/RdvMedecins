@@ -46,7 +46,7 @@
 										<th th:text="#{medecin.list.version.label}">Version</th>
 										<th th:text="#{medecin.list.titre.label}">Titre</th>
 										<th th:text="#{medecin.list.nom.label}">Nom</th>
-										<th th:text="#{medecin.list.prenom.label}">Prenom</th>
+										<th th:text="#{medecin.list.firstName.label}">Prenom</th>
 										<th th:text="#{medecin.list.actions.label}">Action</th>
 									</tr>
 								</thead>
@@ -61,6 +61,12 @@
 										<td th:text="${medecin.lastName}"></td>
 										<td th:text="${medecin.firstName}"></td>
 										<td align="center" >
+										<a th:href="@{/admin/medecins/{id}(id=${medecin.id})}">
+												<button type="button" class="btn btn-info btn-xs">
+													<span class="glyphicon glyphicon-eye-open"></span>
+													Details
+												</button>
+											</a>
 											<a th:href="@{/admin/medecins/edit/{id}(id=${medecin.id})}"><button
 													type="button" class="btn btn-default btn-xs">
 													<span class="glyphicon glyphicon-pencil"></span>
@@ -72,6 +78,12 @@
 													<span class="glyphicon glyphicon-trash"></span>
 													&nbsp;&nbsp;Delete
 												</button></a>
+											<a th:href="@{/admin/medecins/appointment/{id}(id=${medecin.id})}">
+												<button type="button" class="btn btn-info btn-xs">
+													<span class="glyphicon glyphicon-eye-open"></span>
+													Book an appointment
+												</button>
+											</a>
 										</td>
 									</tr>
 								</tbody>
@@ -127,12 +139,12 @@
 								</tr>
 								<tr>
 									<td class="col-sm-1"></td>
-									<td class="col-sm-4 text-danger" th:if="${#fields.hasErrors('titre')}"
+									<td class="col-sm-4 text-danger" th:if="${#fields.hasErrors('civility')}"
 										th:errors="*{titre}">type error</td>
-									<td class="col-sm-4 text-danger" th:if="${#fields.hasErrors('nom')}"
-										th:errors="*{name}">nom error</td>
-									<td class="col-sm-4 text-danger" th:if="${#fields.hasErrors('prenom')}"
-										th:errors="*{name}">prenom error</td>
+									<td class="col-sm-4 text-danger" th:if="${#fields.hasErrors('lastName')}"
+										th:errors="*{name}">lastName error</td>
+									<td class="col-sm-4 text-danger" th:if="${#fields.hasErrors('firstName')}"
+										th:errors="*{name}">firstName error</td>
 									<td class="col-sm-2"></td>
 								</tr>
 							</tbody>

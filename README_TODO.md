@@ -115,7 +115,6 @@ get stats : count login sucess, login faillure, count connected user , etc ..
 
 ** add " equals, hashcode and tostring " to all class object : quand 2 rv sont égaux, quand deux creneaux sont egaux ? etc
 générer hascode et equals depuis l'ide depuis l'IDE
-test rv même creneau , même medecin, même client
 define this in abstract entity
 * CSRF
 ** static helpers : check if it's really need element
@@ -151,7 +150,13 @@ secure user access : html form , login/password
 extraire la page login ans une page d'authenticatin à part avec desing perso
 rebuild with javaFX
 regrouper  client soncole et thymeleaf
-* replace la partie console par test junit du service web
+
+## Test
+- replace la partie console par test junit du service web
+- ** test api rest | http://blog.soat.fr/2015/12/tester-une-api-rest-spring-mvc-avec-le-spring-testcontext-framework/
+tst : assertj , hamcrest
+- test rv même creneau , même medecin, même client
+- test with spring-context and spring-test
 
 ## front - PATIENT Angularjs
 send email feature to valid insciption or reset password | inspire from jhipster
@@ -179,8 +184,7 @@ vier lavue jubrotton
 
 
 
-** test api rest | http://blog.soat.fr/2015/12/tester-une-api-rest-spring-mvc-avec-le-spring-testcontext-framework/
-tst : assertj , hamcrest
+
 
 ** add lets' Enrypt https
 
