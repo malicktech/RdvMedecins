@@ -40,7 +40,7 @@ public class ApplicationModel implements IMetier {
 	private boolean secured = true;
 	
 	// initialise bean after dependency injection is done
-	@PostConstruct
+	// @PostConstruct
 	public void init() {
 		// on récupère les médecins et les clients
 		try {

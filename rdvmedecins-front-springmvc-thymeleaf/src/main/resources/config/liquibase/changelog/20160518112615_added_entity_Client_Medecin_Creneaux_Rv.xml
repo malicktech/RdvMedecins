@@ -32,16 +32,23 @@
                 <constraints nullable="false"/>
             </column>
             <column name="mobile_phone_number" type="VARCHAR(255)"/>
-            <column name="version" type="BIGINT"/>
+            <column name="version" type="BIGINT">
+				<constraints nullable="false" />
+			</column>       
+			<column name="created_by" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_date" type="timestamp" defaultValueDate="${now}">
+				<constraints nullable="false" />
+			</column>
+			<column name="last_modified_by" type="VARCHAR(50)" />
+			<column name="last_modified_date" type="timestamp" />
         </createTable>
         
 		<createTable tableName="clients">
 			<column name="id" type="BIGINT">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="version" type="BIGINT">
-				<constraints nullable="false" />
-			</column>
            <column name="birthday" type="date"/>
             <column name="civility" type="VARCHAR(255)">
                 <constraints nullable="false"/>
@@ -53,6 +60,17 @@
                 <constraints nullable="false"/>
             </column>
             <column name="mobile_phone_number" type="VARCHAR(255)"/>
+            <column name="version" type="BIGINT">
+				<constraints nullable="false" />
+			</column>       
+			<column name="created_by" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_date" type="timestamp" defaultValueDate="${now}">
+				<constraints nullable="false" />
+			</column>
+			<column name="last_modified_by" type="VARCHAR(50)" />
+			<column name="last_modified_date" type="timestamp" />
 		</createTable>
 		
 		<createTable tableName="medecins">
@@ -70,8 +88,18 @@
                 <constraints nullable="false"/>
             </column>
             <column name="mobile_phone_number" type="VARCHAR(255)"/>
-            <column name="version" type="BIGINT"/>
             <column name="specialisation_id" type="BIGINT"/>
+            <column name="version" type="BIGINT">
+				<constraints nullable="false" />
+			</column>       
+			<column name="created_by" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_date" type="timestamp" defaultValueDate="${now}">
+				<constraints nullable="false" />
+			</column>
+			<column name="last_modified_by" type="VARCHAR(50)" />
+			<column name="last_modified_date" type="timestamp" />
 		</createTable>
 		
 		
@@ -123,7 +151,7 @@
 			<column name="created_by" type="VARCHAR(50)">
 				<constraints nullable="false" />
 			</column>
-			<column name="created_date" type="timestamp">
+			<column name="created_date" type="timestamp" defaultValueDate="${now}">
 				<constraints nullable="false" />
 			</column>
 			<column name="last_modified_by" type="VARCHAR(50)" />
@@ -168,7 +196,7 @@
 			<column name="created_by" type="VARCHAR(50)">
 				<constraints nullable="false" />
 			</column>
-			<column name="created_date" type="timestamp">
+			<column name="created_date" type="timestamp" defaultValueDate="${now}">
 				<constraints nullable="false" />
 			</column>
 			<column name="last_modified_by" type="VARCHAR(50)" />

@@ -53,12 +53,9 @@ plus rapide que Dozzert
 http://javaetmoi.com/2015/09/benchmark-frameworks-javas-mapping-objet/
 http://blog.netapsys.fr/mapping-dozer-is-died-welcom-to-mapstruct/
 
-
-
 configuration properties
 http://blog.codeleak.pl/2014/09/using-configurationproperties-in-spring.html
 http://www.java-allandsundry.com/2015/07/spring-boot-configurationproperties.html
-
 
 test de performace : benchmark
 
@@ -80,10 +77,10 @@ http://formvalidation.io/
 	Use JSF 2 new features
 
 ## Back - CORE
-** FK for user to client&medecins
+
 ** gestion auditing with spring data jpa; inspire from jhipster;
 ** ElasticSearch
-
+** add logtash logging from jhipster 3
 spring security : persistent token / remember me
 add gender : male , female (Mr, Me)
 rename client to "patient"
@@ -101,10 +98,19 @@ changer le wording des méthode de service : use creteObjets, finAllObject, ajou
 
 extarnaliser pattern validation jpa présent sur les entity
 
+apdate conf with https://github.com/jhipster/jhipster-sample-app
+
+install graphite for metrics
+ENABLE jCONSOLE WITH docker compose and logtash
+
+## Audit - metric - Log
+get stats : count login sucess, login faillure, count connected user , etc ..
+
 ## DATA MODEL
 -add elastic search
 -improve database : forme normal, add index
 ** manage - cascade type  - and fetchtype
+** FK for user to client&medecins
 
 
 ** add " equals, hashcode and tostring " to all class object : quand 2 rv sont égaux, quand deux creneaux sont egaux ? etc
@@ -135,6 +141,7 @@ factorise form register client and medecins, form edit ad register
 centraliser tous les lien url path dans un fichier enum, y accéder depuis les controlleur et les vue thymeleaf
 correct responsive design
 ** minifier css and js
+** widget avec jauge du nbre rv 
 
 ## security 
 secure technique service (web service) : authentification de type BASIC
@@ -179,24 +186,29 @@ tst : assertj , hamcrest
 
 ** gestion timout RestTemplate
 
-** gestion des cookie
+** gestion des cookies 
 mettre msg : 
 > En poursuivant votre navigation, vous acceptez l'utilisation de cookies afin de réaliser des statistiques d'audiences et vous proposer des services ou des offres adaptés à vos centres d'intérêts
-This website uses cookies so that we can provide you the best user experience possible. By continuing to browse the site you are agreeing to our use of cookies
+This website uses cookies so that we can provide you the best user experience possible. By continuing to browse the site you are agreeing to our use of cookies.
+ajouter "Les cookies nous permettent de fournir, protéger et améliorer les services de Facebook. En continuant à utiliser notre site, vous acceptez notre Politique d’utilisation des cookies.
+
+** gestion du sessions du user : 
+partir de lexemplle et s'inspirer de mcdo
+voir quelle est la bonnepratique pour les sessions spring security , utiliser ou non ? p492 
+
+** gestion erreurs
+messages d'erreur , code et autres ... personnalisation, 
+code error standar
+page erreur et exception avec spring ; OptimisticLockException; 
 
 ** spring MVC : interceptor
-** ajouter "Les cookies nous permettent de fournir, protéger et améliorer les services de Facebook. En continuant à utiliser notre site, vous acceptez notre Politique d’utilisation des cookies."
-** voir quelle est la bonnepratique pour les sessions spring security , utiliser ou non ? p492 
-** gestion du sessions du user : partir de lexemplle et s'inspirer de mcdo
-** gestion des messages d'erreur , code et autres ... personnalisation, 
-** gestion page erreur et exception avec spring ; OptimisticLockException; 
+
 
 ** gestion des log : fichier log and console : slf4j + logback
-- Une interface pour rapidement faire une recherche dans les logs
+Une interface pour rapidement faire une recherche dans les logs
 
 ** add envoi de mail :  
 http://www.thymeleaf.org/doc/articles/springmail.html  & Apache Velocity Template & javaMail http://sivalabs.in/2011/05/sending-email-with-attachments-using-javamail/
-
 
 
 ** java doc est présente
@@ -206,6 +218,13 @@ http://www.thymeleaf.org/doc/articles/springmail.html  & Apache Velocity Templat
 ## Spring boot
 - gestion des exclusion spring boot , to only keep needed depndency
 
+### Load Balancing : Répartition de charge ?
+
+### Backup : Sauvegarde DB ?
+
+### serveur cache proxy ? Varnish ?
+
+### dashbord monitoring : like dashing , datadog ...
 
 ## MAVEN 
 ** ientifier les dependences communes et factoriser 

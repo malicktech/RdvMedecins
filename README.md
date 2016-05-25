@@ -33,9 +33,13 @@ Client / serveur -> maven multi-mod  :
 
 [EHCache] JSR-107 (JCache) provider, used for hibernate second level cache
 
-[dropwizard.metrics] Metrics
 
-[Actuator] hEALTH cHECK
+[dropwizard.metrics] Metrics
+[graphite] metric's stockage 
+
+[Actuator] Monitor Health & Audit 
+
+[Hibernate envers] entity auditing
 
 [Elastic Search] search engine
 

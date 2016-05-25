@@ -9,429 +9,476 @@ import org.springframework.web.cors.CorsConfiguration;
  * Properties specific to App.
  *
  * <p>
- *     Properties are configured in the application.properties file.
+ * Properties are configured in the application.properties file.
  * </p>
  */
 @ConfigurationProperties(prefix = "zocdoc", ignoreUnknownFields = false)
 public class AppProperties {
 
-    private final Async async = new Async();
+	private final Async async = new Async();
 
-    private final Http http = new Http();
+	private final Http http = new Http();
 
-    private final Datasource datasource = new Datasource();
+	private final Datasource datasource = new Datasource();
 
-    private final Cache cache = new Cache();
+	private final Cache cache = new Cache();
 
-//    private final Mail mail = new Mail();
+	// private final Mail mail = new Mail();
 
-    private final Security security = new Security();
+	private final Security security = new Security();
 
-//    private final Swagger swagger = new Swagger();
+	// private final Swagger swagger = new Swagger();
 
-//    private final Metrics metrics = new Metrics();
+	private final Metrics metrics = new Metrics();
 
-    private final CorsConfiguration cors = new CorsConfiguration();
+	private final CorsConfiguration cors = new CorsConfiguration();
 
+	private final Logging logging = new Logging();
 
+	public Async getAsync() {
+		return async;
+	}
 
-    public Async getAsync() {
-        return async;
-    }
+	public Http getHttp() {
+		return http;
+	}
 
-    public Http getHttp() {
-        return http;
-    }
+	public Datasource getDatasource() {
+		return datasource;
+	}
 
-    public Datasource getDatasource() {
-        return datasource;
-    }
+	public Cache getCache() {
+		return cache;
+	}
 
-    public Cache getCache() {
-        return cache;
-    }
-    
-//
-//    public Mail getMail() {
-//        return mail;
-//    }
+	//
+	// public Mail getMail() {
+	// return mail;
+	// }
 
-    public Security getSecurity() {
-        return security;
-    }
+	public Security getSecurity() {
+		return security;
+	}
 
-//    public Swagger getSwagger() {
-//        return swagger;
-//    }
-//
-//    public Metrics getMetrics() {
-//        return metrics;
-//    }
+	// public Swagger getSwagger() {
+	// return swagger;
+	// }
+	//
+	public Metrics getMetrics() {
+		return metrics;
+	}
 
-    public CorsConfiguration getCors() {
-        return cors;
-    }
+	public CorsConfiguration getCors() {
+		return cors;
+	}
 
+	public Logging getLogging() {
+		return logging;
+	}
 
-    public static class Async {
+	public static class Async {
 
-        private int corePoolSize = 2;
+		private int corePoolSize = 2;
 
-        private int maxPoolSize = 50;
+		private int maxPoolSize = 50;
 
-        private int queueCapacity = 10000;
+		private int queueCapacity = 10000;
 
-        public int getCorePoolSize() {
-            return corePoolSize;
+		public int getCorePoolSize() {
+			return corePoolSize;
+		}
+
+		public void setCorePoolSize(int corePoolSize) {
+			this.corePoolSize = corePoolSize;
+		}
+
+		public int getMaxPoolSize() {
+			return maxPoolSize;
+		}
+
+		public void setMaxPoolSize(int maxPoolSize) {
+			this.maxPoolSize = maxPoolSize;
+		}
+
+		public int getQueueCapacity() {
+			return queueCapacity;
+		}
+
+		public void setQueueCapacity(int queueCapacity) {
+			this.queueCapacity = queueCapacity;
+		}
+	}
+
+	public static class Http {
+
+		private final Cache cache = new Cache();
+
+		public Cache getCache() {
+			return cache;
+		}
+
+		public static class Cache {
+
+			private int timeToLiveInDays = 31;
+
+			public int getTimeToLiveInDays() {
+				return timeToLiveInDays;
+			}
+
+			public void setTimeToLiveInDays(int timeToLiveInDays) {
+				this.timeToLiveInDays = timeToLiveInDays;
+			}
+		}
+	}
+
+	public static class Datasource {
+
+		private boolean cachePrepStmts = true;
+
+		private int prepStmtCacheSize = 250;
+
+		private int prepStmtCacheSqlLimit = 2048;
+
+		private boolean useServerPrepStmts = true;
+
+		public boolean isCachePrepStmts() {
+			return cachePrepStmts;
+		}
+
+		public void setCachePrepStmts(boolean cachePrepStmts) {
+			this.cachePrepStmts = cachePrepStmts;
+		}
+
+		public int getPrepStmtCacheSize() {
+			return prepStmtCacheSize;
+		}
+
+		public void setPrepStmtCacheSize(int prepStmtCacheSize) {
+			this.prepStmtCacheSize = prepStmtCacheSize;
+		}
+
+		public int getPrepStmtCacheSqlLimit() {
+			return prepStmtCacheSqlLimit;
+		}
+
+		public void setPrepStmtCacheSqlLimit(int prepStmtCacheSqlLimit) {
+			this.prepStmtCacheSqlLimit = prepStmtCacheSqlLimit;
+		}
+
+		public boolean isUseServerPrepStmts() {
+			return useServerPrepStmts;
+		}
+
+		public void setUseServerPrepStmts(boolean useServerPrepStmts) {
+			this.useServerPrepStmts = useServerPrepStmts;
+		}
+	}
+
+	public static class Cache {
+
+		private int timeToLiveSeconds = 3600;
+
+		private final Ehcache ehcache = new Ehcache();
+
+		public int getTimeToLiveSeconds() {
+			return timeToLiveSeconds;
+		}
+
+		public void setTimeToLiveSeconds(int timeToLiveSeconds) {
+			this.timeToLiveSeconds = timeToLiveSeconds;
+		}
+
+		public Ehcache getEhcache() {
+			return ehcache;
+		}
+
+		public static class Ehcache {
+
+			private String maxBytesLocalHeap = "16M";
+
+			public String getMaxBytesLocalHeap() {
+				return maxBytesLocalHeap;
+			}
+
+			public void setMaxBytesLocalHeap(String maxBytesLocalHeap) {
+				this.maxBytesLocalHeap = maxBytesLocalHeap;
+			}
+		}
+	}
+
+	/*
+	 * public static class Mail {
+	 * 
+	 * private String from = "jhipsterbank@localhost";
+	 * 
+	 * public String getFrom() { return from; }
+	 * 
+	 * public void setFrom(String from) { this.from = from; } }
+	 */
+
+	public static class Security {
+
+		private final Rememberme rememberme = new Rememberme();
+
+		public Rememberme getRememberme() {
+			return rememberme;
+		}
+
+		public static class Rememberme {
+
+			@NotNull
+			private String key;
+
+			public String getKey() {
+				return key;
+			}
+
+			public void setKey(String key) {
+				this.key = key;
+			}
+		}
+	}
+
+	/*
+	 * public static class Swagger {
+	 * 
+	 * private String title = "jhipsterbank API";
+	 * 
+	 * private String description = "jhipsterbank API documentation";
+	 * 
+	 * private String version = "0.0.1";
+	 * 
+	 * private String termsOfServiceUrl;
+	 * 
+	 * private String contact;
+	 * 
+	 * private String license;
+	 * 
+	 * private String licenseUrl;
+	 * 
+	 * public String getTitle() { return title; }
+	 * 
+	 * public void setTitle(String title) { this.title = title; }
+	 * 
+	 * public String getDescription() { return description; }
+	 * 
+	 * public void setDescription(String description) { this.description =
+	 * description; }
+	 * 
+	 * public String getVersion() { return version; }
+	 * 
+	 * public void setVersion(String version) { this.version = version; }
+	 * 
+	 * public String getTermsOfServiceUrl() { return termsOfServiceUrl; }
+	 * 
+	 * public void setTermsOfServiceUrl(String termsOfServiceUrl) {
+	 * this.termsOfServiceUrl = termsOfServiceUrl; }
+	 * 
+	 * public String getContact() { return contact; }
+	 * 
+	 * public void setContact(String contact) { this.contact = contact; }
+	 * 
+	 * public String getLicense() { return license; }
+	 * 
+	 * public void setLicense(String license) { this.license = license; }
+	 * 
+	 * public String getLicenseUrl() { return licenseUrl; }
+	 * 
+	 * public void setLicenseUrl(String licenseUrl) { this.licenseUrl =
+	 * licenseUrl; } }
+	 */
+
+	public static class Metrics {
+
+		private final Jmx jmx = new Jmx();
+
+		private final Spark spark = new Spark();
+
+		private final Graphite graphite = new Graphite();
+		
+        private final Logs logs = new Logs();
+
+		public Jmx getJmx() {
+			return jmx;
+		}
+
+		public Spark getSpark() {
+			return spark;
+		}
+
+		public Graphite getGraphite() {
+			return graphite;
+		}
+		
+		public Logs getLogs() {
+            return logs;
         }
 
-        public void setCorePoolSize(int corePoolSize) {
-            this.corePoolSize = corePoolSize;
-        }
+		public static class Jmx {
 
-        public int getMaxPoolSize() {
-            return maxPoolSize;
-        }
+			private boolean enabled = true;
 
-        public void setMaxPoolSize(int maxPoolSize) {
-            this.maxPoolSize = maxPoolSize;
-        }
+			public boolean isEnabled() {
+				return enabled;
+			}
 
-        public int getQueueCapacity() {
-            return queueCapacity;
-        }
+			public void setEnabled(boolean enabled) {
+				this.enabled = enabled;
+			}
+		}
 
-        public void setQueueCapacity(int queueCapacity) {
-            this.queueCapacity = queueCapacity;
-        }
-    }
+		public static class Spark {
 
- 
-    
-    public static class Http {
+			private boolean enabled = false;
 
-        private final Cache cache = new Cache();
+			private String host = "localhost";
 
-        public Cache getCache() {
-            return cache;
-        }
+			private int port = 9999;
 
-        public static class Cache {
+			public boolean isEnabled() {
+				return enabled;
+			}
 
-            private int timeToLiveInDays = 31;
+			public void setEnabled(boolean enabled) {
+				this.enabled = enabled;
+			}
 
-            public int getTimeToLiveInDays() {
-                return timeToLiveInDays;
-            }
+			public String getHost() {
+				return host;
+			}
 
-            public void setTimeToLiveInDays(int timeToLiveInDays) {
-                this.timeToLiveInDays = timeToLiveInDays;
-            }
-        }
-    }
-     
-    
-    
-    public static class Datasource {
+			public void setHost(String host) {
+				this.host = host;
+			}
 
-        private boolean cachePrepStmts = true;
+			public int getPort() {
+				return port;
+			}
 
-        private int prepStmtCacheSize = 250;
+			public void setPort(int port) {
+				this.port = port;
+			}
+		}
 
-        private int prepStmtCacheSqlLimit = 2048;
+		public static class Graphite {
 
-        private boolean useServerPrepStmts = true;
+			private boolean enabled = false;
 
-        public boolean isCachePrepStmts() {
-            return cachePrepStmts;
-        }
+			private String host = "localhost";
 
-        public void setCachePrepStmts(boolean cachePrepStmts) {
-            this.cachePrepStmts = cachePrepStmts;
-        }
+			private int port = 2003;
 
-        public int getPrepStmtCacheSize() {
-            return prepStmtCacheSize;
-        }
+			private String prefix = "jhipsterbank";
 
-        public void setPrepStmtCacheSize(int prepStmtCacheSize) {
-            this.prepStmtCacheSize = prepStmtCacheSize;
-        }
+			public boolean isEnabled() {
+				return enabled;
+			}
 
-        public int getPrepStmtCacheSqlLimit() {
-            return prepStmtCacheSqlLimit;
-        }
+			public void setEnabled(boolean enabled) {
+				this.enabled = enabled;
+			}
 
-        public void setPrepStmtCacheSqlLimit(int prepStmtCacheSqlLimit) {
-            this.prepStmtCacheSqlLimit = prepStmtCacheSqlLimit;
-        }
+			public String getHost() {
+				return host;
+			}
 
-        public boolean isUseServerPrepStmts() {
-            return useServerPrepStmts;
-        }
+			public void setHost(String host) {
+				this.host = host;
+			}
 
-        public void setUseServerPrepStmts(boolean useServerPrepStmts) {
-            this.useServerPrepStmts = useServerPrepStmts;
-        }
-    }
+			public int getPort() {
+				return port;
+			}
 
-    
-    public static class Cache {
+			public void setPort(int port) {
+				this.port = port;
+			}
 
-        private int timeToLiveSeconds = 3600;
+			public String getPrefix() {
+				return prefix;
+			}
 
-        private final Ehcache ehcache = new Ehcache();
+			public void setPrefix(String prefix) {
+				this.prefix = prefix;
+			}
+		}
 
-        public int getTimeToLiveSeconds() {
-            return timeToLiveSeconds;
-        }
+		public static class Logs {
 
-        public void setTimeToLiveSeconds(int timeToLiveSeconds) {
-            this.timeToLiveSeconds = timeToLiveSeconds;
-        }
+			private boolean enabled = false;
 
-        public Ehcache getEhcache() {
-            return ehcache;
-        }
+			private long reportFrequency = 60;
 
-        public static class Ehcache {
+			public long getReportFrequency() {
+				return reportFrequency;
+			}
 
-            private String maxBytesLocalHeap = "16M";
+			public void setReportFrequency(int reportFrequency) {
+				this.reportFrequency = reportFrequency;
+			}
 
-            public String getMaxBytesLocalHeap() {
-                return maxBytesLocalHeap;
-            }
+			public boolean isEnabled() {
+				return enabled;
+			}
 
-            public void setMaxBytesLocalHeap(String maxBytesLocalHeap) {
-                this.maxBytesLocalHeap = maxBytesLocalHeap;
-            }
-        }
-    }
+			public void setEnabled(boolean enabled) {
+				this.enabled = enabled;
+			}
+		}
 
-    
-    /*
-    public static class Mail {
+	}
 
-        private String from = "jhipsterbank@localhost";
+	public static class Logging {
 
-        public String getFrom() {
-            return from;
-        }
+		private final Logstash logstash = new Logstash();
 
-        public void setFrom(String from) {
-            this.from = from;
-        }
-    }
-     */
-    
-    public static class Security {
+		public Logstash getLogstash() {
+			return logstash;
+		}
 
-        private final Rememberme rememberme = new Rememberme();
+		public static class Logstash {
 
-        public Rememberme getRememberme() {
-            return rememberme;
-        }
+			private boolean enabled = false;
 
-        public static class Rememberme {
+			private String host = "localhost";
 
-            @NotNull
-            private String key;
+			private int port = 5000;
 
-            public String getKey() {
-                return key;
-            }
+			private int queueSize = 512;
 
-            public void setKey(String key) {
-                this.key = key;
-            }
-        }
-    }
+			public boolean isEnabled() {
+				return enabled;
+			}
 
-    /*
-    public static class Swagger {
+			public void setEnabled(boolean enabled) {
+				this.enabled = enabled;
+			}
 
-        private String title = "jhipsterbank API";
+			public String getHost() {
+				return host;
+			}
 
-        private String description = "jhipsterbank API documentation";
+			public void setHost(String host) {
+				this.host = host;
+			}
 
-        private String version = "0.0.1";
+			public int getPort() {
+				return port;
+			}
 
-        private String termsOfServiceUrl;
+			public void setPort(int port) {
+				this.port = port;
+			}
 
-        private String contact;
+			public int getQueueSize() {
+				return queueSize;
+			}
 
-        private String license;
+			public void setQueueSize(int queueSize) {
+				this.queueSize = queueSize;
+			}
+		}
 
-        private String licenseUrl;
+	}
 
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        public String getVersion() {
-            return version;
-        }
-
-        public void setVersion(String version) {
-            this.version = version;
-        }
-
-        public String getTermsOfServiceUrl() {
-            return termsOfServiceUrl;
-        }
-
-        public void setTermsOfServiceUrl(String termsOfServiceUrl) {
-            this.termsOfServiceUrl = termsOfServiceUrl;
-        }
-
-        public String getContact() {
-            return contact;
-        }
-
-        public void setContact(String contact) {
-            this.contact = contact;
-        }
-
-        public String getLicense() {
-            return license;
-        }
-
-        public void setLicense(String license) {
-            this.license = license;
-        }
-
-        public String getLicenseUrl() {
-            return licenseUrl;
-        }
-
-        public void setLicenseUrl(String licenseUrl) {
-            this.licenseUrl = licenseUrl;
-        }
-    }
-	*/
-    
-    /*
-    public static class Metrics {
-
-        private final Jmx jmx = new Jmx();
-
-        private final Spark spark = new Spark();
-
-        private final Graphite graphite = new Graphite();
-
-        public Jmx getJmx() {
-            return jmx;
-        }
-
-        public Spark getSpark() {
-            return spark;
-        }
-
-        public Graphite getGraphite() {
-            return graphite;
-        }
-
-        public static class Jmx {
-
-            private boolean enabled = true;
-
-            public boolean isEnabled() {
-                return enabled;
-            }
-
-            public void setEnabled(boolean enabled) {
-                this.enabled = enabled;
-            }
-        }
-
-        public static class Spark {
-
-            private boolean enabled = false;
-
-            private String host = "localhost";
-
-            private int port = 9999;
-
-            public boolean isEnabled() {
-                return enabled;
-            }
-
-            public void setEnabled(boolean enabled) {
-                this.enabled = enabled;
-            }
-
-            public String getHost() {
-                return host;
-            }
-
-            public void setHost(String host) {
-                this.host = host;
-            }
-
-            public int getPort() {
-                return port;
-            }
-
-            public void setPort(int port) {
-                this.port = port;
-            }
-        }
-
-        public static class Graphite {
-
-            private boolean enabled = false;
-
-            private String host = "localhost";
-
-            private int port = 2003;
-
-            private String prefix = "jhipsterbank";
-
-            public boolean isEnabled() {
-                return enabled;
-            }
-
-            public void setEnabled(boolean enabled) {
-                this.enabled = enabled;
-            }
-
-            public String getHost() {
-                return host;
-            }
-
-            public void setHost(String host) {
-                this.host = host;
-            }
-
-            public int getPort() {
-                return port;
-            }
-
-            public void setPort(int port) {
-                this.port = port;
-            }
-
-            public String getPrefix() {
-                return prefix;
-            }
-
-            public void setPrefix(String prefix) {
-                this.prefix = prefix;
-            }
-        }
-        
-    }
-    */
 }

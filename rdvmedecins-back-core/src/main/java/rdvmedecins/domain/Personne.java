@@ -1,6 +1,5 @@
 package rdvmedecins.domain;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -14,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.TableGenerator;
-import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -26,7 +24,7 @@ import rdvmedecins.validator.Past310;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Personne extends AbstractAuditingEntity  implements Serializable {
+public abstract class Personne extends AbstractAuditingEntity {
 	
 	/*
 	 * Serial Version UID
