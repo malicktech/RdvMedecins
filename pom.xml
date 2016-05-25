@@ -51,6 +51,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+		<metrics-spark-reporter.version>1.2</metrics-spark-reporter.version>
+		<metrics-spring.version>3.1.2</metrics-spring.version>
+
 		<commons-io.version>2.4</commons-io.version>
 		<commons-lang.version>2.6</commons-lang.version>
 		<javax.inject.version>1</javax.inject.version>
@@ -61,7 +64,7 @@
 		<liquibase-slf4j.version>1.2.1</liquibase-slf4j.version>
 		<liquibase-hibernate4.version>3.5</liquibase-hibernate4.version>
 
-        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
 
 		<assertj-core.version>3.1.0</assertj-core.version>
 		<maven-enforcer-plugin.version>1.3.1</maven-enforcer-plugin.version>
@@ -250,7 +253,7 @@
 			<version>${jackson.version}</version>
 		</dependency>
 
-		<!-- DROPWIZARD Metrics -->
+		<!-- DROPWIZARD Metrics | Metrics library of DropWizard (see http://mvnrepository.com/artifact/io.dropwizard.metrics) -->
 		<dependency>
 			<groupId>io.dropwizard.metrics</groupId>
 			<artifactId>metrics-core</artifactId>
@@ -296,6 +299,36 @@
 				<exclusion>
 					<artifactId>metrics-healthchecks</artifactId>
 					<groupId>io.dropwizard.metrics</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- reporting -->
+		<!-- Metrics SPARK Reporter | A Dropwizard Metrics reporter for Apache 
+			Spark which announces measurements to a Spark Streaming application. -->
+		<dependency>
+			<groupId>fr.ippon.spark.metrics</groupId>
+			<artifactId>metrics-spark-reporter</artifactId>
+			<version>${metrics-spark-reporter.version}</version>
+		</dependency>
+		<!-- Metrics Spring Integration | Spring integration for Coda Hale's Metrics 
+			Library -->
+		<dependency>
+			<groupId>com.ryantenney.metrics</groupId>
+			<artifactId>metrics-spring</artifactId>
+			<version>${metrics-spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.codahale.metrics</groupId>
+					<artifactId>metrics-annotation</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.codahale.metrics</groupId>
+					<artifactId>metrics-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.codahale.metrics</groupId>
+					<artifactId>metrics-healthchecks</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
