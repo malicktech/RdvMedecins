@@ -30,22 +30,22 @@
 							<input type="hidden" th:field="*{id}" />
 							<input type="hidden" th:field="*{version}" />
 
-							<div class="form-group" th:classappend="${#fields.hasErrors('titre')} ?: 'has-error'">
-								<input type="text" th:field="*{titre}" class="form-control"
+							<div class="form-group" th:classappend="${#fields.hasErrors('civility')} ?: 'has-error'">
+								<input type="text" th:field="*{civility}" class="form-control"
 									placeholder="Client Name" />
-								<p class="text-danger" th:if="${#fields.hasErrors('titre')}" th:errors="*{titre}">type
+								<p class="text-danger" th:if="${#fields.hasErrors('civility')}" th:errors="*{civility}">type
 									error</p>
 							</div>
-							<div class="form-group" th:classappend="${#fields.hasErrors('nom')} ?: 'has-error'">
-								<input type="text" th:field="*{prenom}" class="form-control"
-									placeholder="Client Prenom" />
-								<p class="text-danger" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">name
+							<div class="form-group" th:classappend="${#fields.hasErrors('lastName')} ?: 'has-error'">
+								<input type="text" th:field="*{lastName}" class="form-control"
+									placeholder="Client lastName" />
+								<p class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">name
 									error</p>
 							</div>
-							<div class="form-group" th:classappend="${#fields.hasErrors('prenom')} ?: 'has-error'">
-								<input type="text" th:field="*{nom}" class="form-control" placeholder="Client Nom" />
-								<p class="text-danger" th:if="${#fields.hasErrors('prenom')}"
-									th:errors="*{prenom}">name error</p>
+							<div class="form-group" th:classappend="${#fields.hasErrors('firstName')} ?: 'has-error'">
+								<input type="text" th:field="*{firstName}" class="form-control" placeholder="Client firstName" />
+								<p class="text-danger" th:if="${#fields.hasErrors('firstName')}"
+									th:errors="*{firstName}">name error</p>
 							</div>
 							<input type="submit" class="btn btn-danger pull-right" value="Update" />
 						</form>

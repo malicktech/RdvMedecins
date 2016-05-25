@@ -38,23 +38,23 @@
 							<input type="text" hidden="hidden" th:value="*{id}" th:field="*{id}" />
 							<input type="text" hidden="hidden" th:value="*{version}" th:field="*{version}" />
 							
-							<div class="form-group" th:classappend="${#fields.hasErrors('titre')} ?: 'has-error'" >
-								<label th:text="#{medecin.list.titre.label}">Titre</label>
-								<input type="text" class="form-control" th:value="*{titre}" th:field="*{titre}" th:errorclass="has-error"></input>
-								<p class="text-danger" th:if="${#fields.hasErrors('titre')}" th:errors="*{titre}">type
+							<div class="form-group" th:classappend="${#fields.hasErrors('civility')} ?: 'has-error'" >
+								<label th:text="#{medecin.list.civility.label}">Titre</label>
+								<input type="text" class="form-control" th:value="*{civility}" th:field="*{civility}" th:errorclass="has-error"></input>
+								<p class="text-danger" th:if="${#fields.hasErrors('civility')}" th:errors="*{civility}">type
 									error</p>
 							</div>
-							<div class="form-group" th:classappend="${#fields.hasErrors('nom')} ?: 'has-error'" >
+							<div class="form-group" th:classappend="${#fields.hasErrors('lastName')} ?: 'has-error'" >
 								<label th:text="#{medecin.list.nom.label}">Nom</label>
-								<input type="text" class="form-control" th:value="*{nom}" th:field="*{nom}"></input>
-								<p class="text-danger" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">name
+								<input type="text" class="form-control" th:value="*{lastName}" th:field="*{lastName}"></input>
+								<p class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">name
 									error</p>
 							</div>
-							<div class="form-group" th:classappend="${#fields.hasErrors('prenom')} ?: 'has-error'" >
+							<div class="form-group" th:classappend="${#fields.hasErrors('firstName')} ?: 'has-error'" >
 								<label th:text="#{medecin.list.prenom.label}">Prénom</label>
-								<input type="text" class="form-control" th:value="*{prenom}" th:field="*{prenom}"></input>
-								<p class="text-danger" th:if="${#fields.hasErrors('prenom')}"
-									th:errors="*{prenom}">firtsname error</p>
+								<input type="text" class="form-control" th:value="*{firstName}" th:field="*{firstName}"></input>
+								<p class="text-danger" th:if="${#fields.hasErrors('firstName')}"
+									th:errors="*{firstName}">firtsname error</p>
 							</div>
 							<div class="form-group pull-right">
 								<input type="submit" class="btn btn-primary" th:value="#{button.action.update}" />

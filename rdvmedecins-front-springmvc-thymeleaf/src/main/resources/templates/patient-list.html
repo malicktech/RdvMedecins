@@ -54,9 +54,9 @@
 									</tr>
 									<tr th:each="client : ${allClients}">
 										<td th:text="${client.id}"></td>
-										<td th:text="${client.titre}"></td>
-										<td th:text="${client.nom}"></td>
-										<td th:text="${client.prenom}"></td>
+										<td th:text="${client.civility}"></td>
+										<td th:text="${client.firstName}"></td>
+										<td th:text="${client.lastName}"></td>
 										<td th:text="${client.version}"></td>
 										<td align="center">
 											<a th:href="@{#}">

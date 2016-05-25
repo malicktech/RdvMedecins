@@ -57,9 +57,9 @@
 									<tr th:each="medecin : ${medecins}">
 										<td th:text="${medecin.id}"></td>
 										<td th:text="${medecin.version}"></td>
-										<td th:text="${medecin.titre}"></td>
-										<td th:text="${medecin.nom}"></td>
-										<td th:text="${medecin.prenom}"></td>
+										<td th:text="${medecin.civility}"></td>
+										<td th:text="${medecin.lastName}"></td>
+										<td th:text="${medecin.firstName}"></td>
 										<td align="center" >
 											<a th:href="@{/admin/medecins/edit/{id}(id=${medecin.id})}"><button
 													type="button" class="btn btn-default btn-xs">
@@ -102,7 +102,7 @@
 									<th class="col-sm-1"></th>
 									<th class="col-sm-4" th:text="#{medecin.list.titre.label}">titre</th>
 									<th class="col-sm-4" th:text="#{medecin.list.nom.label}">Nom</th>
-									<th class="col-sm-4" th:text="#{medecin.list.nom.label}">PreNom</th>
+									<th class="col-sm-4" th:text="#{medecin.list.prenom.label}">PreNom</th>
 									<th class="col-sm-2" th:text="#{medecin.list.actions.label}">Action</th>
 								</tr>
 							</thead>
@@ -112,13 +112,13 @@
 										<input type="text" hidden="hidden" th:field="*{id}"></input>
 									</td>
 									<td>
-										<input class="form-control" type="text" th:field="*{titre}" placeholder="Type"></input>
+										<input class="form-control" type="text" th:field="*{civility}" placeholder="Type"></input>
 									</td>
 									<td>
-										<input class="form-control" type="text" th:field="*{nom}" placeholder="Name"></input>
+										<input class="form-control" type="text" th:field="*{lastName}" placeholder="Name"></input>
 									</td>
 									<td>
-										<input class="form-control" type="text" th:field="*{prenom}" placeholder="Prenm"></input>
+										<input class="form-control" type="text" th:field="*{firstName}" placeholder="Prenm"></input>
 									</td>
 									<td>
 										<button type="submit" class="btn btn-primary"
