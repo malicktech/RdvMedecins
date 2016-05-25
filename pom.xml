@@ -53,6 +53,7 @@
 
 		<metrics-spark-reporter.version>1.2</metrics-spark-reporter.version>
 		<metrics-spring.version>3.1.2</metrics-spring.version>
+		<logstash-logback-encoder.version>4.6</logstash-logback-encoder.version>
 
 		<commons-io.version>2.4</commons-io.version>
 		<commons-lang.version>2.6</commons-lang.version>
@@ -329,6 +330,27 @@
 				<exclusion>
 					<groupId>com.codahale.metrics</groupId>
 					<artifactId>metrics-healthchecks</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Logstash Logback Encoder | log messages in JSON by Logback | which 
+			will output events as Logstash-compatible JSON -->
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>${logstash-logback-encoder.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-classic</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-access</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
