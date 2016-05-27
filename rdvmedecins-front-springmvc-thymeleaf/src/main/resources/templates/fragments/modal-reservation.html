@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+	<!-- ============================================================================ -->
+	<!-- Modal - Delete Confirmat dialog  -->
+	<!-- ============================================================================ -->
+
+	<th:block th:fragment="modal-Reservation">
+	
+		<div class="modal fade" id="modalReservation" tabindex="-1" role="dialog"
+			aria-labelledby="modalReservation" aria-hidden="true">
+
+			<div class="modal-dialog">
+
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="modalReservation">Select client and confirm
+							reservation</h4>
+					</div>
+
+					<form action="#" th:action="@{/admin/medecins/{idMedecin}/rv/add (idMedecin=${medecin.id}) }" th:object="${addRvDto}"
+						method="post">
+
+						<div class="modal-body">
+							<p>Select Client ?</p>
+
+
+							<input type="text" hidden="hidden" th:field="*{jour}" />
+							<input type="text" hidden="hidden" th:field="*{idCreneau}" />
+
+							<div class="form-group">
+								<select th:field="*{idClient}">
+									<option th:each="client : ${clients}" th:value="${client.id}"
+										th:text="${client.civility + '&nbsp;' + client.firstName + '&nbsp;' + client.lastName}">Wireframe</option>
+								</select>
+							</div>
+
+
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+							<!-- <button type="button" class="btn btn-success" id="confirmButton">Delete</button>  -->
+							<button type="submit" class="btn btn-success">Book</button>
+						</div>
+
+					</form>
+
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+
+	</th:block>
+
+</body>
+</html>

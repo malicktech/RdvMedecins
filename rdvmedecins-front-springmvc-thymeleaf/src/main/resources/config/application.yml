@@ -19,9 +19,9 @@ spring:
         name: zocdoc
     jpa:
         open-in-view: false # Register OpenEntityManagerInViewInterceptor. Binds a JPA EntityManager to the thread for the entire processing of the request.
-        generate-ddl: false # Initialize the schema on startup, not used if Hibernate autoconfig is active. see (http://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html)            
+        generate-ddl: false # (false)Initialize the schema on startup, not used if Hibernate autoconfig is active. see (http://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html)            
         hibernate:
-            ddl-auto: none # DDL mode (none, validate, update, create, create-drop), shortcut for the "hibernate.hbm2ddl.auto" property.
+            ddl-auto: update # (none) DDL mode (none, validate, update, create, create-drop), shortcut for the "hibernate.hbm2ddl.auto" property.
             naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy # change the name from camel to _ format
     messages:
         basename: classpath:/i18n/messages

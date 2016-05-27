@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import rdvmedecins.domain.Client;
+import rdvmedecins.domain.UserClient;
 import rdvmedecins.service.ClientService;
 
 /**
@@ -65,9 +65,9 @@ public class ClientController {
      */
 	@RequestMapping(value = { "/", "index", "/list", "/savepage" }, method = RequestMethod.GET)
 	public String savePage(Model model, Locale locale, HttpServletRequest request) {
-		model.addAttribute("client", new Client());
+		model.addAttribute("client", new UserClient());
 		
-		List<Client> clients = clientService.getAllClients();
+		List<UserClient> clients = clientService.getAllClients();
 		model.addAttribute("allClients", clients);
 			
 		// TODO to delete for test
@@ -113,7 +113,7 @@ public class ClientController {
      * POST  /admin/medecins/save -> Create a new Patient
      */
 	@RequestMapping(value = { "/save" }, method = RequestMethod.POST)
-	public String saveClient(@ModelAttribute("client") @Valid Client client, BindingResult bindingResult,
+	public String saveClient(@ModelAttribute("client") @Valid UserClient client, BindingResult bindingResult,
 			final RedirectAttributes redirectAttributes, Model model, Locale locale) {
 		logger.info("POST -> /clients/save/ -> : " + client.toString() );
 
@@ -122,7 +122,7 @@ public class ClientController {
 			model.addAttribute("isRegisterModalShowOnLoad", true);
 			return CLIENT_LIST_VIEW_NAME;
 		}
-		Client registeredClient = clientService.createClient(client);
+		UserClient registeredClient = clientService.createClient(client);
 		if ( registeredClient != null) {			
 			String message = "Patient " + registeredClient.getId() + messageSource.getMessage("allert.message.action.add.result.success", null, locale);
 			redirectAttributes.addFlashAttribute("message", message);
@@ -149,7 +149,7 @@ public class ClientController {
 				redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 			}
 		} else if (operation.equals("edit")) {
-			Client editClient = clientService.findOneClient(id);
+			UserClient editClient = clientService.findOneClient(id);
 			if (editClient != null) {
 				model.addAttribute("editClient", editClient);
 				return CLIENT_EDIT_VIEW_NAME;
@@ -164,7 +164,7 @@ public class ClientController {
      * POST  /update -> Updates an existing Patient.
      */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateClient(@ModelAttribute("client") @Valid Client client, BindingResult bindingResult,
+	public String updateClient(@ModelAttribute("client") @Valid UserClient client, BindingResult bindingResult,
 			final RedirectAttributes redirectAttributes, Model model, Locale locale) {
 		
 		logger.info(client.toString());
@@ -172,7 +172,7 @@ public class ClientController {
 		if (bindingResult.hasErrors()) {
 			return CLIENT_EDIT_VIEW_NAME;
 		}
-		Client editedClient = clientService.updateClient(client);
+		UserClient editedClient = clientService.updateClient(client);
 		if ( editedClient != null) {
 			String message = "Patient " + editedClient.getId() + messageSource.getMessage("allert.message.action.edit.result.success", null, locale);
 			redirectAttributes.addFlashAttribute("message", message);
