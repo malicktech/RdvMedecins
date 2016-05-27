@@ -124,27 +124,19 @@ define this in abstract entity
 ## Back - ADMIN FRONT 
 make design like jsipster siteweb, : comme 
 i18n error message login page
-localize client side validation messages
 * i18n, internationalisation
 error page :  404
-transform date to localdate and use AttributeConverter
-extraire la page login ans une page d'authenticatin à part avec desing perso
 add appli monitor in backend, accee rest templet a l'api rest
 chek client validation side in detail
 	ORDRE dans l'affichage DES ERREURs FORMULARIE
-virer lescomposant bootstrap externe et use les natif inclu dans bootstrap : modal, select etc ...
+    localize client side validation messages
 use html5 and valider le format html avec : validator W3C
 datatables i18n
-** netoyer les page unitile
-factorise form register client and medecins, form edit ad register
-centraliser tous les lien url path dans un fichier enum, y accéder depuis les controlleur et les vue thymeleaf
-correct responsive design
 ** minifier css and js
 ** widget avec jauge du nbre rv 
 
 ## security 
 secure technique service (web service) : authentification de type BASIC
-secure user access : html form , login/password
 
 ## Front - client console
 extraire la page login ans une page d'authenticatin à part avec desing perso

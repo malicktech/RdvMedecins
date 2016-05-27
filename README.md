@@ -1,9 +1,12 @@
 # RdvMedecins
+Application de prise de rendez-vous pour un cabinet medical.
 
 ## Learning project
-Projet d'étude dans le cadre de mon cursus à l'UTBM
-Application de prise de rendez-vous pour un cabinet medical. 
+Projet d'étude réalisé dans le cadre de mon cursus à l'UTBM
+Que je continue de faire évoluer pour tester des techno 
 
+### TODO 
+improve it like the zocdoc.com app
 
 ### Architecture
 Client / serveur -> maven multi-mod  :
@@ -18,34 +21,19 @@ Client / serveur -> maven multi-mod  :
 ### Stack Technique
 
 * [Spring Boot] [Spring Data] [Spring Security] [Spring MVC];
-* [Actuator]
-* [JUnit 4] et assert j : TU
-*  
+* [Spring Test] [JUnit 4] [assert j] : TU
 * [Mysql] - Pour le SGBD
 * [Angular ou JSF] - pour le front
-
-
-[HikariCP] Pool de connection JDBC
-
-[Hibernate Envers] Audit et Suivi de version des entités / tracer les modifications sur les objets métiers
-
-[liquibase] database schema versioning and upgrades 
-
-[EHCache] JSR-107 (JCache) provider, used for hibernate second level cache
-
-
-[dropwizard.metrics] Metrics
-[graphite] metric's stockage 
-
-[Actuator] Monitor Health & Audit 
-
-[Hibernate envers] entity auditing
-
-[Elastic Search] search engine
-
-[snakeyml] configuration expressed in YAML syntax, in a hierarchical format. YAML support is specific to Spring Boot
-
-[Spring DevTools] set of tools to improve productivity : provide additional development-time features : livereload and Automatic restart
+* [HikariCP] Pool de connection JDBC
+* [EHCache] JSR-107 (JCache) provider, used for hibernate second level cache
+* [Hibernate Envers] entity auditing, Audit et Suivi de version des entités / tracer les modifications sur les objets métiers
+* [liquibase] database schema versioning and upgrades 
+* [dropwizard.metrics] Metrics
+* [graphite] metric's stockage 
+* [Actuator] Monitor Health & Audit 
+* [Elastic Search] search engine
+* [snakeyml] configuration expressed in YAML syntax (support is specific to Spring Boot) format.
+* [Spring DevTools] set of tools to improve productivity : provide additional development-time features : livereload and Automatic restart
 
 ### Outils utilisés
 
@@ -59,7 +47,7 @@ Client / serveur -> maven multi-mod  :
 ### Features
 
 - l'utilisateur s'inscrit
-- l'utilisateur se connecte et peut ensuite choisir le médecin avec lequel il veut un rendez-vous et le jour de celui-ci 
+- l'utilisateur se connecte
 - il peut voir l'agenda du médecin choisi pour le jour choisi ;
 - une fois obtenu l'agenda du médecin, on peut réserver un créneau
 - Une fois le rendez-vous validé, il est ramené automatiquement à l'agenda où le nouveau rendez-vous est désormais inscrit. 
@@ -67,24 +55,6 @@ Client / serveur -> maven multi-mod  :
 
 - internationalization i18n  : FR & EN
 
-###  Database - data modele
 
-Les rendez-vous sont gérés par les tables suivantes :
-• [medecins] : contient la liste des médecins du cabinet ;
-• [clients] : contient la liste des patienst du cabinet ;
-• [creneaux] : contient les créneaux horaires de chacun des médecins ;
-• [rv] : contient la liste des rendez-vous des médecins.
-• Les tables [roles], [users] et [users_roles] sont des tables liées à l'authentification. 
-
-Les relations entre les tables gérant les rendez-vous sont les suivantes :
-
-• un créneau horaire appartient à un médecin – un médecin a 0 ou plusieurs créneaux horaires : 1:p bidirectionellle
-• un rendez-vous réunit à la fois un client et un médecin via un créneau horaire de ce dernier ;
-• un client a 0 ou plusieurs rendez-vous : 1:p bidirectionellle
-• à un créneau horaire est associé 0 ou plusieurs rendez-vous (à des jours différents)
-
- contrainte d'unicité sur les valeurs des colonnes jointes (JOUR, ID_CRENEAU) de la table rv, pour empêcher que que deux RV ont été pris au même moment pour le même médecin
-
-[schemas workbench]
 
 	

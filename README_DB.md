@@ -2,9 +2,10 @@
 
 doctors (This table will have details about the doctor)
 patients (This table will have details about the patient)
-specialization (It defines the specialization of a doctor eg. Dentist, Dermatologist etc.)
-appointment_schedule (Doctor will create an appointment schedule)
-
+specialization (It defines the specialization of a doctor eg. Dentist etc.)
+TimeSlots (timeslot fo doctor)
+appointment_schedule (Doctor will create an appointment schedule from his timeslot)
+Appointments
 
 ## link : 
 http://stackoverflow.com/questions/25563459/db-schema-for-appointment-booking-app-what-is-the-correct-relationship-between
@@ -39,3 +40,24 @@ http://stackoverflow.com/questions/16669197/doctor-scheduling-database-design
  http://dba.stackexchange.com/questions/68876/optimal-table-design-for-a-medical-center-rental-service-and-recurrent-shifts
 
  http://forums.mcapoint.com/Thread-MySQL-Doctors-appointment-management-system-Database-Schema-Structuret5
+
+
+ ###  Database - data modele
+
+Les rendez-vous sont gérés par les tables suivantes :
+• [medecins] : contient la liste des médecins du cabinet ;
+• [clients] : contient la liste des patienst du cabinet ;
+• [creneaux] : contient les créneaux horaires de chacun des médecins ;
+• [rv] : contient la liste des rendez-vous des médecins.
+• Les tables [roles], [users] et [users_roles] sont des tables liées à l'authentification. 
+
+Les relations entre les tables gérant les rendez-vous sont les suivantes :
+
+• un créneau horaire appartient à un médecin – un médecin a 0 ou plusieurs créneaux horaires : 1:p bidirectionellle
+• un rendez-vous réunit à la fois un client et un médecin via un créneau horaire de ce dernier ;
+• un client a 0 ou plusieurs rendez-vous : 1:p bidirectionellle
+• à un créneau horaire est associé 0 ou plusieurs rendez-vous (à des jours différents)
+
+ contrainte d'unicité sur les valeurs des colonnes jointes (JOUR, ID_CRENEAU) de la table rv, pour empêcher que que deux RV ont été pris au même moment pour le même médecin
+
+[schemas workbench]

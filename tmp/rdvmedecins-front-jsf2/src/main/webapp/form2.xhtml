@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+  <body>
+    <h2><h:outputText value="#{form.form2Titre}"/></h2>
+    <h:commandButton value="#{msg['form2.accueil']}" action="#{form.accueil}" />
+    <h:dataTable value="#{form.agendaMedecinJour.creneauxMedecinJour}" var="creneauMedecinJour" headerClass="reservationsHeaders" columnClasses="creneau,client,action">
+      <h:column>  
+        <f:facet name="header">  
+          <h:outputText value="#{msg['form2.creneauHoraire']}"/> 
+        </f:facet>  
+        <h:outputText value="#{creneauMedecinJour.creneau.hdebut}:#{creneauMedecinJour.creneau.mdebut} - #{creneauMedecinJour.creneau.hfin}:#{creneauMedecinJour.creneau.mfin}" />  
+      </h:column>  
+      <h:column>  
+        <f:facet name="header">  
+          <h:outputText value="#{msg['form2.client']}"/>  
+        </f:facet>  
+        <c:if test="#{creneauMedecinJour.rv==null}">
+          <h:outputText value=""/>
+          <c:otherwise>
+            <h:outputText value="#{creneauMedecinJour.rv.client.titre} #{creneauMedecinJour.rv.client.prenom} #{creneauMedecinJour.rv.client.nom}"/>
+          </c:otherwise>
+        </c:if>
+      </h:column>  
+      <h:column>  
+        <f:facet name="header"/>
+        <h:commandLink action="#{form.action()}" value="#{creneauMedecinJour.rv==null ? msg['form2.reserver'] : msg['form2.supprimer']}">
+          <f:setPropertyActionListener value="#{creneauMedecinJour.creneau.id}" target="#{form.idCreneau}"/>
+        </h:commandLink>
+      </h:column>  
+    </h:dataTable>
+  </body>
+</html>
+
