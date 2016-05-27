@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle"/>
+
+    <!--
+        Added the entity  CRENEAUX / TIMESLOT.
+    -->
+    <changeSet id="20160513014702-1" author="Malick">
+    
+        <createTable tableName="creneaux">
+        
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="hdebut" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="hfin" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="mdebut" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="mfin" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="id_medecin" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			
+			<!-- Audit column -->
+			
+            <column name="version" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_by" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_date" type="timestamp" defaultValueDate="${now}">
+				<constraints nullable="false" />
+			</column>
+			<column name="last_modified_by" type="VARCHAR(50)" />
+			<column name="last_modified_date" type="timestamp" />
+						
+        </createTable>
+        
+    </changeSet>
+    
+    <!--
+        Added the constraints for entity Department.
+    -->
+    <changeSet id="20160513014702-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="id_medecin"
+                                 baseTableName="creneaux"
+                                 constraintName="fk_creneaux_id_medecin"
+                                 referencedColumnNames="id"
+                                 referencedTableName="medecins"/>
+
+    </changeSet>
+</databaseChangeLog>

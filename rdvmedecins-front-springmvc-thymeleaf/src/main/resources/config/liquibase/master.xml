@@ -6,19 +6,31 @@
 	<include
 		file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml"
 		relativeToChangelogFile="false" />
-
 	<include
-		file="classpath:config/liquibase/changelog/20160518112615_added_entity_Client_Medecin_Creneaux_Rv.xml"
+		file="classpath:config/liquibase/changelog/20160513014500_added_entity_ID_Gen.xml"
+		relativeToChangelogFile="false" />
+	<include
+		file="classpath:config/liquibase/changelog/20160513014600_added_entity_Admin.xml"
+		relativeToChangelogFile="false" />
+	<include
+		file="classpath:config/liquibase/changelog/20160513014700_added_entity_Client.xml"
+		relativeToChangelogFile="false" />
+	<include
+		file="classpath:config/liquibase/changelog/20160513014700_added_entity_Specialisation.xml"
+		relativeToChangelogFile="false" />
+	<include
+		file="classpath:config/liquibase/changelog/20160513014701_added_entity_Medecin.xml"
+		relativeToChangelogFile="false" />
+	<include
+		file="classpath:config/liquibase/changelog/20160513014702_added_entity_Creneaux.xml"
+		relativeToChangelogFile="false" />
+	<include
+		file="classpath:config/liquibase/changelog/20160513014703_added_entity_Rv.xml"
+		relativeToChangelogFile="false" />
+	<include
+		file="classpath:config/liquibase/changelog/20160513014704_added_entity_Address.xml"
 		relativeToChangelogFile="false" />
 
-	<include
-		file="classpath:config/liquibase/changelog/20160520094217_changelog.xml"
-		relativeToChangelogFile="false" />
-	
-	<include
-		file="classpath:config/liquibase/changelog/20160520140622_changelog.xml"
-		relativeToChangelogFile="false" />	
-		
 
 
 	<!-- load data -->

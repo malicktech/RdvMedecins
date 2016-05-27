@@ -19,29 +19,42 @@
 	<!-- App core tables. The initial schema has the '00000000000001' id, so 
 		that it is over-written if we re-generate it. -->
 
-	<changeSet author="Malick" id="00000000000001"
+	<changeSet author="Malick" id="00000000000001-1"
 		objectQuotingStrategy="QUOTE_ALL_OBJECTS">
 		
 		<createTable tableName="zocdoc_user">
 			<column name="id" type="BIGINT" autoIncrement="${autoIncrement}">
-				<constraints primaryKey="true" nullable="false"/>
+				<constraints primaryKey="true" nullable="false" primaryKeyName="pk_zocdoc_user"/>
 			</column>
-			<column name="person_user_id" type="BIGINT"/>
+			
 			<column name="login" type="varchar(50)">
                 <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(100)" >
+                <constraints unique="true"/>
             </column>
             <column name="password_hash" type="VARCHAR(60)">
 				<constraints nullable="false" />
 			</column>          
-            <column name="email" type="VARCHAR(100)" >
-                <constraints unique="true"/>
-            </column>
+            
             <column name="activated" type="BIT(1)">
 				<constraints nullable="false" />
-			</column> 
-			<column name="version" type="BIGINT">
-				<constraints nullable="false" />
 			</column>       
+			
+			<column name="activation_key" type="VARCHAR(20)" />
+			<column name="lang_key" type="VARCHAR(5)" />
+			<column name="reset_date" type="timestamp" />
+			<column name="reset_key" type="VARCHAR(20)" />
+			
+			<!-- foreign keys  -->
+			
+			<column name="person_user_id" type="BIGINT"/>
+			
+			<!-- Audit column -->
+			
+            <column name="version" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
 			<column name="created_by" type="VARCHAR(50)">
 				<constraints nullable="false" />
 			</column>
@@ -49,13 +62,13 @@
 				<constraints nullable="false" />
 			</column>
 			<column name="last_modified_by" type="VARCHAR(50)" />
-			<column name="last_modified_date" type="timestamp" />			
-			<column name="activation_key" type="VARCHAR(20)" />
-			<column name="lang_key" type="VARCHAR(5)" />
-			<column name="reset_date" type="timestamp" />
-			<column name="reset_key" type="VARCHAR(20)" />
+			<column name="last_modified_date" type="timestamp" />
 		</createTable>
-				
+		
+		<!--
+        	Added User index
+    	-->	
+    		
 		<createIndex indexName="idx_user_login"
             tableName="zocdoc_user"
             unique="true">
@@ -67,13 +80,29 @@
             unique="true">
             <column name="email" type="varchar(100)"/>
         </createIndex>
+   
+   </changeSet>
+ 
         
+    <!--
+        	Added the entity  AUTHORITY
+    -->       
+   <changeSet author="Malick" id="00000000000001-2"
+		objectQuotingStrategy="QUOTE_ALL_OBJECTS">   
+    	
 		<createTable tableName="zocdoc_authority">
 			<column name="name" type="VARCHAR(50)">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 		</createTable>
+   </changeSet>
 		
+	<!--
+        	Added the entity  USER_AUTHORITY
+    -->
+    <changeSet author="Malick" id="00000000000001-3"
+		objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+			
 		<createTable tableName="zocdoc_user_authority">
 			<column name="user_id" type="BIGINT">
 				<constraints nullable="false" />
@@ -82,43 +111,72 @@
 				<constraints nullable="false" />
 			</column>
 		</createTable>
+     </changeSet>
 
+	<!--
+        Added contraints  USER_AUTHORITY
+    -->
+    <changeSet author="Malick" id="00000000000001-4"
+		objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		
 		<addPrimaryKey columnNames="user_id, authority_name"
 			constraintName="PRIMARY" tableName="zocdoc_user_authority" />
-		
+			
+		<addForeignKeyConstraint baseColumnNames="authority_name"
+                                 baseTableName="zocdoc_user_authority"
+                                 constraintName="fk_user_authority_authority_name"
+                                 referencedColumnNames="name"
+                                 referencedTableName="zocdoc_authority"/>			
+         
+         <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="zocdoc_user_authority"
+                                 constraintName="fk_user_authority_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="zocdoc_user"/> 		
+     </changeSet>
+	
+	<!--
+        Added the entity  PERSIST TOKEN
+    -->
+    
+    <changeSet author="Malick" id="00000000000001-5"
+		objectQuotingStrategy="QUOTE_ALL_OBJECTS">
 		
 		<createTable tableName="zocdoc_persistent_token">
 			<column name="series" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="user_id" type="bigint"/>
             <column name="token_value" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
             <column name="token_date" type="date"/>
             <column name="ip_address" type="varchar(39)"/>
             <column name="user_agent" type="varchar(255)"/>
+            <!-- foreign keys  -->
+            <column name="user_id" type="bigint"/>            
         </createTable>
-		
-		<addForeignKeyConstraint baseColumnNames="authority_name"
-                                 baseTableName="zocdoc_user_authority"
-                                 constraintName="fk_authority_name"
-                                 referencedColumnNames="name"
-                                 referencedTableName="zocdoc_authority"/>
-                                 
-         <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="zocdoc_user_authority"
-                                 constraintName="fk_user_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="zocdoc_user"/>                          
-                                 
-         <addForeignKeyConstraint baseColumnNames="user_id"
+       
+     </changeSet>
+        
+    <changeSet author="Malick" id="00000000000001-6"
+		objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		        
+        <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="zocdoc_persistent_token"
-                                 constraintName="fk_user_persistent_token"
+                                 constraintName="fk_persistent_token_user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="zocdoc_user"/>                        
-                                  
- 
+                                 referencedTableName="zocdoc_user"/>  
+		                                
+     </changeSet>
+                                 
+                               
+     <!--
+        Added the entity  AUDIT  EVENT
+    -->  
+                               
+	<changeSet author="Malick" id="00000000000001-7"
+		objectQuotingStrategy="QUOTE_ALL_OBJECTS"> 
+		
          <createTable tableName="zocdoc_persistent_audit_event">
             <column name="event_id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
@@ -129,6 +187,13 @@
             <column name="event_date" type="timestamp"/>
             <column name="event_type" type="varchar(255)"/>
         </createTable>
+        
+        <createIndex indexName="idx_persistent_audit_event"
+                     tableName="zocdoc_persistent_audit_event"
+                     unique="false">
+            <column name="principal" type="varchar(255)"/>
+            <column name="event_date" type="timestamp"/>
+        </createIndex>
 
         <createTable tableName="zocdoc_persistent_audit_evt_data">
             <column name="event_id" type="bigint">
@@ -139,26 +204,25 @@
             </column>
             <column name="value" type="varchar(255)"/>
         </createTable>
-		<addPrimaryKey columnNames="event_id, name" tableName="zocdoc_persistent_audit_evt_data"/>
-                         		
-        <createIndex indexName="idx_persistent_audit_event"
-                     tableName="zocdoc_persistent_audit_event"
-                     unique="false">
-            <column name="principal" type="varchar(255)"/>
-            <column name="event_date" type="timestamp"/>
-        </createIndex>
-
+        
         <createIndex indexName="idx_persistent_audit_evt_data"
                      tableName="zocdoc_persistent_audit_evt_data"
                      unique="false">
             <column name="event_id" type="bigint"/>
         </createIndex>
- 
+        
+     </changeSet>
+        
+    <changeSet author="Malick" id="00000000000001-8"
+		objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		
+		<addPrimaryKey columnNames="event_id, name" tableName="zocdoc_persistent_audit_evt_data"/>
+
         <addForeignKeyConstraint baseColumnNames="event_id"
                                  baseTableName="zocdoc_persistent_audit_evt_data"
                                  constraintName="fk_evt_pers_audit_evt_data"
                                  referencedColumnNames="event_id"
                                  referencedTableName="zocdoc_persistent_audit_event"/>       
-      </changeSet>   
+    </changeSet>   
 
 </databaseChangeLog>
