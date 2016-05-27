@@ -1,5 +1,6 @@
 package rdvmedecins.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "clients")
-public class Client extends Personne {
+public class UserClient extends Personne implements Serializable{
 
 	/*
 	 * Serial Version UID
@@ -36,7 +37,7 @@ public class Client extends Personne {
 	 * =========================================================================
 	 */
 
-	public Client() {
+	public UserClient() {
 	}
 	
 	/*

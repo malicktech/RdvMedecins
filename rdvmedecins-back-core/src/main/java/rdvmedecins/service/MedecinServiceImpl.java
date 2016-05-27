@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import rdvmedecins.domain.Client;
-import rdvmedecins.domain.Medecin;
+import rdvmedecins.domain.UserClient;
+import rdvmedecins.domain.UserMedecin;
 import rdvmedecins.repository.MedecinRepository;
 
 @Service
@@ -28,12 +28,12 @@ public class MedecinServiceImpl implements MedecinService {
 	 */
 
 	@Override
-	public Medecin createMedecin(Medecin medecin) {
+	public UserMedecin createMedecin(UserMedecin medecin) {
 		return medecinRepository.save(medecin);
 	}
 
 	@Override
-	public Medecin updateMedecin(Medecin medecin) {
+	public UserMedecin updateMedecin(UserMedecin medecin) {
 		return medecinRepository.save(medecin);
 	}
 
@@ -44,19 +44,19 @@ public class MedecinServiceImpl implements MedecinService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Medecin> findAllMedecins() {
-		List<Medecin> medecins = medecinRepository.findAll();
+	public List<UserMedecin> findAllMedecins() {
+		List<UserMedecin> medecins = medecinRepository.findAll();
 		return medecins;
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Medecin findOneMedecin(Long id) {
+	public UserMedecin findOneMedecin(Long id) {
 		return medecinRepository.findOne(id);
 	}
 
 	@Override
-	public List<Medecin> searchMedecins() {
+	public List<UserMedecin> searchMedecins() {
 		// TODO implement elastic search repository
 		return null;
 	}

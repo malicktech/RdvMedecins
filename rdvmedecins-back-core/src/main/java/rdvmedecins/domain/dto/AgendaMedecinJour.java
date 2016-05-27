@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import rdvmedecins.domain.Medecin;
+import rdvmedecins.domain.UserMedecin;
 
 /**
  * L'entité [AgendaMedecinJour] est un entité métier il est l'agenda d'un
@@ -18,7 +18,7 @@ public class AgendaMedecinJour implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// champs
-	private Medecin medecin;
+	private UserMedecin medecin;
 	private Date jour;
 	private CreneauMedecinJour[] creneauxMedecinJour;
 
@@ -27,7 +27,7 @@ public class AgendaMedecinJour implements Serializable {
 
 	}
 
-	public AgendaMedecinJour(Medecin medecin, Date jour, CreneauMedecinJour[] creneauxMedecinJour) {
+	public AgendaMedecinJour(UserMedecin medecin, Date jour, CreneauMedecinJour[] creneauxMedecinJour) {
 		this.medecin = medecin;
 		this.jour = jour;
 		this.creneauxMedecinJour = creneauxMedecinJour;
@@ -61,11 +61,11 @@ public class AgendaMedecinJour implements Serializable {
 		this.jour = jour;
 	}
 
-	public Medecin getMedecin() {
+	public UserMedecin getMedecin() {
 		return medecin;
 	}
 
-	public void setMedecin(Medecin medecin) {
+	public void setMedecin(UserMedecin medecin) {
 		this.medecin = medecin;
 	}
 

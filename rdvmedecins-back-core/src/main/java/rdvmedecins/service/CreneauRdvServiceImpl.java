@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import rdvmedecins.domain.dto.AgendaMedecinJour;
-import rdvmedecins.domain.Client;
+import rdvmedecins.domain.UserClient;
 import rdvmedecins.domain.Creneau;
-import rdvmedecins.domain.Medecin;
+import rdvmedecins.domain.UserMedecin;
 import rdvmedecins.domain.Rv;
 import rdvmedecins.domain.dto.CreneauMedecinJour;
 import rdvmedecins.repository.CreneauRepository;
@@ -50,8 +50,8 @@ public class CreneauRdvServiceImpl implements CreneauRdvService {
 	 */
 	
 	@Override
-	public Rv createRv(Date jour, Creneau créneau, Client client) {
-		return rvRepository.save(new Rv(jour, client, créneau));
+	public Rv createRv(Rv rv) {
+		return rvRepository.save(rv);
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class CreneauRdvServiceImpl implements CreneauRdvService {
 	 */
 	
 	@Override
-	public Creneau createTimeslot(Date jour, Creneau créneau, Client client) {
+	public Creneau createTimeslot(Date jour, Creneau créneau, UserClient client) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -141,7 +141,7 @@ public class CreneauRdvServiceImpl implements CreneauRdvService {
 		AgendaMedecinJour agenda = new AgendaMedecinJour();
 		
 		// le médecin
-		Medecin doctor = medecinRepository.findOne(idDoctor);
+		UserMedecin doctor = medecinRepository.findOne(idDoctor);
 		agenda.setMedecin(doctor);		
 		// le jour
 		agenda.setJour(day);

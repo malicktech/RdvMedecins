@@ -2,18 +2,18 @@ package rdvmedecins.service;
 
 import java.util.List;
 
-import rdvmedecins.domain.Client;
-import rdvmedecins.domain.Medecin;
+import rdvmedecins.domain.UserClient;
+import rdvmedecins.domain.UserMedecin;
 
 public interface ClientService {
 
-	public Client createClient(Client emp);
-	public Client updateClient(Client emp);
+	public UserClient createClient(UserClient emp);
+	public UserClient updateClient(UserClient emp);
 	public void deleteClient(Long empId);
 	
-	public Client findOneClient(Long empId);
-	public List<Client> getAllClients();
-	public List<Medecin> searchClients();
+	public UserClient findOneClient(Long empId);
+	public List<UserClient> getAllClients();
+	public List<UserMedecin> searchClients();
 	
 	public Long countAllClients();
 }

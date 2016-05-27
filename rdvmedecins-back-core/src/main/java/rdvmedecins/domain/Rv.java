@@ -33,19 +33,39 @@ public class Rv extends AbstractAuditingEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
-	
-	@Column(name="jour", nullable = false)
+
+	@Column(name = "jour", nullable = false)
 	@Temporal(TemporalType.DATE)
 	@NotNull
 	private Date jour;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_client", insertable = false, nullable = false, updatable = false)
-	private Client client;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_client")
+	private UserClient client;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_creneau", insertable = false, nullable = false, updatable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_creneau")
 	private Creneau creneau;
+
+	/*
+	 * foreign keys 
+	 * =========================================================================
+	 * used to add Rv directly : Rv is not owner of releationship
+	 */
+	
+	@Column(name = "id_client", nullable = false, insertable = false, updatable = false)
+	private long idClient;
+	
+	@Column(name = "id_creneau", nullable = false, insertable = false, updatable = false)
+	private long idCreneau;
+	
+	public long getIdCreneau() {
+		return idCreneau;
+	}
+
+	public long getIdClient() {
+		return idClient;
+	}
 
 	/*
 	 * constructors
@@ -55,11 +75,10 @@ public class Rv extends AbstractAuditingEntity {
 	public Rv() {
 	}
 
-	public Rv(Date jour, Client client, Creneau creneau) {
-		this.jour = jour;
-		this.client = client;
-		this.creneau = creneau;
-	}
+	/*
+	 * getters et setters
+	 * =========================================================================
+	 */
 
 	/*
 	 * getters et setters
@@ -73,7 +92,7 @@ public class Rv extends AbstractAuditingEntity {
 		this.id = id;
 	}
 
-	public Client getClient() {
+	public UserClient getClient() {
 		return client;
 	}
 
@@ -85,7 +104,7 @@ public class Rv extends AbstractAuditingEntity {
 		this.jour = jour;
 	}
 
-	public void setClient(Client client) {
+	public void setClient(UserClient client) {
 		this.client = client;
 	}
 

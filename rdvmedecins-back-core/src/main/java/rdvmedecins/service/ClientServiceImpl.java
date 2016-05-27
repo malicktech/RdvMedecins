@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import rdvmedecins.domain.Client;
-import rdvmedecins.domain.Medecin;
+import rdvmedecins.domain.UserClient;
+import rdvmedecins.domain.UserMedecin;
 import rdvmedecins.repository.ClientRepository;
 
 @Service
@@ -29,7 +29,7 @@ public class ClientServiceImpl implements ClientService{
 	 */
 
 	@Override
-	public Client createClient(Client client) {
+	public UserClient createClient(UserClient client) {
 		return clientRepository.save(client);
 	}
 
@@ -39,25 +39,25 @@ public class ClientServiceImpl implements ClientService{
 	}
 
 	@Override
-	public Client updateClient(Client client) {
+	public UserClient updateClient(UserClient client) {
 		return clientRepository.save(client);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Client> getAllClients() {
-		List<Client> clients = clientRepository.findAll();
+	public List<UserClient> getAllClients() {
+		List<UserClient> clients = clientRepository.findAll();
 		return clients;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Client findOneClient(Long id) {
+	public UserClient findOneClient(Long id) {
 		return clientRepository.findOne(id);
 	}
 
 	@Override
-	public List<Medecin> searchClients() {
+	public List<UserMedecin> searchClients() {
 		// TODO Add elastic search repository
 		return null;
 	}

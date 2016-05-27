@@ -2,7 +2,7 @@ package rdvmedecins.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import rdvmedecins.domain.Medecin;
+import rdvmedecins.domain.UserMedecin;
 
 /**
  * Spring Data JPA repository for the [Medecin] entity 
@@ -10,7 +10,7 @@ import rdvmedecins.domain.Medecin;
  * @author Malick
  *
  */
-public interface MedecinRepository extends JpaRepository<Medecin, Long> {
+public interface MedecinRepository extends JpaRepository<UserMedecin, Long> {
 	
 	
 }

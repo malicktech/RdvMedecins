@@ -1,11 +1,13 @@
 package rdvmedecins.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "admin")
-public class Admin extends Personne {
+public class UserAdmin extends Personne implements Serializable{
 
 	/*
 	 * Serial Version UID
@@ -24,7 +26,7 @@ public class Admin extends Personne {
 	 * =========================================================================
 	 */
 
-	public Admin() {
+	public UserAdmin() {
 	}
 
 	/*

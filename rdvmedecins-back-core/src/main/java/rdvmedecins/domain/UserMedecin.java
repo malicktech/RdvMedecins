@@ -1,5 +1,6 @@
 package rdvmedecins.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "medecins")
-public class Medecin extends Personne {
+public class UserMedecin extends Personne implements Serializable {
 
 	/*
 	 * Serial Version UID
@@ -27,8 +28,8 @@ public class Medecin extends Personne {
 	 * =========================================================================
 	 */
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "specialisation_id", referencedColumnName = "id")
-	private Specialization specialization;
+	@JoinColumn(name = "id_specialisation", referencedColumnName = "id")
+	private MedecinSpecialization specialization;
 
 	@OneToMany(mappedBy = "medecin", fetch = FetchType.LAZY)
 	private List<Creneau> creneaux = new ArrayList<>();
@@ -38,7 +39,7 @@ public class Medecin extends Personne {
 	 * =========================================================================
 	 */
 
-	public Medecin() {
+	public UserMedecin() {
 	}
 
 	/*

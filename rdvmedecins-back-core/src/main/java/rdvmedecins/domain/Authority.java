@@ -16,6 +16,8 @@ import java.io.Serializable;
 @Table(name = "zocdoc_authority")
 public class Authority implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
 	/*
 	 * Fields
 	 * =========================================================================

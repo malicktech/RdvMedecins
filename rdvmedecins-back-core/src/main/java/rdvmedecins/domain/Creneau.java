@@ -1,9 +1,11 @@
 package rdvmedecins.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,10 +21,10 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 @Entity
 @Table(name = "creneaux")
 @JsonFilter("creneauFilter")
-public class Creneau extends AbstractAuditingEntity {
+public class Creneau extends AbstractAuditingEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	/*
 	 * Fields
 	 * =========================================================================
@@ -30,29 +32,42 @@ public class Creneau extends AbstractAuditingEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
-	
+
 	private int hdebut;
 	private int mdebut;
 	private int hfin;
 	private int mfin;
 
 	/** a timeslot is linked to one medecin */
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "id_medecin", insertable = false, nullable=false ,updatable=true)
-	private Medecin medecin;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_medecin")
+	private UserMedecin medecin;
+
+	@OneToMany(mappedBy = "creneau")
+	private List<Rv> rdVs = new ArrayList<>();
+
+	/*
+	 * foreign keys
+	 * =========================================================================
+	 * used to add object directly : Creneau is not owner of releationship
+	 */
 	
-	@OneToMany(mappedBy = "creneau" , fetch=FetchType.LAZY)   
-    private List<Rv> rdVs = new ArrayList<>();
+	@Column(name = "id_medecin", nullable = false, insertable = false, updatable = false)
+	private long idMedecin;
+
+	public long getIdMedecin() {
+		return idMedecin;
+	}
 
 	/*
 	 * constructors
 	 * =========================================================================
 	 */
-	
+
 	public Creneau() {
 	}
 
-	public Creneau(Medecin medecin, int hdebut, int mdebut, int hfin, int mfin) {
+	public Creneau(UserMedecin medecin, int hdebut, int mdebut, int hfin, int mfin) {
 		this.medecin = medecin;
 		this.hdebut = hdebut;
 		this.mdebut = mdebut;
@@ -71,7 +86,7 @@ public class Creneau extends AbstractAuditingEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public int getHdebut() {
 		return hdebut;
 	}
@@ -104,11 +119,11 @@ public class Creneau extends AbstractAuditingEntity {
 		this.mfin = mfin;
 	}
 
-	public Medecin getMedecin() {
+	public UserMedecin getMedecin() {
 		return medecin;
 	}
 
-	public void setMedecin(Medecin medecin) {
+	public void setMedecin(UserMedecin medecin) {
 		this.medecin = medecin;
 	}
 
@@ -143,8 +158,9 @@ public class Creneau extends AbstractAuditingEntity {
 	public int hashCode() {
 		return Objects.hashCode(id);
 	}
-	
+
 	public String toString() {
-		return String.format("Créneau[%d, %d, %d, %d:%d, %d:%d]", id, version, hdebut, mdebut, hfin, mfin);
+		return String.format("Créneau[%d, %d, %d:%d, %d:%d]", id, version, hdebut, mdebut, hfin, mfin);
 	}
+
 }

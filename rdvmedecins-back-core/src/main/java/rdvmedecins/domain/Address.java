@@ -1,5 +1,7 @@
 package rdvmedecins.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +17,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "address")
-public class Address extends AbstractAuditingEntity {
+public class Address extends AbstractAuditingEntity implements Serializable{
 	
 	/*
 	 * Serial Version UID
@@ -45,7 +47,7 @@ public class Address extends AbstractAuditingEntity {
     
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_client", insertable = false, nullable = false, updatable = false)
-	private Client client;
+	private UserClient client;
 
     /*
 	 * constructors
