@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -81,6 +80,7 @@ public class AppointmentController {
 	public String getAgendaMedecinJour(@PathVariable("idMedecin") Long idMedecin, @PathVariable("jour") String jour,
 			Model model) {
 		logger.debug("REST request to get getAgendaMedecinJour/{}/{}", idMedecin, jour);
+		
 		// check date format
 		Date jourAgenda = null;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -93,24 +93,21 @@ public class AppointmentController {
 		// get doctor and his timeslots
 		UserMedecin medecin = medecinService.findOneMedecin(idMedecin);
 		AgendaMedecinJour agenda = creneauRdvService.getAgendaMedecinJour(medecin.getId(), jourAgenda);
-
+		// set Timeslot and appointment in Map list
 		Map<Creneau, Rv> appointmentMap = new HashMap<>();
 		CreneauMedecinJour[] cMJs = agenda.getCreneauxMedecinJour();
 		for (CreneauMedecinJour cmj : cMJs) {
-			// appointmentMap.put(getTextForCreneau(cmj.getCreneau()),
-			// cmj.getRv());
 			appointmentMap.put(cmj.getCreneau(), cmj.getRv());
 		}
-
 		model.addAttribute("medecin", medecin);
 		model.addAttribute("today", Calendar.getInstance());
 		model.addAttribute("timeslotMap", appointmentMap);
 
-		// list client for form in modal
+		// list client for the form in modal
 		List<UserClient> clients = clientService.getAllClients();
 		model.addAttribute("clients", clients);
 
-		// model bean for form in modal
+		// model bean for the form in modal
 		if (!model.containsAttribute("addRvDto")) {
 			PostAjouterRv addRvDto = new PostAjouterRv();
 			model.addAttribute("addRvDto", addRvDto);
@@ -119,40 +116,24 @@ public class AppointmentController {
 		return ConstantsViewName.DOCTOR_VIEW;
 	}
 
-	/** mise en forme du libellé d'un créneau horaire */
-	public String getTextForCreneau(Creneau creneau) {
-		return getTextFor(creneau.getHdebut()) + "h" + getTextFor(creneau.getMdebut()) + ":"
-				+ getTextFor(creneau.getHfin()) + "h" + getTextFor(creneau.getMfin());
-	}
-
-	/** met un 0 devant le chiffre si moins de deux chiffres */
-	public String getTextFor(Integer number) {
-		return number < 10 ? "0" + number : number.toString();
-	}
-
 	/**
 	 * POST /admin/medecins/ajouterRv
 	 */
 	@RequestMapping(value = "/{idMedecin}/rv/add", method = RequestMethod.POST)
 	public String ajouterRv(@PathVariable("idMedecin") Long idMedecin,
 			@Valid @ModelAttribute("addRvDto") PostAjouterRv addRvDto, final RedirectAttributes redirectAttributes,
-			Model model, BindingResult bindingResult) {
+			Model model) {
 
-		if (bindingResult.hasErrors()) {
-			redirectAttributes.addFlashAttribute("addRvDto", addRvDto);
-			return "redirect:/admin/medecins/" + idMedecin;
-		}
-
-		// on récupère les valeurs postées
+		// get posted values
 		String jour = addRvDto.getJour();
 		long idCreneau = addRvDto.getIdCreneau();
 		long idClient = addRvDto.getIdClient();
-		System.out.println(jour + idCreneau + idClient);
+		
 		logger.debug(
-				"REST Post addRvDto[(jour)({})-(idCreneau)({})-(idClient)({})])request to /admin/medecins/{}/rv/add",
+				"Admin Post request | /admin/medecins/{}/rv/add | addRvDto[(jour)({})-(idCreneau)({})-(idClient)({})])",
 				jour, idCreneau, idClient, idMedecin);
 
-		// on vérifie la date
+		// check date formaat
 		Date jourAgenda = null;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
@@ -177,8 +158,8 @@ public class AppointmentController {
 		} else {
 			redirectAttributes.addFlashAttribute("registrationTask", "unsuccess");
 		}
+		
 		return "redirect:/admin/medecins/getAgendaMedecinJour/" + idMedecin + "/" + jour;
-
 	}
 
 	/**
@@ -190,7 +171,6 @@ public class AppointmentController {
 			@PathVariable("idAppointment") Long idAppointment, @PathVariable("jour") String jour, Model model) {
 		logger.debug("ADMIN request to delete Appointment : {}", idAppointment);
 
-		Rv rv = creneauRdvService.findRvById(idAppointment);
 		creneauRdvService.deleteRv(idAppointment);
 
 		return "redirect:/admin/medecins/getAgendaMedecinJour/" + idMedecin + "/" + jour;
